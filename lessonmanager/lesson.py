@@ -40,8 +40,8 @@ class lesson_author(osv.Model):
             print 'author type is %s'% type(author)
         v['name'] = 'tedi3231'
         return {'value':v}
-
 lesson_author()
+
 
 class lesson_book(osv.Model):
     _name="lesson.book"
@@ -49,8 +49,27 @@ class lesson_book(osv.Model):
         "name":fields.char("Book Name",size=60,required=True,help="Please input book name"),
         "category":fields.many2one("lesson.category",string="Book category"),
         "description":fields.char("Description",size=100),
+        "state":fields.selection([('draft','New'),('open','Accepted'),('cancel','Refused'),('close','Done')],"Status",readonly=True,track_visibility="onchange")
     }
+    _defaults={
+        'state':lambda *a:'draft',
+    }
+    _order = 'name desc'
+
+    def book_cancel(self,cr,uid,ids,context=None):
+        return self.write(cr,uid,ids,{'state':'cancel'},context=context)
+
+    def book_open(self,cr,uid,ids,context={}):
+        return self.write(cr,uid,ids,{'state':'open'},context=context)
+
+    def book_close(self,cr,uid,ids,context={}):
+        return self.write(cr,uid,ids,{'state':'close'},context=context)
+
+    def book_draft(self,cr,uid,ids,context={}):
+        return self.write(cr,uid,ids,{'state':'draft'},context=context)
+
 lesson_book()
+
 
 class lesson_student(osv.Model):
     _name = "lesson.student"
@@ -98,7 +117,6 @@ class lesson_grade(osv.Model):
         return False
 
     _constraints = [(_check_name,'Grade name has been exists!',['name'])]
-    
 lesson_grade()
 
 class lesson_course(osv.Model):
@@ -108,5 +126,3 @@ class lesson_course(osv.Model):
         'description':fields.char('Description',size=100),
     }
 lesson_course()
-
-

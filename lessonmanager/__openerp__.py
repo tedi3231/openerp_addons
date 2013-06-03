@@ -6,8 +6,12 @@
     "init_xml" : [],                                                                                
     "update_xml" : [                                                                                
         #"security/ir.model.access.csv",                                                            
-        "lesson_view.xml",                                                                          
-    ],                                                                                              
+        "lesson_view.xml",    
+        "lesson_workflow.xml"                                                                      
+    ],
+    "data":[
+        "lesson_workflow.xml"
+    ],                                                                                            
     "category" : "Enterprise Specific Modules/Travel Agencies",                                     
     "description":"This is a demo for study",
     "active": False,                                                                                

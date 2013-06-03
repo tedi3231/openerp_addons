@@ -40,16 +40,38 @@
 			</field>
 		</record>
 		
+		<record id="view_lesson_book_tree" model="ir.ui.view">
+			<field name="name">lesson.book.form</field>
+			<field name="model">lesson.book</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Books" version="7.0">
+					<field name="name"/>
+					<field name="category"/>
+					<field name="description"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
 		<record id="view_lesson_book_form" model="ir.ui.view">
 			<field name="name">lesson.book.form</field>
 			<field name="model">lesson.book</field>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
-				<tree string="Books">
-					<field name="name"/>
-					<field name="category"/>
-					<field name="description"/>
-				</tree>
+				<form string="Books" version="7.0">
+					<header>
+						<button name="book_open" string="Open" states="draft" class="oe_highlight"/>
+						<button name="book_close" string="Accept" states="open"/>
+						<button name="book_cancel" string="Refuse" states="open" />						
+						<field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+					</header>
+					<sheet>
+						<field name="name"/>
+						<field name="category"/>
+						<field name="description"/>	
+					</sheet>					
+				</form>
 			</field>
 		</record>
 
@@ -62,6 +84,19 @@
 					<field name="category" group="True"/>
 					<field name="name" operator="+"/>
 				</graph>
+			</field>
+		</record>
+
+		<record id="view_lesson_book_search" model="ir.ui.view">
+			<field name="name">lesson.book.search</field>
+			<field name="model">lesson.book</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Book Search" >
+					<group expand="1" string="Group By">
+						<filter string="Books" domain="[]" context="{'group_by':'state'}" />
+					</group>
+				</search>
 			</field>
 		</record>
 
@@ -180,6 +215,7 @@
 		</record>
 
 		<record model="ir.actions.act_window" id="action_lesson_book_show_form">
+			<field name="name">Books</field>
 			<field name="res_model">lesson.book</field>
 			<field name="domain">[]</field>
 			<field name="view_type">form</field>
