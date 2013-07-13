@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <!--产品品牌 -->
+        <record model="ir.ui.view" id="view_itcompare_product_brand_tree">
+            <field name="name">itcompare.product_brand.tree</field>
+            <field name="model">itcompare.product_brand</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product Brands">
+                    <field name="name" />
+                    <field name="remark" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_itcompare_product_brand_form">
+            <field name="name">itcompare.product_brand.form</field>
+            <field name="model">itcompare.product_brand</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product Brands" version="7.0">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="remark"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_itcompare_product_brand_tree_show">
+            <field name="name">Product Brands</field>
+            <field name="res_model">itcompare.product_brand</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--产品分类-->
+        <record model="ir.ui.view" id="view_itcompare_product_category_tree">
+            <field name="name">itcompare.product_category.tree</field>
+            <field name="model">itcompare.product_category</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product Categories">
+                    <field name="name" />
+                    <field name="remark" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_itcompare_product_category_form">
+            <field name="name">itcompare.product_category.form</field>
+            <field name="model">itcompare.product_category</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product Categories" version="7.0">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="remark"/>
+                    </group>
+                    <notebook>
+                        <page string="Product Attribute Types">
+                            <field name="product_attr_type">
+                                <tree version="7.0">
+                                    <field name="name"/>
+                                    <field name="remark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        <!-- 产品属性类别 -->
+        <record model="ir.ui.view" id="view_itcompare_product_attr_type_form">
+            <field name="name">itcompare.product_attr_type.form</field>
+            <field name="model">itcompare.product_attr_type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product Attribute Types" version="7.0">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="remark"/>
+                    </group>
+                    <notebook>
+                        <page string="Product Attribute">
+                            <field name="product_attr">
+                                <tree version="7.0">
+                                    <field name="name"/>
+                                    <field name="value"/>
+                                    <!--<field name="remark"/>-->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_itcompare_product_category_tree_show">
+            <field name="name">Product Categories</field>
+            <field name="res_model">itcompare.product_category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--产品属性 start-->
+        <record model="ir.ui.view" id="view_itcompare_product_attr_tree">
+            <field name="name">itcompare.product_attr.tree</field>
+            <field name="model">itcompare.product_attr</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product Attributes">
+                    <field name="product_attr_type_id" invisible="1"/>
+                    <field name="formatname" />
+                    <field name="value" />
+                    <!--<field name="product_attr_type_name"/>-->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_itcompare_product_attr_search">
+            <field name="name">itcompare.product_attr.search</field>
+            <field name="model">itcompare.product_attr</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Attributes">
+                    <field name="name"/>
+                    <field name="value"/>
+                    <group expand="1" string="Group by...">
+                        <filter name="groupby_attr_type" context="{'group_by':'product_attr_type_id'}" string="Attribute Type"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_itcompare_product_attr_tree_show">
+            <field name="name">Product Attributes</field>
+            <field name="res_model">itcompare.product_attr</field>
+            <field name="view_type">form</field>
+            <field name="context">{"search_default_groupby_attr_type" : True,}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--产品属性 end-->
+
+        <!--产品 start-->
+        <record model="ir.ui.view" id="view_itcompare_product_tree">
+            <field name="name">itcompare.product.tree</field>
+            <field name="model">itcompare.product</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Products">
+                    <field name="product_brand"/>
+                    <field name="product_category"/>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_itcompare_product_form">
+            <field name="name">itcompare.product.form</field>
+            <field name="model">itcompare.product</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product" version="7.0">
+                    <group>
+                        <field name="product_brand"/>
+                    </group>
+                    <group>
+                        <field name="product_category" on_change="on_change_category(product_category)" confirm="Are you sure?"/>
+                    </group>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <notebook>
+                            <page string="Product Fields">
+                                <field name="product_fields">
+                                    <tree version="7.0" editable="bottom">
+                                        <field name="product_attr"/>
+                                        <field name="value"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_itcompare_product_search">
+            <field name="name">itcompare.product.search</field>
+            <field name="model">itcompare.product</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Product">
+                    <field name="name"/>
+                    <field name="product_brand"/>
+                    <group expand="1" string="Group by...">
+                        <filter name="groupby_brand" context="{'group_by':'product_brand'}" string="Brand"/>
+                        <filter name="groupby_category" context="{'group_by':'product_category'}" string="Category"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_itcompare_product_tree_show">
+            <field name="name">Products</field>
+            <field name="res_model">itcompare.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_groupby_category" : True,}</field>
+        </record>
+        <!--产品 end-->
+
+        <!--产品字段 start-->
+        <!--<record model="ir.ui.view" id="view_itcompare_product_field_form">
+            <field name="name">itcompare.product_field.form</field>
+            <field name="model">itcompare.product_field</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product Field">
+                    <field name="product_attr"/>
+                    <field name="value"/>
+                </form>
+            </field>
+    </record>-->
+        <!--产品字段 end-->
+
+        <menuitem id="menu_itcompare_main" name="IT Comapre Tools" />
+        <menuitem id="menu_itcompare_manager" name="IT Comapre Tools" parent="menu_itcompare_main"/>
+        <menuitem id="menu_itcompare_product_brand_manager" parent="menu_itcompare_manager" name="Brand Manager" action="action_itcompare_product_brand_tree_show"/>
+        <menuitem id="menu_itcompare_product_category_manager" parent="menu_itcompare_manager" name="Categories Manager" action="action_itcompare_product_category_tree_show"/>
+        <menuitem id="menu_itcompare_product_attr_manager" parent="menu_itcompare_manager" name="Attributes Manager" action="action_itcompare_product_attr_tree_show"/>
+        <menuitem id="menu_itcompare_product_manager" parent="menu_itcompare_manager" name="Products Manager" action="action_itcompare_product_tree_show"/>
+    </data>
+</openerp>
+
