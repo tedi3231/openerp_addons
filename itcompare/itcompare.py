@@ -105,6 +105,10 @@ class product(osv.osv):
                 'product_fields': product_fields,                
             }
         }
+
+    def compareproduct(self,cr,uid,ids,context=None):
+        result = {}
+        return result
         
     _columns={
         "name":fields.char(string="Product Name",size=100,required=True),
