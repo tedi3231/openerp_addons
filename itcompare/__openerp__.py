@@ -26,7 +26,8 @@
     'description' : "IT 产品的比较工具",
     'website': 'http://www.wedoapp.com',        
     'data': [
-        'itcompare_view.xml',        
+        'itcompare_view.xml',
+        'wizard/itcompare_wizard_compare_view.xml'    
     ],
     'installable': True,
     'auto_install': False,
