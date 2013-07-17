@@ -31,21 +31,23 @@ class itcompare_wizard_compare(osv.osv_memory):
         if not wizard:
             return False
         products = [item.productid for item in wizard.product_ids]
+        
         #must be two products or more to comare
         if len(products) <= 1:
-            return False
+            raise osv.except_osv(_("Must be two products or more!"),_("You must select two or more products to compare!"))
+        
         #must be some Category
-        if products[0].product_category.id != products[1].product_category.id:
-            raise osv.except_osv(_('Not same category !'),_("You must select products which have same product category !") )
-            #return False
+        categoryids = [item.product_category.id for item in products]
+        categoryids_check = [products[0].product_category.id]*len(products)        
+        if categoryids!=categoryids_check:
+            raise osv.except_osv(_('Not same category!'),_("You must select products which have same product category !") )        
 
         product_attrtypes = [item for item in products[0].product_category.product_attr_type]
         product_attrs = []
         for item in product_attrtypes:
             product_attrs.extend(item.product_attr)
         attrids = [item.id for item in product_attrs]
-        #for item in product_attrs:
-        # print item.name,item.formatname
+        
         result = []
         for pitem in products:
             row = {}
@@ -83,14 +85,14 @@ class itcompare_wizard_compare(osv.osv_memory):
         out=base64.encodestring(file_data.getvalue())
              
         attachmentid = self.pool.get("ir.attachment").create(cr,uid,{
-            "name":'_'.join(([pitem.name for pitem in products]))+"_compareresult.xls" ,
+            "name":'_'.join(([pitem.name for pitem in products]))+".xls" ,
             "res_model":"itcompare.product",
             "datas_fname":"itcompare.product.compare.xls",
             "description":"Compare product file",
             "type":"binary",
             "datas":out
         })
-        print "str(attachmentid) =%s"% str(attachmentid)
+        #print "str(attachmentid) =%s"% str(attachmentid)
         return {
                 'domain': "[('id','=','"+str(attachmentid)+"')]",
                 'name': 'Compare Results',
@@ -99,7 +101,7 @@ class itcompare_wizard_compare(osv.osv_memory):
                 'res_model': 'ir.attachment',                
                 'context': "{}",
                 'type': 'ir.actions.act_window'
-        }        
+        }
         
 itcompare_wizard_compare()
 

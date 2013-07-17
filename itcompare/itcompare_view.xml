@@ -2,6 +2,44 @@
 <openerp>
     <data>
         <!--产品品牌 -->
+        <!--<record model="ir.ui.view" id="view_itcompare_product_brand_kanban">
+            <field name="name">itcompare.product_brand.kanban</field>
+            <field name="model">itcompare.product_brand</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name" />                                    
+                </kanban>
+            </field>
+    </record>-->
+        <record model='ir.ui.view' id='view_itcompare_product_brand_kanban'>
+            <field name="name">itcompare.product_brand.kanban</field>
+            <field name="model">itcompare.product_brand</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name" />
+                    <field name="image" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette oe_semantic_html_override">
+                                <a type="open" href="#" class="oe_kanban_action oe_kanban_action_a">
+                                    <img t-att-src="kanban_image('fleet.vehicle.model.brand', 'image', record.id.value)" class="oe_employee_picture"/>
+                                </a>
+                                <div style="text-align:center;">
+                                    <h4 class="oe_partner_heading">
+                                        <a type="open">
+                                            <field name="name"/>
+                                        </a>
+                                    </h4>
+                                </div>
+                            </div>
+                            <script>
+                            $('.oe_picture').load(function() { if($(this).width() > $(this).height()) { $(this).addClass('oe_employee_picture_wide') } });
+                        </script>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
         <record model="ir.ui.view" id="view_itcompare_product_brand_tree">
             <field name="name">itcompare.product_brand.tree</field>
             <field name="model">itcompare.product_brand</field>
@@ -21,6 +59,9 @@
                 <form string="Product Brands" version="7.0">
                     <group>
                         <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="image" widget="image"/>
                     </group>
                     <group>
                         <field name="remark"/>
@@ -105,7 +146,7 @@
             <field name="view_mode">tree,form</field>
         </record>
         <!--产品属性 start-->
-        <!--<record model="ir.ui.view" id="view_itcompare_product_attr_tree">
+        <record model="ir.ui.view" id="view_itcompare_product_attr_tree">
             <field name="name">itcompare.product_attr.tree</field>
             <field name="model">itcompare.product_attr</field>
             <field name="type">tree</field>
@@ -117,7 +158,7 @@
                 </tree>
             </field>
         </record>
-        -->
+        
         <record model="ir.ui.view" id="view_itcompare_product_attr_search">
             <field name="name">itcompare.product_attr.search</field>
             <field name="model">itcompare.product_attr</field>

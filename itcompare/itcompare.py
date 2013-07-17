@@ -9,6 +9,7 @@ class product_brand(osv.osv):
     
     _columns = {
         'name':fields.char(string="Brand Name",size=100,required=True),
+        'image':fields.binary(string="Logo",help="Please upload brand icon"),
         'remark':fields.char(string="Remark",size=300)
     }
     
