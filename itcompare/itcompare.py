@@ -97,8 +97,12 @@ class product(osv.osv):
             return {}
         product_fields = []
         for attr in attrs:            
-            field = product_field.create(cr,uid,{'product_attr':attr.id,'value':'None'})            
-            product_fields.append(field)                
+            #field = product_field.create(cr,uid,{'product_attr':attr.id,'value':'None'})            
+            #product_fields.append(field)
+            product_fields.append({
+                "product_attr":attr.id,
+                "value":"None"
+            })                
         print product_fields
         return {
             'value': {

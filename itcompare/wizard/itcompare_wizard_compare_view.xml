@@ -6,7 +6,7 @@
             <field name="model">itcompare.wizard.compare</field>
             <field name="arch" type="xml">
                 <form string="Change Password" version="7.0">
-                    <field name="product_ids" />
+                    <field name="product_ids" nolabel="1" />
                     <footer>
                         <button string="Compare" name="compare" type="object" class="oe_highlight"/>
                         or
