@@ -29,6 +29,9 @@
         'tms_view.xml',
         #'wizard/itcompare_wizard_compare_view.xml'    
     ],
+    'update_xml':[
+        'tms_workflow.xml',
+    ],
     'installable': True,
     'auto_install': False,
 }

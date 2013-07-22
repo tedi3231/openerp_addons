@@ -70,7 +70,7 @@ class ApplyInfo(osv.osv):
     def create(self,cr,uid,data,context=None):
         apply_id = super(ApplyInfo, self).create(cr, uid, data, context=context)
         print "apply_id=%s"%apply_id
-        self.write(cr,uid,apply_id,{"processid":self._get_default_processid(cr,uid,context)},context)
+        self.write(cr,uid,apply_id,{"state":"unreceived","processid":self._get_default_processid(cr,uid,context)},context)
         return apply_id
 
     def name_get(self,cr,uid,ids,context=None):
@@ -89,11 +89,30 @@ class ApplyInfo(osv.osv):
         "address":fields.related("store_id","address",type="char",string="Address"),
         "contactperson":fields.related("store_id","contactperson",type="char",string="Contact Person"),
         "content":fields.text(string="Content",required=True),
-        "applyinfoitem_ids":fields.one2many("tms.applyinfoitem","applyinfo_id",string="ApplyInfo Items")
+        "applyinfoitem_ids":fields.one2many("tms.applyinfoitem","applyinfo_id",string="ApplyInfo Items"),
+        "state":fields.selection([("draft","Draft"),("unreceived","UnReceived"),("hasreceived","HasReceived"),
+                                  ("hasdone","HasDone"),("hasconfirm","HasConfirm")],string="State",required=True,readonly=True),
     }
+
+    def applyinfo_unreceived(self,cr,uid,ids):
+        self.write(cr,uid,ids,{'state':'unreceived'})
+        return True
+
+    def applyinfo_hasreceived(self,cr,uid,ids):
+        self.write(cr,uid,ids,{'state':'hasreceived'})
+        return True
+
+    def applyinfo_hasdone(self,cr,uid,ids):
+        self.write(cr,uid,ids,{'state':'hasdone'})
+        return True
+
+    def applyinfo_hasconfirm(self,cr,uid,ids):
+        self.write(cr,uid,ids,{'state':'hasconfirm'})
+        return True
 
     _defaults={
         #"processid":_get_default_processid,
+        "state":lambda self,cr,uid,context:"draft",
     }
 ApplyInfo()
 
