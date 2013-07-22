@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="workflow" id="wkf_applyinfo">
+			<field name="name">tms.wkf.applyinfo</field>
+			<field name="osv">tms.applyinfo</field>
+			<field name="on_create">True</field>
+		</record>
+		<record model="workflow.activity" id="act_unreceived">
+			<field name="wkf_id" ref="wkf_applyinfo"/>
+			<field name="flow_start">True</field>
+			<field name="name">unreceived</field>
+			<field name="kind">function</field>
+			<field name="action">applyinfo_unreceived()</field>
+		</record>
+
+		<record model="workflow.activity" id="act_hasreceived">
+			<field name="wkf_id" ref="wkf_applyinfo"/>
+			<field name="flow_start">False</field>
+			<field name="name">hasreceived</field>
+			<field name="kind">function</field>
+			<field name="action">applyinfo_hasreceived()</field>
+		</record>
+
+		<record model="workflow.activity" id="act_hasdone">
+			<field name="wkf_id" ref="wkf_applyinfo"/>
+			<field name="flow_start">False</field>
+			<field name="name">hasdone</field>
+			<field name="kind">function</field>
+			<field name="action">applyinfo_hasdone()</field>
+		</record>
+		<record model="workflow.activity" id="act_hascofirm">
+			<field name="wkf_id" ref="wkf_applyinfo"/>
+			<field name="flow_stop">True</field>
+			<field name="name">hasconfirm</field>
+			<field name="kind">function</field>
+			<field name="action">applyinfo_hasconfirm()</field>
+		</record>
+
+		<record model="workflow.transition" id="unreceived_to_received">
+			<field name="act_from" ref="act_unreceived"/>
+			<field name="act_to" ref="act_hasreceived"/>
+			<field name="signal">btn_received</field>
+		</record>
+
+		<record model="workflow.transition" id="received_to_hasdone">
+			<field name="act_from" ref="act_hasreceived"/>
+			<field name="act_to" ref="act_hasdone"/>
+			<field name="signal">btn_hasdone</field>	
+		</record>
+
+		<record model="workflow.transition" id="hasdone_to_hascofirm">
+			<field name="act_from" ref="act_hasdone"/>
+			<field name="act_to" ref="act_hascofirm"/>
+			<field name="signal">btn_hascofirm</field>
+		</record>
+	</data>
+</openerp>
