@@ -125,10 +125,17 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
 		</record>
+        <record model="ir.actions.act_window" id="action_tms_feeforsend_tree_show">
+            <field name="name">Fee for send</field>
+            <field name="res_model">tms.feeforsend</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+		</record>
         <menuitem id="menu_tms_root" name="TMS" />
         <menuitem id="menu_tms_manager" name="TMS" parent="menu_tms_root"/>
         <menuitem id="menu_tms_store_manager" parent="menu_tms_manager" name="Store Manager" action="action_tms_store_tree_show"/>
         <menuitem id="menu_tms_applyinfo_manager" parent="menu_tms_manager" name="Applyinfo Manager" action="action_tms_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_feeforsend_manager" parent="menu_tms_manager" name="FeeForSend Manager" action="action_tms_feeforsend_tree_show"/>
     </data>
 </openerp>
 

@@ -131,3 +131,82 @@ class ApplyInfoItem(osv.osv):
         "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     }
 ApplyInfoItem()
+
+
+class FeeType(osv.osv):
+    """
+    费用类别
+    """
+    _name = "tms.feetype"
+        
+    _columns={
+        "name":fields.char(string="Name", size=100,required=True),
+        "remark":fields.char(string="Remark",size=300,required=False)
+    }
+    
+    _sql_constraints = [('name_uniq', 'unique(name)', 'FeeType name must be unique!')]
+FeeType()
+
+class SendCompany(osv.osv):
+    """
+    快递公司
+    """
+    _name="tms.sendcompany"
+    
+    _columns={
+        "name":fields.char(string="Company Name",size=100,required=True),
+        "remark":fields.char(string="Remark",size=300)
+    }
+
+    _sql_constraints = [('name_uniq', 'unique(name)', 'SendCompany name must be unique!')]
+SendCompany()
+
+class FeeBase(osv.osv):
+    """
+    费用基本类型
+    """
+    _name="tms.feebase"
+    def get_province_name(self,cr,uid,ids,name,args,context=None):
+        result=dict.fromkeys(ids,'None')
+        for item in self.browse(cr,uid,ids,context=context):
+            result[item.id] = item.store_id.province_id.name
+        return result 
+
+    def _get_default_processid(self,cr,uid,context):
+        sequenceid=self.pool.get("ir.sequence").search(cr,uid,[('code','=','tms.applyinfo.processid')])
+        sequence = self.pool.get("ir.sequence").browse(cr,uid,sequenceid,context=None)
+        return sequence[0].get_id()
+
+    def create(self,cr,uid,data,context=None):
+        feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
+        self.write(cr,uid,feebase_id,{"processid":self._get_default_processid(cr,uid,context)},context)
+        return feebase_id
+
+    _columns={
+        "processid":fields.char(string="ProcessId",size=100,required=False),        
+        "feedate":fields.date(string="Fee Date"),
+        "store_id":fields.many2one("tms.store",string="Store"),
+        "storenum":fields.related("store_id","name",type="char",string="Store Num"),
+        "province":fields.function(get_province_name,type="char",string="Province"),
+        "feetype_id":fields.many2one("tms.feetype","Fee Type"),
+        "payman":fields.many2one("res.users","Pay Man"),
+        "amount":fields.float(string="Amount"),
+        "accountamount":fields.float(string="Account Amount"),
+        "accountperiod":fields.char(string="Account Period", size=20,required=True),
+        "oanum":fields.char(string="OA Num",size=100),
+        "hasoa":fields.boolean(string="Has input oa"),
+        "hasback":fields.boolean(string="Has Back"),
+        "remark":fields.text(string="Remark"),
+    }
+FeeBase()
+
+class FeeForSend(osv.osv):
+    _name="tms.feeforsend"
+    _inherit="tms.feebase"
+
+    _columns={
+        "sendcompany":fields.many2one("tms.sendcompany","Send Company"),
+        "sendordernum":fields.char(string="Send Order num",size=100,required=True),
+        "sendproduct":fields.char(string="Send Product", size=200,required=True),
+    }
+FeeForSend()
