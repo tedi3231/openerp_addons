@@ -177,11 +177,29 @@ class FeeBase(osv.osv):
         sequence = self.pool.get("ir.sequence").browse(cr,uid,sequenceid,context=None)
         return sequence[0].get_id()
 
-    def create(self,cr,uid,data,context=None):
-        feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
-        self.write(cr,uid,feebase_id,{"processid":self._get_default_processid(cr,uid,context)},context)
-        return feebase_id
 
+
+    def on_change_store(self,cr,uid,ids,model_id,context=None):        
+        if not model_id:
+            return False
+        item = self.pool.get("tms.store").browse(cr,uid,model_id,context=context)
+        if not item :
+            return False
+        return {
+            "value":{
+                "province":self.get_province_by_store_id(cr,uid,item.id),
+                "storenum":item.storenum,
+            }
+        }
+    
+    def get_province_by_store_id(self,cr,uid,store_id,context=None):
+        if not store_id:
+            return False
+        pitem = self.pool.get("tms.store").browse(cr,uid,store_id,context=context)
+        if not pitem:
+            return False
+        return pitem.province_id.name
+    
     _columns={
         "processid":fields.char(string="ProcessId",size=100,required=False),        
         "feedate":fields.date(string="Fee Date"),
@@ -201,8 +219,12 @@ class FeeBase(osv.osv):
 FeeBase()
 
 class FeeForSend(osv.osv):
-    _name="tms.feeforsend"
     _inherit="tms.feebase"
+
+    def create(self,cr,uid,data,context=None):
+        feebase_id = super(FeeForSend, self).create(cr, uid, data, context=context)
+        self.write(cr,uid,feebase_id,{"processid":self._get_default_processid(cr,uid,context)},context)
+        return feebase_id
 
     _columns={
         "sendcompany":fields.many2one("tms.sendcompany","Send Company"),

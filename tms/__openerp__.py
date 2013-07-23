@@ -31,6 +31,7 @@
     ],
     'update_xml':[
         'tms_workflow.xml',
+        'tms_view.xml',
     ],
     'installable': True,
     'auto_install': False,

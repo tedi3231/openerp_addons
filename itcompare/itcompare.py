@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp.osv import fields,osv
+from openerp import tools
 
 class product_brand(osv.osv):
     """
@@ -7,9 +8,19 @@ class product_brand(osv.osv):
     """
     _name='itcompare.product_brand'
     
+    def name_get(self, cr, uid, ids, context=None):
+        return [(ids[0],"TestBrand")]
+    
+    def get_small_image(self, cr, uid, ids, name, args, context=None):
+        result = dict.fromkeys(ids, False)
+        for obj in self.browse(cr, uid, ids, context=context):
+            result[obj.id] = tools.image_get_resized_images(obj.image)
+        return result
+    
     _columns = {
         'name':fields.char(string="Brand Name",size=100,required=True),
         'image':fields.binary(string="Logo",help="Please upload brand icon"),
+        'image_small':fields.function(get_small_image,type="binary", string="Small Logo",help="Small Logo"),
         'remark':fields.char(string="Remark",size=300)
     }
     

@@ -18,11 +18,12 @@
                 <kanban>
                     <field name="name" />
                     <field name="image" />
+                    <field name="image_small" />
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_vignette oe_semantic_html_override">
                                 <a type="open" href="#" class="oe_kanban_action oe_kanban_action_a">
-                                    <img t-att-src="kanban_image('fleet.vehicle.model.brand', 'image', record.id.value)" class="oe_employee_picture"/>
+                                    <img t-att-src="kanban_image('itcompare.product_brand', 'image', record.id.value)" class="oe_employee_picture"/>
                                 </a>
                                 <div style="text-align:center;">
                                     <h4 class="oe_partner_heading">
@@ -33,8 +34,8 @@
                                 </div>
                             </div>
                             <script>
-                            $('.oe_picture').load(function() { if($(this).width() > $(this).height()) { $(this).addClass('oe_employee_picture_wide') } });
-                        </script>
+                                $('.oe_picture').load(function() { if($(this).width() > $(this).height()) { $(this).addClass('oe_employee_picture_wide') } });
+                            </script>
                         </t>
                     </templates>
                 </kanban>
@@ -73,7 +74,7 @@
             <field name="name">Product Brands</field>
             <field name="res_model">itcompare.product_brand</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>
         <!--产品分类-->
         <record model="ir.ui.view" id="view_itcompare_product_category_tree">
