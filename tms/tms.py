@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import utildate
 from openerp.osv import fields, osv
 
 class Store(osv.osv):
@@ -200,6 +201,20 @@ class FeeBase(osv.osv):
             return False
         return pitem.province_id.name
     
+    def name_get(self,cr,uid,ids,context=None):
+        res = []
+        for item in self.browse(cr,uid,ids,context):
+            res.append((item.id,item.processid))
+        return res
+
+    def _get_accountperiod_list(self,cr,uid,context=None):
+        res=[]
+        for index in range(-6,6):
+            item = utildate.getyearandmonth(index)
+            period = ("%s%s"%(item[0],item[1]))
+            res.append((period,period))
+        return res
+
     _columns={
         "processid":fields.char(string="ProcessId",size=100,required=False),        
         "feedate":fields.date(string="Fee Date"),
@@ -210,7 +225,7 @@ class FeeBase(osv.osv):
         "payman":fields.many2one("res.users","Pay Man"),
         "amount":fields.float(string="Amount"),
         "accountamount":fields.float(string="Account Amount"),
-        "accountperiod":fields.char(string="Account Period", size=20,required=True),
+        "accountperiod":fields.selection(_get_accountperiod_list, string="Account Period", size=20,required=True),
         "oanum":fields.char(string="OA Num",size=100),
         "hasoa":fields.boolean(string="Has input oa"),
         "hasback":fields.boolean(string="Has Back"),
@@ -220,6 +235,7 @@ FeeBase()
 
 class FeeForSend(osv.osv):
     _inherit="tms.feebase"
+    _name = "tms.feeforsend"
 
     def create(self,cr,uid,data,context=None):
         feebase_id = super(FeeForSend, self).create(cr, uid, data, context=context)
@@ -232,3 +248,37 @@ class FeeForSend(osv.osv):
         "sendproduct":fields.char(string="Send Product", size=200,required=True),
     }
 FeeForSend()
+
+class FeeForProduct(osv.osv):
+    _inherit="tms.feebase"
+    _name = "tms.feeforproduct"
+
+    def create(self,cr,uid,data,context=None):
+        feebase_id = super(FeeForProduct, self).create(cr, uid, data, context=context)
+        self.write(cr,uid,feebase_id,{"processid":self._get_default_processid(cr,uid,context)},context)
+        return feebase_id
+
+    def on_change_productaccount(self,cr,uid,ids,model_id,context=None):        
+        if not model_id:
+            return False
+        print uid,ids,model_id
+        return True
+        """item = self.pool.get("tms.").browse(cr,uid,model_id,context=context)
+        if not item :
+            return False
+        return {
+            "value":{
+                "province":self.get_province_by_store_id(cr,uid,item.id),
+                "storenum":item.storenum,
+            }
+        }"""
+
+    _columns={
+        "productname":fields.char(string="Product Name",size=200),
+        "producttype":fields.char(string="Product Type",size=100),
+        "productprice":fields.float(string="Product Price"),
+        "productcount":fields.integer(string="Product Count"),
+        "accountproductprice":fields.integer(string="Account Product Price"),
+        "accountproductcount":fields.integer(string="Account Product Count")
+    }
+FeeForProduct()
