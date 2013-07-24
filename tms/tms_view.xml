@@ -117,6 +117,135 @@
         </record>
 
         <!-- feebase info start -->
+        <record model="ir.ui.view" id="view_tms_feeforother_tree">
+            <field name="name">tms.feeforother.tree</field>
+            <field name="model">tms.feeforother</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="其他费用登记">
+                    <field name="store_id" />
+                    <field name="province"/>
+                    <field name="storenum"/>
+                    <field name="accountperiod"/>
+                    <field name="feetype_id"/>
+                    <field name="feedate"/>
+                    <field name="payman"/>
+                    <field name="amount"/>
+                    <field name="accountamount"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_tms_feeforother_form">
+            <field name="name">tms.feeforother.form</field>
+            <field name="model">tms.feeforother</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="其他费用登记" version="7.0">
+                    <sheet string="其他费用登记">
+                        <group col="4">
+                            <field name="store_id" on_change="on_change_store(store_id)"/>
+                            <field name="province"/>
+                            <field name="storenum"/>
+                            <field name="feedate"/>
+                            <field name="feetype_id"/>
+                            <field name="payman"/>
+                            <field name="amount"/>
+                            <field name="accountamount"/>
+                        </group>
+                        <group col="4" string="说明">
+                            <field name="remark" colspan="4"  nolabel="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+		</record>
+        <!-- feebase info start -->
+        <record model="ir.ui.view" id="view_tms_feeforitservice_tree">
+            <field name="name">tms.feeforitservice.tree</field>
+            <field name="model">tms.feeforitservice</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="IT服务费登记">
+                    <field name="store_id" />
+                    <field name="province"/>
+                    <field name="storenum"/>
+                    <field name="accountperiod"/>
+                    <field name="feetype_id"/>
+                    <field name="feedate"/>
+                    <field name="payman"/>
+                    <field name="amount"/>
+                    <field name="accountamount"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_tms_feeforitservice_form">
+            <field name="name">tms.feeforitservice.form</field>
+            <field name="model">tms.feeforitservice</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="IT服务费登记" version="7.0">
+                    <sheet string="IT服务费">
+                        <group col="4">
+                            <field name="store_id" on_change="on_change_store(store_id)"/>
+                            <field name="province"/>
+                            <field name="storenum"/>
+                            <field name="feedate"/>
+                            <field name="feetype_id"/>
+                            <field name="payman"/>
+                            <field name="amount"/>
+                            <field name="accountamount"/>
+                        </group>
+                        <group col="4" string="说明">
+                            <field name="remark" colspan="4"  nolabel="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- feebase info start -->
+        <record model="ir.ui.view" id="view_tms_feebase_tree">
+            <field name="name">tms.feebase.tree</field>
+            <field name="model">tms.feebase</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="维护费登记">
+                    <field name="store_id" />
+                    <field name="province"/>
+                    <field name="storenum"/>
+                    <field name="accountperiod"/>
+                    <field name="feetype_id"/>
+                    <field name="feedate"/>
+                    <field name="payman"/>
+                    <field name="amount"/>
+                    <field name="accountamount"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_tms_feebase_form">
+            <field name="name">tms.feebase.form</field>
+            <field name="model">tms.feebase</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="维护费登记" version="7.0">
+                    <sheet string="Fee">
+                        <group col="4">
+                            <field name="store_id" on_change="on_change_store(store_id)"/>
+                            <field name="province"/>
+                            <field name="storenum"/>
+                            <field name="feedate"/>
+                            <field name="feetype_id"/>
+                            <field name="payman"/>
+                            <field name="amount"/>
+                            <field name="accountamount"/>
+                        </group>
+                        <group col="4" string="说明">
+                            <field name="remark" colspan="4"  nolabel="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- feebase info start -->
         <record model="ir.ui.view" id="view_tms_feeforsend_tree">
             <field name="name">tms.feeforsend.tree</field>
             <field name="model">tms.feeforsend</field>
@@ -174,9 +303,8 @@
                     <field name="store_id" />
                     <field name="province"/>
                     <field name="storenum"/>
-                    <field name="accountperiod"/>
-                    <field name="feetype_id"/>
                     <field name="feedate"/>
+                    <field name="feetype_id"/>
                     <field name="payman"/>
                     <field name="amount"/>
                     <field name="accountamount"/>
@@ -190,26 +318,80 @@
             <field name="arch" type="xml">
                 <form string="Fee For Product" version="7.0">
                     <sheet>
-                        <group col="4">
+						<!--<group col="4">
+							<field name="store_id"/>
+						</group>-->
+						<group col="4">
                             <field name="store_id" on_change="on_change_store(store_id)"/>
-                            <field name="province"/>
-                            <field name="storenum"/>
-                            <field name="accountperiod"/>
-                            <field name="feetype_id"/>
+							<field name="province"/>
+                            <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
+                            <field name="feetype_id"/>
                             <field name="payman"/>
 						</group>
 						<group col="4">
 							<field name="productname"/>
 							<field name="producttype"/>
-							<field name="productprice"/>
-							<field name="productcount" on_change="on_change_productaccount(productcount)"/>
-							<field name="accountproductprice"/>
-							<field name="accountproductcount"/>
+							<field name="productprice" on_change="on_change_productaccount(productcount,productprice)"/>
+							<field name="productcount" on_change="on_change_productaccount(productcount,productprice)"/>
                             <field name="amount"/>
+							<field name="accountproductprice"  on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
+							<field name="accountproductcount" on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
                             <field name="accountamount"/>
                         </group>
                         <group col="4" string="Remark">
+                            <field name="remark" colspan="4"  nolabel="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+		
+		<record model="ir.ui.view" id="view_tms_feeforproductit_tree">
+            <field name="name">tms.feeforproductit.tree</field>
+            <field name="model">tms.feeforproductit</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fee For ProductIT">
+                    <field name="store_id" />
+                    <field name="province"/>
+                    <field name="storenum"/>
+                    <field name="feedate"/>
+                    <field name="feetype_id"/>
+                    <field name="payman"/>
+                    <field name="amount" sum="Amount"/>
+                    <field name="accountamount" sum="Account Amount"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_tms_feeforproductit_form">
+            <field name="name">tms.feeforproductit.form</field>
+            <field name="model">tms.feeforproductit</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fee For ProductIT" version="7.0">
+                    <sheet>
+						<!--<group col="4">
+							<field name="store_id"/>
+						</group>-->
+						<group col="4">
+                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="province"/>
+                            <field name="storenum" readonly="True"/>
+                            <field name="feedate"/>
+                            <field name="feetype_id"/>
+                            <field name="payman"/>
+						</group>
+						<group col="4">
+							<field name="productname"/>
+							<field name="productprice" on_change="on_change_productaccount(productcount,productprice)"/>
+							<field name="productcount" on_change="on_change_productaccount(productcount,productprice)"/>
+                            <field name="amount"/>
+							<field name="accountproductprice"  on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
+							<field name="accountproductcount" on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
+                            <field name="accountamount"/>
+                        </group>
+                        <group col="4" string="Purpose">
                             <field name="remark" colspan="4"  nolabel="1" />
                         </group>
                     </sheet>
@@ -223,6 +405,24 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <record model="ir.actions.act_window" id="action_tms_feeforother_tree_show">
+            <field name="name">其他费用登记</field>
+            <field name="res_model">tms.feeforother</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+        </record>
+        <record model="ir.actions.act_window" id="action_tms_feeforitservice_tree_show">
+            <field name="name">IT服务费登记</field>
+            <field name="res_model">tms.feeforitservice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+        </record>
+        <record model="ir.actions.act_window" id="action_tms_feebase_tree_show">
+            <field name="name">维护费登记</field>
+            <field name="res_model">tms.feebase</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+        </record>
         <record model="ir.actions.act_window" id="action_tms_feeforsend_tree_show">
             <field name="name">Fee for send</field>
             <field name="res_model">tms.feeforsend</field>
@@ -235,13 +435,23 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
         </record>
+        <record model="ir.actions.act_window" id="action_tms_feeforproductit_tree_show">
+            <field name="name">Fee for ProductIT</field>
+            <field name="res_model">tms.feeforproductit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+        </record>
         
         <menuitem id="menu_tms_root" name="TMS" />
         <menuitem id="menu_tms_manager" name="TMS" parent="menu_tms_root"/>
         <menuitem id="menu_tms_store_manager" parent="menu_tms_manager" name="Store Manager" action="action_tms_store_tree_show"/>
         <menuitem id="menu_tms_applyinfo_manager" parent="menu_tms_manager" name="Applyinfo Manager" action="action_tms_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_feeforother_manager" parent="menu_tms_manager" name="其他费用登记" action="action_tms_feeforother_tree_show"/>
+        <menuitem id="menu_tms_feebase_manager" parent="menu_tms_manager" name="维护费登记" action="action_tms_feebase_tree_show"/>
+        <menuitem id="menu_tms_feeforitservice_manager" parent="menu_tms_manager" name="IT服务费登记" action="action_tms_feeforitservice_tree_show"/>
         <menuitem id="menu_tms_feeforsend_manager" parent="menu_tms_manager" name="FeeForSend Manager" action="action_tms_feeforsend_tree_show"/>
         <menuitem id="menu_tms_feeforproduct_manager" parent="menu_tms_manager" name="FeeForProduct Manager" action="action_tms_feeforproduct_tree_show"/>
+        <menuitem id="menu_tms_feeforproductit_manager" parent="menu_tms_manager" name="FeeForProductIt Manager" action="action_tms_feeforproductit_tree_show"/>
     </data>
 </openerp>
 
