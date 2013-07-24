@@ -79,3 +79,19 @@ class ProcessBase(osv.Model):
 
     _sql_constraints=[('processid','unique(processid)','ProcessId must be unique!')]
 
+class Person(osv.osv):
+    _name = "bpm.person"
+    _columns={
+        "name":fields.char(string="Name",size=200),
+        "cardid":fields.char(string="Card Id",size=100),
+    }
+Person()
+
+class Student(osv.osv):
+    _name="bpm.person"
+    _inherit="bpm.person"
+    _columns={
+        "age":fields.integer("Age"),
+        "sex":fields.selection([('male','Male'),('female','Female')],"Sex")
+    }
+Student()

@@ -1,85 +1,124 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <openerp>
-	<data>
-		<record model="ir.ui.view" id="paramlist_tree">
-			<field name="name">bpm.paramlist.tree</field>
-			<field name="model">bpm.paramlist</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="ParamList" version="7.0">
-					<field name="name"/>
-					<field name="value"/>
-					<field name="sortnum"/>
-				</tree>	
-			</field>
-		</record>	
-
-		<record model="ir.ui.view" id="paramitem_tree">
-			<field name="name">bpm.paramitem.tree</field>
-			<field name="model">bpm.paramitem</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="ParamItem List" version="7.0">
-					<field name="parentlistid"/>
-					<field name="text"/>
-					<field name="value" />
-					<field name="sortnum"/>
-				</tree>
-			</field>
-		</record>
-
-		<record model="ir.ui.view" id="processbase_tree">
-			<field name="name">bpm.processbase.tree</field>
-			<field name="model">bpm.processbase</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Process List" version="7.0">
-					<field name="processname"/>
-					<field name="processid"/>
-					<field name="applyperson"/>
-					<field name="status"/>
-				</tree>
-			</field>
-		</record>
-
-		<record model="ir.actions.act_window" id="action_bpm_paramlist_tree_show">
-			<field name="name">ParamLists</field>
-			<field name="res_model">bpm.paramlist</field>
-			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-			<field name="domain">[]</field>
-		</record>
-
-		<record model="ir.actions.act_window" id="action_bpm_paramitem_tree_show">
-			<field name="name">Param Items </field>
-			<field name="res_model">bpm.paramitem</field>
-			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-			<field name="domain">[]</field>
-		</record>
-
-		<record model="ir.actions.act_window" id="action_bpm_process_tree_show">
-			<field name="name">Process Management</field>
-			<field name="res_model">bpm.processbase</field>
-			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-			<field name="domain">[]</field>
-		</record>
-
-		<record model="ir.actions.act_window" id="action_bpm_process_gift_tree_show">
-			<field name="name">Gift Application Request Management</field>
-			<field name="res_model">bpm.process.giftprocess</field>
-			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-			<field name="domain">[]</field>
-		</record>
-
-		<menuitem name="BPM" id="menu_bpm_management"/>
-		<menuitem name="Param Management" id="menu_bpm_param_manage" parent="menu_bpm_management" action="action_bpm_paramlist_tree_show"/>
-		<menuitem name="ParamList Management" id="menu_bpm_paramlist_manage" parent="menu_bpm_param_manage" action="action_bpm_paramlist_tree_show"/>
-		<menuitem name="ParamItem Management" id="menu_bpm_paramitem_manage" parent="menu_bpm_param_manage" action="action_bpm_paramitem_tree_show"/>
-		<menuitem name="Process Management" id="menu_bpm_process_management" parent="menu_bpm_management"/>
-		<menuitem name="All Process" id="menu_bpm_processmanage" parent="menu_bpm_process_management" action="action_bpm_process_tree_show"/>
-		<menuitem name="Gift Process" id="menu_bpm_gift_processmanege" parent="menu_bpm_process_management" action="action_bpm_process_gift_tree_show" />
-	</data>
+    <data>
+        <record model="ir.ui.view" id="paramlist_tree">
+            <field name="name">bpm.paramlist.tree</field>
+            <field name="model">bpm.paramlist</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="ParamList" version="7.0">
+                    <field name="name"/>
+                    <field name="value"/>
+                    <field name="sortnum"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="paramitem_tree">
+            <field name="name">bpm.paramitem.tree</field>
+            <field name="model">bpm.paramitem</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="ParamItem List" version="7.0">
+                    <field name="parentlistid"/>
+                    <field name="text"/>
+                    <field name="value" />
+                    <field name="sortnum"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="processbase_tree">
+            <field name="name">bpm.processbase.tree</field>
+            <field name="model">bpm.processbase</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Process List" version="7.0">
+                    <field name="processname"/>
+                    <field name="processid"/>
+                    <field name="applyperson"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="person_tree">
+            <field name="name">bpm.person.tree</field>
+            <field name="model">bpm.person</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Person List" version="7.0">
+                    <field name="name"/>
+                    <field name="cardid"/>
+                </tree>
+            </field>
+        </record>
+                
+        <record model="ir.ui.view" id="view_person_form">
+            <field name="name">bpm.person.form</field>
+            <field name="model">bpm.person</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Person List" version="7.0">
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="cardid"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_student_form">
+            <field name="name">bpm.student.form</field>
+            <field name="model">bpm.person</field>
+            <field name="inherit_id" ref="view_person_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='cardid']" position="after">
+                    <field name="age"/>
+                    <field name="sex"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_bpm_paramlist_tree_show">
+            <field name="name">ParamLists</field>
+            <field name="res_model">bpm.paramlist</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_bpm_paramitem_tree_show">
+            <field name="name">Param Items</field>
+            <field name="res_model">bpm.paramitem</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_bpm_process_tree_show">
+            <field name="name">Process Management</field>
+            <field name="res_model">bpm.processbase</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_bpm_process_gift_tree_show">
+            <field name="name">Gift Application Request Management</field>
+            <field name="res_model">bpm.process.giftprocess</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_bpm_person_tree_show">
+            <field name="name">Person Management</field>
+            <field name="res_model">bpm.person</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem name="BPM" id="menu_bpm_management"/>
+        <menuitem name="Param Management" id="menu_bpm_param_manage" parent="menu_bpm_management" action="action_bpm_paramlist_tree_show"/>
+        <menuitem name="ParamList Management" id="menu_bpm_paramlist_manage" parent="menu_bpm_param_manage" action="action_bpm_paramlist_tree_show"/>
+        <menuitem name="ParamItem Management" id="menu_bpm_paramitem_manage" parent="menu_bpm_param_manage" action="action_bpm_paramitem_tree_show"/>
+        <menuitem name="Process Management" id="menu_bpm_process_management" parent="menu_bpm_management"/>
+        <menuitem name="All Process" id="menu_bpm_processmanage" parent="menu_bpm_process_management" action="action_bpm_process_tree_show"/>
+        <menuitem name="Gift Process" id="menu_bpm_gift_processmanege" parent="menu_bpm_process_management" action="action_bpm_process_gift_tree_show" />
+        <menuitem name="Person Manager" id="menu_bpm_person_managerment" parent="menu_bpm_process_management" action="action_bpm_person_tree_show" />
+    </data>
 </openerp>
