@@ -272,7 +272,7 @@
             <field name="view_mode">tree,form</field>
             <!--<field name="context">{"search_default_groupby_category" : True,}</field>-->
         </record>
-        <!--比较结果 end-->
+        <!--比较结果 end-->        
         <menuitem id="menu_itcompare_main" name="IT Comapre Tools" />
         <menuitem id="menu_itcompare_manager" name="IT Comapre Tools" parent="menu_itcompare_main"/>
         <menuitem id="menu_itcompare_product_brand_manager" parent="menu_itcompare_manager" name="Brand Manager" action="action_itcompare_product_brand_tree_show"/>

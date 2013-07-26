@@ -33,6 +33,6 @@
         key2="client_action_multi"
         view_type="form"
         view_mode="form"
-        target="new"  />
+        target="new"  />        
     </data>
 </openerp>

@@ -50,7 +50,6 @@
                 </tree>
             </field>
         </record>
-                
         <record model="ir.ui.view" id="view_person_form">
             <field name="name">bpm.person.form</field>
             <field name="model">bpm.person</field>
@@ -112,6 +111,32 @@
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
         </record>
+        
+        <record id="action_bpm_test" model="ir.actions.server">
+            <field name="name">Test Action</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_bpm_paramlist"/>
+            <field name="state">code</field>
+            <field name="code">self.action_test(cr, uid,context.get('active_ids'), context=context)</field>
+        </record>
+        
+        <record id="id_of_the_action_value" model="ir.values">
+            <field name="name">Test</field>
+            <field name="action_id" ref="action_bpm_test"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_bpm_test'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_bpm_paramlist"/>
+            <field name="model">bpm.paramlist</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+
+        <!--<record model="ir.values" id="ir_open_journal_period">
+        <field name="key2">tree_but_open</field>
+        <field name="model">bpm.paramlist</field>
+        <field name="name">Open Test</field>
+        <field name="value" eval="'ir.actions.server,%d'%action_bpm_paramlist_comfirm_test"/>
+        <field name="object" eval="True"/>
+        </record>-->
         <menuitem name="BPM" id="menu_bpm_management"/>
         <menuitem name="Param Management" id="menu_bpm_param_manage" parent="menu_bpm_management" action="action_bpm_paramlist_tree_show"/>
         <menuitem name="ParamList Management" id="menu_bpm_paramlist_manage" parent="menu_bpm_param_manage" action="action_bpm_paramlist_tree_show"/>

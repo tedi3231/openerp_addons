@@ -10,6 +10,13 @@ class ParamList(osv.Model):
         #'paramitems':fields.many2one(string='Param Items',)
     }
     
+    def action_test(self,cr,uid,ids,context=None):
+        print "calling action_button_confirm"
+        print ids
+        for id in ids:
+            self.write(cr,uid,id,{"sortnum":100})
+        return False
+    
     def _check_value(self,cr,uid,ids):
         """
         check paramlist value exists
