@@ -176,13 +176,11 @@ class FeeBase(osv.osv):
             result[item.id] = item.store_id.province_id.name
         return result 
 
-    def _get_default_processid(self,cr,uid,context):
-        sequenceid=self.pool.get("ir.sequence").search(cr,uid,[('code','=','tms.applyinfo.processid')])
+    def  _get_default_processid(self,cr,uid,code,context):
+        sequenceid=self.pool.get("ir.sequence").search(cr,uid,[('code','=',code)])
         sequence = self.pool.get("ir.sequence").browse(cr,uid,sequenceid,context=None)
         return sequence[0].get_id()
-
-
-
+ 
     def on_change_store(self,cr,uid,ids,model_id,context=None):        
         if not model_id:
             return False
@@ -225,9 +223,37 @@ class FeeBase(osv.osv):
         return res
 
     def create(self,cr,uid,data,context=None):
+        print "call create method"
+        #print type(self).__name__
         feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
-        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
+        childtypename = type(self).__name__
+        print childtypename
+        processid = ""
+        if childtypename=="FeeBase":
+            processid = self._get_default_processid(cr,uid,'tms.feebase.processid',context)
+        elif childtypename =="tms.feeforsend":
+            processid = self._get_default_processid(cr,uid,'tms.feeforsend.processid',context)
+        elif childtypename=="tms.feeforproduct":
+            processid = self._get_default_processid(cr,uid,'tms.feeforproduct.processid',context)
+        elif childtypename=="tms.feeforproductit":
+            processid = self._get_default_processid(cr,uid,'tms.feeforproductit.processid',context)
+        elif childtypename=="tms.feeforitservice":
+            processid = self._get_default_processid(cr,uid,'tms.feeforitservice.processid',context)
+        elif childtypename=="tms.feeforother":
+            processid = self._get_default_processid(cr,uid,'tms.feeforother.processid',context)
+        print "childtypename is %s and processid is %s"%(childtypename,processid)
+        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":processid},context)
         return feebase_id
+
+    def export_to_account(self,cr,uid,ids,context=None):
+        for item in self.browse(cr,uid,ids,context=context):
+            self.write(cr,uid,item.id,{"state":"hasexported"})
+        return True
+
+    def set_to_hasback(self,cr,uid,ids,context=None):
+        for item in self.browse(cr,uid,ids,context=context):
+            self.write(cr,uid,item.id,{"state":"hasback"})
+        return True
 
     _columns={
         "processid":fields.char(string="ProcessId",size=100,required=False),        
@@ -241,25 +267,22 @@ class FeeBase(osv.osv):
         "accountamount":fields.float(string="Account Amount"),
         "accountperiod":fields.char(string="Account Period", size=20,required=False),
         "oanum":fields.char(string="OA Num",size=100),
-        "hasoa":fields.boolean(string="Has input oa"),
-        "hasback":fields.boolean(string="Has Back"),
         "remark":fields.text(string="Remark"),
+        "state":fields.selection([("draft","Draft"),("hasexported","Has Exported"),("hasoa","Has Input OANum"),("hasback","Has Back")],
+                                 string="States"),
     }
 
     _defaults={
         "feedate":lambda self,cr,uid,context:datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "payman":lambda self,cr,uid,context:uid,
+        "state":lambda self,cr,uid,context:'draft'
     }
 FeeBase()
+
 
 class FeeForSend(osv.osv):
     _inherit="tms.feebase"
     _name = "tms.feeforsend"
-
-    def create(self,cr,uid,data,context=None):
-        feebase_id = super(FeeForSend, self).create(cr, uid, data, context=context)
-        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
-        return feebase_id
 
     _columns={
         "sendcompany":fields.many2one("tms.sendcompany","Send Company"),
@@ -268,14 +291,10 @@ class FeeForSend(osv.osv):
     }
 FeeForSend()
 
+
 class FeeForProduct(osv.osv):
     _inherit="tms.feebase"
     _name = "tms.feeforproduct"
-
-    def create(self,cr,uid,data,context=None):
-        feebase_id = super(FeeForProduct, self).create(cr, uid, data, context=context)
-        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
-        return feebase_id
 
     def on_change_productaccount(self,cr,uid,ids,productcount,productprice,context=None):        
         return {
@@ -308,11 +327,6 @@ class FeeForProductIt(osv.osv):
     _inherit="tms.feebase"
     _name = "tms.feeforproductit"
 
-    def create(self,cr,uid,data,context=None):
-        feebase_id = super(FeeForProductIt, self).create(cr, uid, data, context=context)
-        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
-        return feebase_id
-
     def on_change_productaccount(self,cr,uid,ids,productcount,productprice,context=None):        
         return {
             "value":{
@@ -336,26 +350,19 @@ class FeeForProductIt(osv.osv):
         "accountproductprice":fields.integer(string="Account Product Price"),
         "accountproductcount":fields.integer(string="Account Product Count")
     }
+
 FeeForProductIt()
+
 
 class FeeForItService(osv.osv):
     _inherit="tms.feebase"
     _name = "tms.feeforitservice"
 
-    #def create(self,cr,uid,data,context=None):
-    #    feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
-    #    self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
-    #    return feebase_id
-
 FeeForItService()
+
 
 class FeeForOther(osv.osv):
     _inherit="tms.feebase"
     _name = "tms.feeforother"
-
-    #def create(self,cr,uid,data,context=None):
-    #    feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
-    #    self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
-    #    return feebase_id
 
 FeeForOther()

@@ -123,6 +123,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="其他费用登记">
+                    <field name="processid"/>
                     <field name="store_id" />
                     <field name="province"/>
                     <field name="storenum"/>
@@ -132,6 +133,7 @@
                     <field name="payman"/>
                     <field name="amount"/>
                     <field name="accountamount"/>
+					<field name="state"/>
                 </tree>
             </field>
         </record>
@@ -151,6 +153,7 @@
                             <field name="payman"/>
                             <field name="amount"/>
                             <field name="accountamount"/>
+							<field name="state"/>
                         </group>
                         <group col="4" string="说明">
                             <field name="remark" colspan="4"  nolabel="1" />
@@ -166,6 +169,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="IT服务费登记">
+                    <field name="processid"/>
                     <field name="store_id" />
                     <field name="province"/>
                     <field name="storenum"/>
@@ -173,8 +177,8 @@
                     <field name="feetype_id"/>
                     <field name="feedate"/>
                     <field name="payman"/>
-                    <field name="amount"/>
-                    <field name="accountamount"/>
+                    <field name="amount" sum="Amount" />
+                    <field name="accountamount" sum="Account Amount" />
                 </tree>
             </field>
         </record>
@@ -209,6 +213,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="维护费登记">
+                    <field name="processid"/>
                     <field name="store_id" />
                     <field name="province"/>
                     <field name="storenum"/>
@@ -216,8 +221,10 @@
                     <field name="feetype_id"/>
                     <field name="feedate"/>
                     <field name="payman"/>
-                    <field name="amount"/>
-                    <field name="accountamount"/>
+                    <field name="amount" sum="Account" />
+                    <field name="accountamount" sum="Account Amount"/>
+					<field name="state"/>
+					<field name="oanum"/>
                 </tree>
             </field>
         </record>
@@ -252,6 +259,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="FeeBases">
+                    <field name="processid"/>
                     <field name="store_id" />
                     <field name="province"/>
                     <field name="storenum"/>
@@ -259,8 +267,10 @@
                     <field name="feetype_id"/>
                     <field name="feedate"/>
                     <field name="payman"/>
-                    <field name="amount"/>
-                    <field name="accountamount"/>
+                    <field name="amount" sum="Account"/>
+                    <field name="accountamount" sum="Account Amount" />
+					<field name="state"/>
+					<field name="oanum"/>
                 </tree>
             </field>
         </record>
@@ -300,14 +310,17 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Fee For Product">
+                    <field name="processid"/>
                     <field name="store_id" />
                     <field name="province"/>
                     <field name="storenum"/>
                     <field name="feedate"/>
                     <field name="feetype_id"/>
                     <field name="payman"/>
-                    <field name="amount"/>
-                    <field name="accountamount"/>
+                    <field name="amount" sum="Amount"/>
+                    <field name="accountamount" sum="Account Amount"/>
+					<field name="state"/>
+					<field name="oanum"/>
                 </tree>
             </field>
         </record>
@@ -353,6 +366,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Fee For ProductIT">
+                    <field name="processid"/>
                     <field name="store_id" />
                     <field name="province"/>
                     <field name="storenum"/>
@@ -361,6 +375,8 @@
                     <field name="payman"/>
                     <field name="amount" sum="Amount"/>
                     <field name="accountamount" sum="Account Amount"/>
+					<field name="state"/>
+					<field name="oanum"/>
                 </tree>
             </field>
         </record>
@@ -398,6 +414,47 @@
                 </form>
             </field>
         </record>
+
+		<!-- the dropdown menuitems in more menu  start-->
+		<!-- 导出对账 -->
+		<record id="action_tms_export_fee_to_account" model="ir.actions.server">
+            <field name="name">Export To Account</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_tms_feebase"/>
+            <field name="state">code</field>
+            <field name="code">self.export_to_account(cr, uid,context.get('active_ids'), context=context)</field>
+        </record>
+        
+        <record id="val_action_tms_export_fee_to_account" model="ir.values">
+            <field name="name">Export to Account</field>
+            <field name="action_id" ref="action_tms_export_fee_to_account"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_export_fee_to_account'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feebase"/>
+            <field name="model">tms.feebase</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+
+		<!-- 已经回款 -->
+		<record id="action_tms_set_hasback" model="ir.actions.server">
+            <field name="name">Set Has Back</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_tms_feebase"/>
+            <field name="state">code</field>
+            <field name="code">self.set_to_hasback(cr, uid,context.get('active_ids'), context=context)</field>
+        </record>
+        
+        <record id="val_action_tms_set_hasback" model="ir.values">
+            <field name="name">Set Hasback</field>
+            <field name="action_id" ref="action_tms_set_hasback"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_set_hasback'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feebase"/>
+            <field name="model">tms.feebase</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+		<!-- the dropdown menuitems in more menu  start-->
+
         <!-- feebase info end -->
         <record model="ir.actions.act_window" id="action_tms_applyinfo_tree_show">
             <field name="name">Applyinfos</field>
@@ -410,48 +467,58 @@
             <field name="res_model">tms.feeforother</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
+			<field name="domain">[('state','=','draft')]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforitservice_tree_show">
             <field name="name">IT服务费登记</field>
             <field name="res_model">tms.feeforitservice</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
+			<field name="domain">[('state','=','draft')]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feebase_tree_show">
             <field name="name">维护费登记</field>
             <field name="res_model">tms.feebase</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
+			<field name="domain">[('state','=','draft')]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforsend_tree_show">
             <field name="name">Fee for send</field>
             <field name="res_model">tms.feeforsend</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
+			<field name="domain">[('state','=','draft')]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproduct_tree_show">
             <field name="name">Fee for Product</field>
             <field name="res_model">tms.feeforproduct</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
+			<field name="domain">[('state','=','draft')]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproductit_tree_show">
             <field name="name">Fee for ProductIT</field>
             <field name="res_model">tms.feeforproductit</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
+			<field name="domain">[('state','=','draft')]</field>
         </record>
         
         <menuitem id="menu_tms_root" name="TMS" />
         <menuitem id="menu_tms_manager" name="TMS" parent="menu_tms_root"/>
-        <menuitem id="menu_tms_store_manager" parent="menu_tms_manager" name="Store Manager" action="action_tms_store_tree_show"/>
-        <menuitem id="menu_tms_applyinfo_manager" parent="menu_tms_manager" name="Applyinfo Manager" action="action_tms_applyinfo_tree_show"/>
-        <menuitem id="menu_tms_feeforother_manager" parent="menu_tms_manager" name="其他费用登记" action="action_tms_feeforother_tree_show"/>
-        <menuitem id="menu_tms_feebase_manager" parent="menu_tms_manager" name="维护费登记" action="action_tms_feebase_tree_show"/>
-        <menuitem id="menu_tms_feeforitservice_manager" parent="menu_tms_manager" name="IT服务费登记" action="action_tms_feeforitservice_tree_show"/>
-        <menuitem id="menu_tms_feeforsend_manager" parent="menu_tms_manager" name="FeeForSend Manager" action="action_tms_feeforsend_tree_show"/>
-        <menuitem id="menu_tms_feeforproduct_manager" parent="menu_tms_manager" name="FeeForProduct Manager" action="action_tms_feeforproduct_tree_show"/>
-        <menuitem id="menu_tms_feeforproductit_manager" parent="menu_tms_manager" name="FeeForProductIt Manager" action="action_tms_feeforproductit_tree_show"/>
+        <menuitem id="menu_tms_applyinfo_manager_root" name="Applyinfo Management" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_store_manager_root" name="Stores Management" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_finance_center_manager" name="Finance Center" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_account_center_manager" name="Account Center" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_store_manager" parent="menu_tms_store_manager_root" name="Store Manager" action="action_tms_store_tree_show"/>
+        <menuitem id="menu_tms_applyinfo_manager" parent="menu_tms_applyinfo_manager_root" name="Applyinfo Manager" action="action_tms_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_feeforother_manager" parent="menu_tms_finance_center_manager" name="其他费用登记" action="action_tms_feeforother_tree_show"/>
+        <menuitem id="menu_tms_feebase_manager" parent="menu_tms_finance_center_manager" name="维护费登记" action="action_tms_feebase_tree_show"/>
+        <menuitem id="menu_tms_feeforitservice_manager" parent="menu_tms_finance_center_manager" name="IT服务费登记" action="action_tms_feeforitservice_tree_show"/>
+        <menuitem id="menu_tms_feeforsend_manager" parent="menu_tms_finance_center_manager" name="FeeForSend Manager" action="action_tms_feeforsend_tree_show"/>
+        <menuitem id="menu_tms_feeforproduct_manager" parent="menu_tms_finance_center_manager" name="FeeForProduct Manager" action="action_tms_feeforproduct_tree_show"/>
+        <menuitem id="menu_tms_feeforproductit_manager" parent="menu_tms_finance_center_manager" name="FeeForProductIt Manager" action="action_tms_feeforproductit_tree_show"/>
     </data>
 </openerp>
 

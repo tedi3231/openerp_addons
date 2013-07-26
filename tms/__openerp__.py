@@ -32,6 +32,7 @@
     'update_xml':[
         'tms_workflow.xml',
         'tms_view.xml',
+         'wizard/tms_wizard_oa_view.xml',
     ],
     'installable': True,
     'auto_install': False,
