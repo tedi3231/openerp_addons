@@ -142,10 +142,13 @@ class FeeType(osv.osv):
         
     _columns={
         "name":fields.char(string="Name", size=100,required=True),
+        "code":fields.char(string="Code",size=100,required=True),
         "remark":fields.char(string="Remark",size=300,required=False)
     }
     
-    _sql_constraints = [('name_uniq', 'unique(name)', 'FeeType name must be unique!')]
+    _sql_constraints = [('name_uniq', 'unique(name)', 'FeeType name must be unique!'),
+                        ('code_uniq','unique(code)','FeeType code must be unique!')
+                       ]
 FeeType()
 
 class SendCompany(osv.osv):
@@ -164,7 +167,7 @@ SendCompany()
 
 class FeeBase(osv.osv):
     """
-    费用基本类型
+    费用基本类型,作为维护费用来使用
     """
     _name="tms.feebase"
     def get_province_name(self,cr,uid,ids,name,args,context=None):
@@ -215,6 +218,17 @@ class FeeBase(osv.osv):
             res.append((period,period))
         return res
 
+    def name_get(self,cr,uid,ids,context=None):
+        res = []
+        for item in self.browse(cr,uid,ids,context):
+            res.append((item.id,item.processid))
+        return res
+
+    def create(self,cr,uid,data,context=None):
+        feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
+        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
+        return feebase_id
+
     _columns={
         "processid":fields.char(string="ProcessId",size=100,required=False),        
         "feedate":fields.date(string="Fee Date"),
@@ -225,11 +239,16 @@ class FeeBase(osv.osv):
         "payman":fields.many2one("res.users","Pay Man"),
         "amount":fields.float(string="Amount"),
         "accountamount":fields.float(string="Account Amount"),
-        "accountperiod":fields.selection(_get_accountperiod_list, string="Account Period", size=20,required=True),
+        "accountperiod":fields.char(string="Account Period", size=20,required=False),
         "oanum":fields.char(string="OA Num",size=100),
         "hasoa":fields.boolean(string="Has input oa"),
         "hasback":fields.boolean(string="Has Back"),
         "remark":fields.text(string="Remark"),
+    }
+
+    _defaults={
+        "feedate":lambda self,cr,uid,context:datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "payman":lambda self,cr,uid,context:uid,
     }
 FeeBase()
 
@@ -239,7 +258,7 @@ class FeeForSend(osv.osv):
 
     def create(self,cr,uid,data,context=None):
         feebase_id = super(FeeForSend, self).create(cr, uid, data, context=context)
-        self.write(cr,uid,feebase_id,{"processid":self._get_default_processid(cr,uid,context)},context)
+        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
         return feebase_id
 
     _columns={
@@ -255,23 +274,25 @@ class FeeForProduct(osv.osv):
 
     def create(self,cr,uid,data,context=None):
         feebase_id = super(FeeForProduct, self).create(cr, uid, data, context=context)
-        self.write(cr,uid,feebase_id,{"processid":self._get_default_processid(cr,uid,context)},context)
+        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
         return feebase_id
 
-    def on_change_productaccount(self,cr,uid,ids,model_id,context=None):        
-        if not model_id:
-            return False
-        print uid,ids,model_id
-        return True
-        """item = self.pool.get("tms.").browse(cr,uid,model_id,context=context)
-        if not item :
-            return False
+    def on_change_productaccount(self,cr,uid,ids,productcount,productprice,context=None):        
         return {
             "value":{
-                "province":self.get_province_by_store_id(cr,uid,item.id),
-                "storenum":item.storenum,
+                "amount":productcount*productprice,
+                "accountproductprice":productprice,
+                "accountproductcount":productcount,
+                "accountamount":productcount*productprice,
             }
-        }"""
+        }
+
+    def on_change_accountproductaccount(self,cr,uid,ids,accountproductcount,accountproductprice,context=None):        
+        return {
+            "value":{
+                "accountamount":accountproductprice*accountproductcount,
+            }
+        }
 
     _columns={
         "productname":fields.char(string="Product Name",size=200),
@@ -282,3 +303,59 @@ class FeeForProduct(osv.osv):
         "accountproductcount":fields.integer(string="Account Product Count")
     }
 FeeForProduct()
+
+class FeeForProductIt(osv.osv):
+    _inherit="tms.feebase"
+    _name = "tms.feeforproductit"
+
+    def create(self,cr,uid,data,context=None):
+        feebase_id = super(FeeForProductIt, self).create(cr, uid, data, context=context)
+        self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
+        return feebase_id
+
+    def on_change_productaccount(self,cr,uid,ids,productcount,productprice,context=None):        
+        return {
+            "value":{
+                "amount":productcount*productprice,
+                "accountproductprice":productprice,
+                "accountproductcount":productcount,
+                "accountamount":productcount*productprice,
+            }
+        }
+
+    def on_change_accountproductaccount(self,cr,uid,ids,accountproductcount,accountproductprice,context=None):        
+        return {
+            "value":{
+                "accountamount":accountproductprice*accountproductcount,
+            }
+        }
+    _columns={
+        "productname":fields.char(string="Product Name",size=200),
+        "productprice":fields.float(string="Product Price"),
+        "productcount":fields.integer(string="Product Count"),
+        "accountproductprice":fields.integer(string="Account Product Price"),
+        "accountproductcount":fields.integer(string="Account Product Count")
+    }
+FeeForProductIt()
+
+class FeeForItService(osv.osv):
+    _inherit="tms.feebase"
+    _name = "tms.feeforitservice"
+
+    #def create(self,cr,uid,data,context=None):
+    #    feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
+    #    self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
+    #    return feebase_id
+
+FeeForItService()
+
+class FeeForOther(osv.osv):
+    _inherit="tms.feebase"
+    _name = "tms.feeforother"
+
+    #def create(self,cr,uid,data,context=None):
+    #    feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
+    #    self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":self._get_default_processid(cr,uid,context)},context)
+    #    return feebase_id
+
+FeeForOther()

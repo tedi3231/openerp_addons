@@ -45,12 +45,12 @@ msgstr "托码思"
 #. module: tms
 #: field:tms.feebase,accountperiod:0
 msgid "Account Period"
-msgstr ""
+msgstr "账期"
 
 #. module: tms
 #: view:tms.applyinfo:0
 msgid "Cofirm"
-msgstr ""
+msgstr "客户确认"
 
 #. module: tms
 #: field:tms.applyinfoitem,name:0
@@ -60,27 +60,27 @@ msgstr ""
 #: field:tms.sendcompany,remark:0
 #: field:tms.store,remark:0
 msgid "Remark"
-msgstr ""
+msgstr "备注"
 
 #. module: tms
 #: field:tms.store,telephone:0
 msgid "Telephone"
-msgstr ""
+msgstr "联系电话"
 
 #. module: tms
 #: view:tms.feebase:0
 msgid "Base Info"
-msgstr ""
+msgstr "基本信息"
 
 #. module: tms
 #: field:tms.applyinfo,state:0
 msgid "State"
-msgstr ""
+msgstr "状态"
 
 #. module: tms
 #: field:tms.store,name:0
 msgid "Store Name"
-msgstr ""
+msgstr "门店名称"
 
 #. module: tms
 #: selection:tms.applyinfo,state:0
@@ -90,13 +90,13 @@ msgstr ""
 #. module: tms
 #: view:tms.store:0
 msgid "Contact Information"
-msgstr ""
+msgstr "联系人信息"
 
 #. module: tms
 #: view:tms.applyinfo:0
 #: field:tms.applyinfo,content:0
 msgid "Content"
-msgstr ""
+msgstr "备注"
 
 #. module: tms
 #: field:tms.store,peanutemailpass:0
