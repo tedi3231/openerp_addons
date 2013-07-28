@@ -488,7 +488,7 @@
             <field name="res_model">tms.feeforsend</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[('state','=','draft')]</field>
+			<!--<field name="domain">[('state','=','draft')]</field>-->
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproduct_tree_show">
             <field name="name">Fee for Product</field>
