@@ -90,7 +90,7 @@
                             <field name="state" invisible="1"/>
                             <button name="btn_received" string="Received" states="unreceived"/>
                             <button name="btn_hasdone" string ="Done" states="hasreceived"/>
-                            <button name="btn_hascofirm" string="Cofirm" states="hasconfirm"/>
+                            <button name="btn_hascofirm" string="Cofirm" states="hasdone"/>
                         </group>
                         <group col="4">
                             <field name="store_id" on_change="on_change_store(store_id)"/>
@@ -131,9 +131,10 @@
                     <field name="feetype_id"/>
                     <field name="feedate"/>
                     <field name="payman"/>
-                    <field name="amount"/>
-                    <field name="accountamount"/>
+                    <field name="amount" sum="Amount" />
+                    <field name="accountamount" sum="Account Amount" />
 					<field name="state"/>
+                    <field name="oanum"/>
                 </tree>
             </field>
         </record>
@@ -179,6 +180,8 @@
                     <field name="payman"/>
                     <field name="amount" sum="Amount" />
                     <field name="accountamount" sum="Account Amount" />
+                    <field name="state"/>
+                    <field name="oanum"/>
                 </tree>
             </field>
         </record>
@@ -456,32 +459,110 @@
 		<!-- the dropdown menuitems in more menu  start-->
 
         <!-- feebase info end -->
+        <!-- 管理员申报动作 -->
         <record model="ir.actions.act_window" id="action_tms_applyinfo_tree_show">
-            <field name="name">Applyinfos</field>
+            <field name="name">All Applyinfos</field>
             <field name="res_model">tms.applyinfo</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
+
+        <record model="ir.actions.act_window" id="action_tms_unreceived_applyinfo_tree_show">
+            <field name="name">Unreceived Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','unreceived')]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tms_hasreceived_applyinfo_tree_show">
+            <field name="name">HasReceived Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','hasreceived')]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tms_hasdone_applyinfo_tree_show">
+            <field name="name">HasDone Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','hasdone')]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tms_hasconfirm_applyinfo_tree_show">
+            <field name="name">HasConfirm Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','hasconfirm')]</field>
+        </record>
+        <!-- 管理员申报动作结束 -->
+
+        <!-- 厂商申报动作 -->
+        <record model="ir.actions.act_window" id="action_tms_myapplyinfo_tree_show">
+            <field name="name">All Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('user_id','=',uid)]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tms_myunreceived_applyinfo_tree_show">
+            <field name="name">Unreceived Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','unreceived'),('user_id','=',uid)]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tms_myhasreceived_applyinfo_tree_show">
+            <field name="name">HasReceived Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','hasreceived'),('user_id','=',uid)]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tms_myhasdone_applyinfo_tree_show">
+            <field name="name">HasDone Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','hasdone'),('user_id','=',uid)]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_tms_myhasconfirm_applyinfo_tree_show">
+            <field name="name">HasConfirm Applyinfos</field>
+            <field name="res_model">tms.applyinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','hasconfirm'),('user_id','=',uid)]</field>
+        </record>
+        <!-- 厂商申报动作结束 -->
+
+        <!-- 财务中心动作 -->
         <record model="ir.actions.act_window" id="action_tms_feeforother_tree_show">
             <field name="name">其他费用登记</field>
             <field name="res_model">tms.feeforother</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[('state','=','draft')]</field>
+			<!--<field name="domain">[('state','=','draft')]</field>-->
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforitservice_tree_show">
             <field name="name">IT服务费登记</field>
             <field name="res_model">tms.feeforitservice</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[('state','=','draft')]</field>
+			<!--<field name="domain">[('state','=','draft')]</field>-->
         </record>
         <record model="ir.actions.act_window" id="action_tms_feebase_tree_show">
             <field name="name">维护费登记</field>
             <field name="res_model">tms.feebase</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[('state','=','draft')]</field>
+			<!--<field name="domain">[('state','=','draft')]</field>-->
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforsend_tree_show">
             <field name="name">Fee for send</field>
@@ -495,30 +576,109 @@
             <field name="res_model">tms.feeforproduct</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[('state','=','draft')]</field>
+			<!--<field name="domain">[('state','=','draft')]</field>-->
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproductit_tree_show">
             <field name="name">Fee for ProductIT</field>
             <field name="res_model">tms.feeforproductit</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[('state','=','draft')]</field>
+			<!--<field name="domain">[('state','=','draft')]</field>-->
         </record>
+        <!-- 财务中心动作结束 -->
+
+        <!-- 对账中心动作 -->
+        <record model="ir.actions.act_window" id="action_tms_feeforother_account_tree_show">
+            <field name="name">其他费用对账</field>
+            <field name="res_model">tms.feeforother</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+            <field name="domain">[('state','not in',('draft',))]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_tms_feeforitservice_account_tree_show">
+            <field name="name">IT服务费对账</field>
+            <field name="res_model">tms.feeforitservice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+            <field name="domain">[('state','not in',('draft',))]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_tms_feebase_account_tree_show">
+            <field name="name">维护费对账</field>
+            <field name="res_model">tms.feebase</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+            <field name="domain">[('state','not in',('draft',))]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_tms_feeforsend_account_tree_show">
+            <field name="name">Fee for send Account</field>
+            <field name="res_model">tms.feeforsend</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+            <field name="domain">[('state','not in',('draft',))]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_tms_feeforproduct_account_tree_show">
+            <field name="name">Fee for Product Account</field>
+            <field name="res_model">tms.feeforproduct</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+            <field name="domain">[('state','not in',('draft',))]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_tms_feeforproductit_account_tree_show">
+            <field name="name">Fee for ProductIT Account</field>
+            <field name="res_model">tms.feeforproductit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>            
+            <field name="domain">[('state','not in',('draft',))]</field>
+        </record>
+        <!-- 对账中心动作结束 -->
         
         <menuitem id="menu_tms_root" name="TMS" />
         <menuitem id="menu_tms_manager" name="TMS" parent="menu_tms_root"/>
-        <menuitem id="menu_tms_applyinfo_manager_root" name="Applyinfo Management" parent="menu_tms_root"/>
+        
+        <!-- 管理员申报菜单 -->
+        <menuitem id="menu_tms_applyinfo_foradmin_manager_root" name="Admin Applyinfo Management" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_applyinfo_manager" parent="menu_tms_applyinfo_foradmin_manager_root" name="Admin Applyinfos" 
+            action="action_tms_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_unreceived_applyinfo_manager" parent="menu_tms_applyinfo_foradmin_manager_root" name="UnReceived Applyinfos" action="action_tms_unreceived_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_hasreceived_applyinfo_manager" parent="menu_tms_applyinfo_foradmin_manager_root" name="HasReceived Applyinfos" action="action_tms_hasreceived_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_hasdone_applyinfo_manager" parent="menu_tms_applyinfo_foradmin_manager_root" name="HasDone Applyinfos" action="action_tms_hasdone_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_hasconfirm_applyinfo_manager" parent="menu_tms_applyinfo_foradmin_manager_root" name="HasConfirm Applyinfos" action="action_tms_hasconfirm_applyinfo_tree_show"/>
+        <!-- 管理员申报菜单结束 -->
+
+        <!-- 厂商申报菜单 -->
+        <menuitem id="menu_tms_myapplyinfo_foradmin_manager_root" name="Factory Applyinfo Management" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_myapplyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="My Applyinfos" 
+            action="action_tms_myapplyinfo_tree_show"/>
+        <menuitem id="menu_tms_myunreceived_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="My UnReceived Applyinfos" action="action_tms_myunreceived_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_myhasreceived_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="My HasReceived Applyinfos" action="action_tms_myhasreceived_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_myhasdone_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="My HasDone Applyinfos" action="action_tms_myhasdone_applyinfo_tree_show"/>
+        <menuitem id="menu_tms_myhasconfirm_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="My HasConfirm Applyinfos" action="action_tms_myhasconfirm_applyinfo_tree_show"/>
+        <!-- 厂商申报菜单结束 -->
+
+        <!-- 门店管理 -->
         <menuitem id="menu_tms_store_manager_root" name="Stores Management" parent="menu_tms_root"/>
-        <menuitem id="menu_tms_finance_center_manager" name="Finance Center" parent="menu_tms_root"/>
-        <menuitem id="menu_tms_account_center_manager" name="Account Center" parent="menu_tms_root"/>
         <menuitem id="menu_tms_store_manager" parent="menu_tms_store_manager_root" name="Store Manager" action="action_tms_store_tree_show"/>
-        <menuitem id="menu_tms_applyinfo_manager" parent="menu_tms_applyinfo_manager_root" name="Applyinfo Manager" action="action_tms_applyinfo_tree_show"/>
-        <menuitem id="menu_tms_feeforother_manager" parent="menu_tms_finance_center_manager" name="其他费用登记" action="action_tms_feeforother_tree_show"/>
-        <menuitem id="menu_tms_feebase_manager" parent="menu_tms_finance_center_manager" name="维护费登记" action="action_tms_feebase_tree_show"/>
-        <menuitem id="menu_tms_feeforitservice_manager" parent="menu_tms_finance_center_manager" name="IT服务费登记" action="action_tms_feeforitservice_tree_show"/>
-        <menuitem id="menu_tms_feeforsend_manager" parent="menu_tms_finance_center_manager" name="FeeForSend Manager" action="action_tms_feeforsend_tree_show"/>
-        <menuitem id="menu_tms_feeforproduct_manager" parent="menu_tms_finance_center_manager" name="FeeForProduct Manager" action="action_tms_feeforproduct_tree_show"/>
-        <menuitem id="menu_tms_feeforproductit_manager" parent="menu_tms_finance_center_manager" name="FeeForProductIt Manager" action="action_tms_feeforproductit_tree_show"/>
+        <!-- 门店管理结束 -->
+
+        <!-- 账务中心 -->
+        <menuitem id="menu_tms_finance_center_manager" name="Account Center" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_feeforother_manager" parent="menu_tms_finance_center_manager" name="FeeForOther Account" action="action_tms_feeforother_tree_show"/>
+        <menuitem id="menu_tms_feebase_manager" parent="menu_tms_finance_center_manager" name="FeeBase Account" action="action_tms_feebase_tree_show"/>
+        <!--<menuitem id="menu_tms_feeforitservice_manager" parent="menu_tms_finance_center_manager" name="FeeForItService Account" action="action_tms_feeforitservice_tree_show"/>-->
+        <menuitem id="menu_tms_feeforsend_manager" parent="menu_tms_finance_center_manager" name="FeeForSend Account" action="action_tms_feeforsend_tree_show"/>
+        <menuitem id="menu_tms_feeforproduct_manager" parent="menu_tms_finance_center_manager" name="FeeForProduct Account" action="action_tms_feeforproduct_tree_show"/>
+        <menuitem id="menu_tms_feeforproductit_manager" parent="menu_tms_finance_center_manager" name="FeeForProductIt Account" action="action_tms_feeforproductit_tree_show"/>
+        <!-- 账务中心结束 -->
+
+        <!-- 对账中心 -->
+        <menuitem id="menu_tms_account_center_manager" name="Account Center" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_feeforother_account_manager" parent="menu_tms_account_center_manager" name="其他费用登记" action="action_tms_feeforother_account_tree_show"/>
+        <menuitem id="menu_tms_feebase_account_manager" parent="menu_tms_account_center_manager" name="维护费登记" action="action_tms_feebase_account_tree_show"/>
+        <!-- <menuitem id="menu_tms_feeforitservice_manager" parent="menu_tms_account_center_manager" name="IT服务费登记" action="action_tms_feeforitservice_tree_show"/>-->
+        <menuitem id="menu_tms_feeforsend_account_manager" parent="menu_tms_account_center_manager" name="FeeForSend Manager" action="action_tms_feeforsend_account_tree_show"/>
+        <menuitem id="menu_tms_feeforproduct_account_manager" parent="menu_tms_account_center_manager" name="FeeForProduct Manager" action="action_tms_feeforproduct_account_tree_show"/>
+        <menuitem id="menu_tms_feeforproductit_account_manager" parent="menu_tms_account_center_manager" name="FeeForProductIt Manager" action="action_tms_feeforproductit_account_tree_show"/>
+        <!-- 对账中心结束 -->
     </data>
 </openerp>
 

@@ -36,6 +36,9 @@
             <field name="model">tms.wizard.oa.forsend</field>
             <field name="arch" type="xml">
 				<form string="Set OANum" version="7.0">
+                    <group col="4" colspan="4">
+                        aBC
+                    </group>
 					<group col="4" colspan="4">
 						<field name="oanum"/>
 						<field name="feetype"/>
@@ -60,9 +63,121 @@
                 </tree>
             </field>
 		</record>
+
+        <record id="view_tms_feeforproduct_setoa_form" model="ir.ui.view">
+            <field name="name">tms.wizard.oa.feeforproduct.form</field>
+            <field name="model">tms.wizard.oa.forproduct</field>
+            <field name="arch" type="xml">
+                <form string="Set OANum" version="7.0">
+                    <group col="4" colspan="4">
+                        aBC
+                    </group>
+                    <group col="4" colspan="4">
+                        <field name="oanum"/>
+                        <field name="feetype"/>
+                    </group>
+                    <group col="4" colspan="4">
+                        <field name="feebase_ids" nolabel="1" />
+                    </group>
+                    <footer>
+                        <button string="Enter" name="setoanum" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="tms_wizard_item_forproduct_tree_view" model="ir.ui.view">
+            <field name="name">Fee List</field>
+            <field name="model">tms.wizard.item.forproduct</field>
+            <field name="arch" type="xml">
+                <tree string="Fee Items" create="false" delete="false" edit="false">
+                    <field name="feebase_id" nolabel="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_tms_feeforproductit_setoa_form" model="ir.ui.view">
+            <field name="name">tms.wizard.oa.feeforproductit.form</field>
+            <field name="model">tms.wizard.oa.forproductit</field>
+            <field name="arch" type="xml">
+                <form string="Set OANum" version="7.0">
+                    <group col="4" colspan="4">
+                        aBC
+                    </group>
+                    <group col="4" colspan="4">
+                        <field name="oanum"/>
+                        <field name="feetype"/>
+                    </group>
+                    <group col="4" colspan="4">
+                        <field name="feebase_ids" nolabel="1" />
+                    </group>
+                    <footer>
+                        <button string="Enter" name="setoanum" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="tms_wizard_item_forproductit_tree_view" model="ir.ui.view">
+            <field name="name">Fee List</field>
+            <field name="model">tms.wizard.item.forproductit</field>
+            <field name="arch" type="xml">
+                <tree string="Fee Items" create="false" delete="false" edit="false">
+                    <field name="feebase_id" nolabel="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_feeforother_setoa_form" model="ir.ui.view">
+            <field name="name">tms.wizard.oa.feeforother.form</field>
+            <field name="model">tms.wizard.oa.forother</field>
+            <field name="arch" type="xml">
+                <form string="Set OANum" version="7.0">
+                    <group col="4" colspan="4">
+                        aBC
+                    </group>
+                    <group col="4" colspan="4">
+                        <field name="oanum"/>
+                        <field name="feetype"/>
+                    </group>
+                    <group col="4" colspan="4">
+                        <field name="feebase_ids" nolabel="1" />
+                    </group>
+                    <footer>
+                        <button string="Enter" name="setoanum" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="tms_wizard_item_forother_tree_view" model="ir.ui.view">
+            <field name="name">Fee List</field>
+            <field name="model">tms.wizard.item.forother</field>
+            <field name="arch" type="xml">
+                <tree string="Fee Items" create="false" delete="false" edit="false">
+                    <field name="feebase_id" nolabel="1"/>
+                </tree>
+            </field>
+        </record>
+
+
         <act_window id="action_tms_wizard_feebase_oa" name="Set OANum" res_model="tms.wizard.oa" src_model="tms.feebase"
 			key2="client_action_multi" view_type="form" view_mode="form" target="new"/>        
+        
         <act_window id="action_tms_wizard_feeforsend_oa" name="Set OANum" res_model="tms.wizard.oa.forsend" src_model="tms.feeforsend"
-			key2="client_action_multi" view_type="form" view_mode="form" target="new" />        
+            key2="client_action_multi" view_type="form" view_mode="form" target="new" />  
+
+        <act_window id="action_tms_wizard_feeforproduct_oa" name="Set OANum" res_model="tms.wizard.oa.forproduct" src_model="tms.feeforproduct"
+			key2="client_action_multi" view_type="form" view_mode="form" target="new" /> 
+        
+        <act_window id="action_tms_wizard_feeforproductit_oa" name="Set OANum" res_model="tms.wizard.oa.forproductit" src_model="tms.feeforproductit"
+            key2="client_action_multi" view_type="form" view_mode="form" target="new" />  
+
+        <act_window id="action_tms_wizard_feeforother_oa" name="Set OANum" res_model="tms.wizard.oa.forother" src_model="tms.feeforother"
+            key2="client_action_multi" view_type="form" view_mode="form" target="new" />       
     </data>
 </openerp>

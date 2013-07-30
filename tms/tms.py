@@ -81,6 +81,7 @@ class ApplyInfo(osv.osv):
         return res
 
     _columns = {
+        "user_id":fields.many2one("res.users",string="Add Man"),
         "processid":fields.char(string="ProcessId",size=100,required=False),
         "store_id":fields.many2one("tms.store",string="Sotre"),
         "province":fields.function(get_province_name,type="char",string="Province"),
@@ -113,6 +114,7 @@ class ApplyInfo(osv.osv):
 
     _defaults={
         #"processid":_get_default_processid,
+        "user_id":lambda self,cr,uid,context:uid,
         "state":lambda self,cr,uid,context:"draft",
     }
 ApplyInfo()

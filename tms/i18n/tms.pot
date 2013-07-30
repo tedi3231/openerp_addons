@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#   * tms
+#	* tms
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0-20130304-002107\n"
+"Project-Id-Version: OpenERP Server 7.0-20130205-000102\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-24 08:43+0000\n"
-"PO-Revision-Date: 2013-07-24 08:43+0000\n"
+"POT-Creation-Date: 2013-07-30 14:24+0000\n"
+"PO-Revision-Date: 2013-07-30 14:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,34 +16,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: tms
-#: field:tms.feebase,store_id:0
-#: view:tms.store:0
-msgid "Store"
-msgstr ""
-
-#. module: tms
-#: view:tms.feebase:0
-msgid "Fee"
-msgstr ""
-
-#. module: tms
-#: field:tms.store,netusername:0
-msgid "Net User Name"
-msgstr ""
-
-#. module: tms
-#: view:tms.applyinfo:0
-msgid "Received"
-msgstr ""
-
-#. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_manager
-#: model:ir.ui.menu,name:tms.menu_tms_root
-msgid "TMS"
+#: field:tms.store,name:0
+msgid "Store Name"
 msgstr ""
 
 #. module: tms
 #: field:tms.feebase,accountperiod:0
+#: field:tms.feeforitservice,accountperiod:0
+#: field:tms.feeforother,accountperiod:0
+#: field:tms.feeforproduct,accountperiod:0
+#: field:tms.feeforproductit,accountperiod:0
+#: field:tms.feeforsend,accountperiod:0
 msgid "Account Period"
 msgstr ""
 
@@ -53,59 +36,21 @@ msgid "Cofirm"
 msgstr ""
 
 #. module: tms
-#: field:tms.applyinfoitem,name:0
+#: field:tms.store,poscdk:0
+msgid "POSCDK"
+msgstr ""
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_manager
+#: model:ir.ui.menu,name:tms.menu_tms_root
+msgid "TMS"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feebase_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feebase_manager
 #: view:tms.feebase:0
-#: field:tms.feebase,remark:0
-#: field:tms.feetype,remark:0
-#: field:tms.sendcompany,remark:0
-#: field:tms.store,remark:0
-msgid "Remark"
-msgstr ""
-
-#. module: tms
-#: field:tms.store,telephone:0
-msgid "Telephone"
-msgstr ""
-
-#. module: tms
-#: view:tms.feebase:0
-msgid "Base Info"
-msgstr ""
-
-#. module: tms
-#: field:tms.applyinfo,state:0
-msgid "State"
-msgstr ""
-
-#. module: tms
-#: field:tms.store,name:0
-msgid "Store Name"
-msgstr ""
-
-#. module: tms
-#: selection:tms.applyinfo,state:0
-msgid "Draft"
-msgstr ""
-
-#. module: tms
-#: view:tms.store:0
-msgid "Contact Information"
-msgstr ""
-
-#. module: tms
-#: view:tms.applyinfo:0
-#: field:tms.applyinfo,content:0
-msgid "Content"
-msgstr ""
-
-#. module: tms
-#: field:tms.store,peanutemailpass:0
-msgid "Peanut email pass"
-msgstr ""
-
-#. module: tms
-#: model:ir.model,name:tms.model_tms_feeforsend
-msgid "tms.feeforsend"
+msgid "维护费登记"
 msgstr ""
 
 #. module: tms
@@ -114,88 +59,49 @@ msgid "Add Man"
 msgstr ""
 
 #. module: tms
-#: field:tms.feetype,name:0
-msgid "Name"
-msgstr ""
-
-#. module: tms
 #: field:tms.applyinfo,province:0
 #: field:tms.feebase,province:0
+#: field:tms.feeforitservice,province:0
+#: field:tms.feeforother,province:0
+#: field:tms.feeforproduct,province:0
+#: field:tms.feeforproductit,province:0
+#: field:tms.feeforsend,province:0
 #: field:tms.store,province_id:0
 msgid "Province"
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_applyinfo_tree_show
-#: view:tms.applyinfo:0
-msgid "Applyinfos"
+#: view:tms.feeforproductit:0
+msgid "Fee For ProductIT"
 msgstr ""
 
 #. module: tms
-#: field:tms.applyinfo,contactperson:0
-#: field:tms.store,contactperson:0
-msgid "Contact Person"
+#: model:ir.ui.menu,name:tms.menu_tms_finance_center_manager
+msgid "Finance Center"
 msgstr ""
 
 #. module: tms
-#: model:ir.model,name:tms.model_tms_sendcompany
-msgid "tms.sendcompany"
+#: model:ir.model,name:tms.model_tms_feeforother
+msgid "tms.feeforother"
 msgstr ""
 
 #. module: tms
-#: field:tms.feebase,sendcompany:0
-msgid "Send Company"
+#: view:tms.wizard.item:0
+#: view:tms.wizard.item.forother:0
+#: view:tms.wizard.item.forproduct:0
+#: view:tms.wizard.item.forproductit:0
+#: view:tms.wizard.item.forsend:0
+msgid "Fee Items"
 msgstr ""
 
 #. module: tms
-#: view:tms.store:0
-msgid "Network Information"
+#: model:ir.model,name:tms.model_tms_feeforsend
+msgid "tms.feeforsend"
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforsend_tree_show
-msgid "Fee for send"
-msgstr ""
-
-#. module: tms
-#: field:tms.store,dynamicdomain:0
-msgid "Dynamic Domain"
-msgstr ""
-
-#. module: tms
-#: view:tms.feebase:0
-msgid "FeeBases"
-msgstr ""
-
-#. module: tms
-#: field:tms.applyinfo,address:0
-#: field:tms.store,address:0
-msgid "Address"
-msgstr ""
-
-#. module: tms
-#: field:tms.applyinfoitem,create_time:0
-msgid "Add time"
-msgstr ""
-
-#. module: tms
-#: sql_constraint:tms.sendcompany:0
-msgid "SendCompany name must be unique!"
-msgstr ""
-
-#. module: tms
-#: field:tms.feebase,sendproduct:0
-msgid "Send Product"
-msgstr ""
-
-#. module: tms
-#: field:tms.feebase,hasoa:0
-msgid "Has input oa"
-msgstr ""
-
-#. module: tms
-#: model:ir.model,name:tms.model_tms_feetype
-msgid "tms.feetype"
+#: model:ir.ui.menu,name:tms.menu_tms_store_manager_root
+msgid "Stores Management"
 msgstr ""
 
 #. module: tms
@@ -204,23 +110,29 @@ msgid "Company Name"
 msgstr ""
 
 #. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproductit_manager
+msgid "FeeForProductIt Manager"
+msgstr ""
+
+#. module: tms
 #: view:tms.applyinfo:0
-msgid "Applyinfo"
+msgid "Received"
 msgstr ""
 
 #. module: tms
-#: selection:tms.applyinfo,state:0
-msgid "HasConfirm"
-msgstr ""
-
-#. module: tms
-#: field:tms.feebase,accountamount:0
-msgid "Account Amount"
-msgstr ""
-
-#. module: tms
-#: field:tms.store,poscdk:0
-msgid "POSCDK"
+#: field:tms.applyinfoitem,name:0
+#: field:tms.feebase,remark:0
+#: field:tms.feeforitservice,remark:0
+#: field:tms.feeforother,remark:0
+#: view:tms.feeforproduct:0
+#: field:tms.feeforproduct,remark:0
+#: field:tms.feeforproductit,remark:0
+#: view:tms.feeforsend:0
+#: field:tms.feeforsend,remark:0
+#: field:tms.feetype,remark:0
+#: field:tms.sendcompany,remark:0
+#: field:tms.store,remark:0
+msgid "Remark"
 msgstr ""
 
 #. module: tms
@@ -234,18 +146,8 @@ msgid "Mobile"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_manager
-msgid "FeeForSend Manager"
-msgstr ""
-
-#. module: tms
 #: field:tms.store,dynamicdomainotheraddress:0
 msgid "Domain Other Address"
-msgstr ""
-
-#. module: tms
-#: selection:tms.applyinfo,state:0
-msgid "UnReceived"
 msgstr ""
 
 #. module: tms
@@ -254,34 +156,21 @@ msgid "HasDone"
 msgstr ""
 
 #. module: tms
-#: field:tms.applyinfo,store_id:0
-msgid "Sotre"
-msgstr ""
-
-#. module: tms
-#: sql_constraint:tms.feetype:0
-msgid "FeeType name must be unique!"
-msgstr ""
-
-#. module: tms
 #: field:tms.feebase,amount:0
+#: view:tms.feeforitservice:0
+#: field:tms.feeforitservice,amount:0
+#: field:tms.feeforother,amount:0
+#: view:tms.feeforproduct:0
+#: field:tms.feeforproduct,amount:0
+#: view:tms.feeforproductit:0
+#: field:tms.feeforproductit,amount:0
+#: field:tms.feeforsend,amount:0
 msgid "Amount"
 msgstr ""
 
 #. module: tms
-#: model:ir.model,name:tms.model_tms_applyinfo
-msgid "tms.applyinfo"
-msgstr ""
-
-#. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_store_manager
-msgid "Store Manager"
-msgstr ""
-
-#. module: tms
-#: field:tms.applyinfo,storenum:0
-#: field:tms.feebase,storenum:0
-msgid "Store Num"
+#: field:tms.feetype,code:0
+msgid "Code"
 msgstr ""
 
 #. module: tms
@@ -301,13 +190,330 @@ msgid "Peanut valid email"
 msgstr ""
 
 #. module: tms
+#: field:tms.feeforsend,sendordernum:0
+msgid "Send Order num"
+msgstr ""
+
+#. module: tms
+#: view:tms.wizard.oa.forother:0
+#: view:tms.wizard.oa.forproduct:0
+#: view:tms.wizard.oa.forproductit:0
+#: view:tms.wizard.oa.forsend:0
+msgid "aBC"
+msgstr ""
+
+#. module: tms
+#: field:tms.store,telephone:0
+msgid "Telephone"
+msgstr ""
+
+#. module: tms
+#: sql_constraint:tms.sendcompany:0
+msgid "SendCompany name must be unique!"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.server,name:tms.action_tms_export_fee_to_account
+msgid "Export To Account"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_applyinfoitem
+msgid "tms.applyinfoitem"
+msgstr ""
+
+#. module: tms
+#: selection:tms.feebase,state:0
+#: selection:tms.feeforitservice,state:0
+#: selection:tms.feeforother,state:0
+#: selection:tms.feeforproduct,state:0
+#: selection:tms.feeforproductit,state:0
+#: selection:tms.feeforsend,state:0
+msgid "Has Input OANum"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfo,state:0
+msgid "State"
+msgstr ""
+
+#. module: tms
+#: field:tms.store,peanutemailpass:0
+msgid "Peanut email pass"
+msgstr ""
+
+#. module: tms
+#: view:tms.feebase:0
+#: field:tms.feebase,accountamount:0
+#: view:tms.feeforitservice:0
+#: field:tms.feeforitservice,accountamount:0
+#: field:tms.feeforother,accountamount:0
+#: view:tms.feeforproduct:0
+#: field:tms.feeforproduct,accountamount:0
+#: view:tms.feeforproductit:0
+#: field:tms.feeforproductit,accountamount:0
+#: view:tms.feeforsend:0
+#: field:tms.feeforsend,accountamount:0
+msgid "Account Amount"
+msgstr ""
+
+#. module: tms
+#: sql_constraint:tms.store:0
+msgid "Storenum must be unique!"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfo,contactperson:0
+#: field:tms.store,contactperson:0
+msgid "Contact Person"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_feeforproduct
+msgid "tms.feeforproduct"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_sendcompany
+msgid "tms.sendcompany"
+msgstr ""
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_store_manager
+msgid "Store Manager"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforsend_tree_show
+msgid "Fee for send"
+msgstr ""
+
+#. module: tms
+#: view:tms.feeforsend:0
+msgid "FeeBases"
+msgstr ""
+
+#. module: tms
+#: field:tms.feeforproduct,productname:0
+#: field:tms.feeforproductit,productname:0
+msgid "Product Name"
+msgstr ""
+
+#. module: tms
+#: field:tms.feeforproduct,producttype:0
+msgid "Product Type"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfo,storenum:0
+#: field:tms.feebase,storenum:0
+#: field:tms.feeforitservice,storenum:0
+#: field:tms.feeforother,storenum:0
+#: field:tms.feeforproduct,storenum:0
+#: field:tms.feeforproductit,storenum:0
+#: field:tms.feeforsend,storenum:0
+msgid "Store Num"
+msgstr ""
+
+#. module: tms
+#: field:tms.feeforsend,sendcompany:0
+msgid "Send Company"
+msgstr ""
+
+#. module: tms
+#: selection:tms.feebase,state:0
+#: selection:tms.feeforitservice,state:0
+#: selection:tms.feeforother,state:0
+#: selection:tms.feeforproduct,state:0
+#: selection:tms.feeforproductit,state:0
+#: selection:tms.feeforsend,state:0
+msgid "Has Back"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.server,name:tms.action_tms_set_hasback
+msgid "Set Has Back"
+msgstr ""
+
+#. module: tms
 #: view:tms.applyinfo:0
 msgid "Workflow actions"
 msgstr ""
 
 #. module: tms
-#: field:tms.feebase,payman:0
-msgid "Pay Man"
+#: model:ir.model,name:tms.model_tms_wizard_item
+#: model:ir.model,name:tms.model_tms_wizard_item_forother
+#: model:ir.model,name:tms.model_tms_wizard_item_forproduct
+#: model:ir.model,name:tms.model_tms_wizard_item_forproductit
+#: model:ir.model,name:tms.model_tms_wizard_item_forsend
+msgid "FeeBase Item"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_feebase
+msgid "tms.feebase"
+msgstr ""
+
+#. module: tms
+#: field:tms.feebase,feetype_id:0
+#: field:tms.feeforitservice,feetype_id:0
+#: field:tms.feeforother,feetype_id:0
+#: field:tms.feeforproduct,feetype_id:0
+#: field:tms.feeforproductit,feetype_id:0
+#: field:tms.feeforsend,feetype_id:0
+msgid "Fee Type"
+msgstr ""
+
+#. module: tms
+#: field:tms.store,dynamicdomainpass:0
+msgid "Dynamic Domain pass"
+msgstr ""
+
+#. module: tms
+#: view:tms.wizard.oa:0
+#: view:tms.wizard.oa.forother:0
+#: view:tms.wizard.oa.forproduct:0
+#: view:tms.wizard.oa.forproductit:0
+#: view:tms.wizard.oa.forsend:0
+msgid "or"
+msgstr ""
+
+#. module: tms
+#: view:tms.feebase:0
+#: view:tms.feeforsend:0
+#: field:tms.wizard.item,feebase_id:0
+#: field:tms.wizard.item.forother,feebase_id:0
+#: field:tms.wizard.item.forproduct,feebase_id:0
+#: field:tms.wizard.item.forproductit,feebase_id:0
+#: field:tms.wizard.item.forsend,feebase_id:0
+msgid "Fee"
+msgstr ""
+
+#. module: tms
+#: field:tms.feeforproduct,accountproductcount:0
+#: field:tms.feeforproductit,accountproductcount:0
+msgid "Account Product Count"
+msgstr ""
+
+#. module: tms
+#: selection:tms.feebase,state:0
+#: selection:tms.feeforitservice,state:0
+#: selection:tms.feeforother,state:0
+#: selection:tms.feeforproduct,state:0
+#: selection:tms.feeforproductit,state:0
+#: selection:tms.feeforsend,state:0
+msgid "Has Exported"
+msgstr ""
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_account_center_manager
+msgid "Account Center"
+msgstr ""
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_manager
+msgid "FeeForSend Manager"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_applyinfo
+msgid "tms.applyinfo"
+msgstr ""
+
+#. module: tms
+#: selection:tms.applyinfo,state:0
+#: selection:tms.feebase,state:0
+#: selection:tms.feeforitservice,state:0
+#: selection:tms.feeforother,state:0
+#: selection:tms.feeforproduct,state:0
+#: selection:tms.feeforproductit,state:0
+#: selection:tms.feeforsend,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: tms
+#: view:tms.store:0
+msgid "Contact Information"
+msgstr ""
+
+#. module: tms
+#: field:tms.feeforproduct,productcount:0
+#: field:tms.feeforproductit,productcount:0
+msgid "Product Count"
+msgstr ""
+
+#. module: tms
+#: field:tms.feebase,store_id:0
+#: field:tms.feeforitservice,store_id:0
+#: field:tms.feeforother,store_id:0
+#: field:tms.feeforproduct,store_id:0
+#: field:tms.feeforproductit,store_id:0
+#: field:tms.feeforsend,store_id:0
+#: view:tms.store:0
+msgid "Store"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_applyinfo_tree_show
+#: view:tms.applyinfo:0
+msgid "Applyinfos"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforother_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforother_manager
+#: view:tms.feeforother:0
+msgid "其他费用登记"
+msgstr ""
+
+#. module: tms
+#: view:tms.store:0
+msgid "Network Information"
+msgstr ""
+
+#. module: tms
+#: field:tms.store,dynamicdomain:0
+msgid "Dynamic Domain"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_feeforitservice
+msgid "tms.feeforitservice"
+msgstr ""
+
+#. module: tms
+#: view:tms.feeforitservice:0
+msgid "IT服务费"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfoitem,create_time:0
+msgid "Add time"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproductit_tree_show
+msgid "Fee for ProductIT"
+msgstr ""
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_manager
+msgid "FeeForProduct Manager"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfo,telephone:0
+msgid "telephone"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfo,store_id:0
+msgid "Sotre"
+msgstr ""
+
+#. module: tms
+#: sql_constraint:tms.feetype:0
+msgid "FeeType code must be unique!"
 msgstr ""
 
 #. module: tms
@@ -321,18 +527,227 @@ msgid "ApplyInfo"
 msgstr ""
 
 #. module: tms
+#: view:tms.feeforproduct:0
+msgid "Fee For Product"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_wizard_feebase_oa
+#: model:ir.actions.act_window,name:tms.action_tms_wizard_feeforother_oa
+#: model:ir.actions.act_window,name:tms.action_tms_wizard_feeforproduct_oa
+#: model:ir.actions.act_window,name:tms.action_tms_wizard_feeforproductit_oa
+#: model:ir.actions.act_window,name:tms.action_tms_wizard_feeforsend_oa
+#: view:tms.wizard.oa:0
+#: view:tms.wizard.oa.forother:0
+#: view:tms.wizard.oa.forproduct:0
+#: view:tms.wizard.oa.forproductit:0
+#: view:tms.wizard.oa.forsend:0
+msgid "Set OANum"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_wizard_oa
+#: model:ir.model,name:tms.model_tms_wizard_oa_forother
+#: model:ir.model,name:tms.model_tms_wizard_oa_forproduct
+#: model:ir.model,name:tms.model_tms_wizard_oa_forproductit
+#: model:ir.model,name:tms.model_tms_wizard_oa_forsend
+msgid "Set oa"
+msgstr ""
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_applyinfo_manager
+msgid "Applyinfo Manager"
+msgstr ""
+
+#. module: tms
+#: view:tms.feeforsend:0
+msgid "Fee For Send"
+msgstr ""
+
+#. module: tms
+#: view:tms.applyinfo:0
+msgid "Done"
+msgstr ""
+
+#. module: tms
+#: view:tms.wizard.oa:0
+#: view:tms.wizard.oa.forother:0
+#: view:tms.wizard.oa.forproduct:0
+#: view:tms.wizard.oa.forproductit:0
+#: view:tms.wizard.oa.forsend:0
+msgid "Cancel"
+msgstr ""
+
+#. module: tms
+#: field:tms.wizard.oa,feetype:0
+#: field:tms.wizard.oa.forother,feetype:0
+#: field:tms.wizard.oa.forproduct,feetype:0
+#: field:tms.wizard.oa.forproductit,feetype:0
+#: field:tms.wizard.oa.forsend,feetype:0
+msgid "Feetype"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_feeforproductit
+msgid "tms.feeforproductit"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_tree_show
+msgid "Fee for Product"
+msgstr ""
+
+#. module: tms
+#: field:tms.store,netusername:0
+msgid "Net User Name"
+msgstr ""
+
+#. module: tms
+#: field:tms.wizard.item,wizard_id:0
+#: field:tms.wizard.item.forother,wizard_id:0
+#: field:tms.wizard.item.forproduct,wizard_id:0
+#: field:tms.wizard.item.forproductit,wizard_id:0
+#: field:tms.wizard.item.forsend,wizard_id:0
+#: field:tms.wizard.oa,feebase_ids:0
+#: field:tms.wizard.oa.forother,feebase_ids:0
+#: field:tms.wizard.oa.forproduct,feebase_ids:0
+#: field:tms.wizard.oa.forproductit,feebase_ids:0
+#: field:tms.wizard.oa.forsend,feebase_ids:0
+msgid "Wizard"
+msgstr ""
+
+#. module: tms
+#: view:tms.feebase:0
+#: view:tms.feeforsend:0
+msgid "Account"
+msgstr ""
+
+#. module: tms
+#: view:tms.applyinfo:0
+#: field:tms.applyinfo,content:0
+msgid "Content"
+msgstr ""
+
+#. module: tms
+#: field:tms.feebase,feedate:0
+#: field:tms.feeforitservice,feedate:0
+#: field:tms.feeforother,feedate:0
+#: field:tms.feeforproduct,feedate:0
+#: field:tms.feeforproductit,feedate:0
+#: field:tms.feeforsend,feedate:0
+msgid "Fee Date"
+msgstr ""
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_applyinfo_manager_root
+msgid "Applyinfo Management"
+msgstr ""
+
+#. module: tms
+#: field:tms.feeforproduct,productprice:0
+#: field:tms.feeforproductit,productprice:0
+msgid "Product Price"
+msgstr ""
+
+#. module: tms
+#: view:tms.feebase:0
+#: view:tms.feeforitservice:0
+#: view:tms.feeforother:0
+msgid "说明"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfo,processid:0
+#: field:tms.feebase,processid:0
+#: field:tms.feeforitservice,processid:0
+#: field:tms.feeforother,processid:0
+#: field:tms.feeforproduct,processid:0
+#: field:tms.feeforproductit,processid:0
+#: field:tms.feeforsend,processid:0
+msgid "ProcessId"
+msgstr ""
+
+#. module: tms
+#: field:tms.feebase,payman:0
+#: field:tms.feeforitservice,payman:0
+#: field:tms.feeforother,payman:0
+#: field:tms.feeforproduct,payman:0
+#: field:tms.feeforproductit,payman:0
+#: field:tms.feeforsend,payman:0
+msgid "Pay Man"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfo,applyinfoitem_ids:0
+msgid "ApplyInfo Items"
+msgstr ""
+
+#. module: tms
+#: view:tms.feeforproductit:0
+msgid "Purpose"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfo,address:0
+#: field:tms.store,address:0
+msgid "Address"
+msgstr ""
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_feetype
+msgid "tms.feetype"
+msgstr ""
+
+#. module: tms
+#: view:tms.applyinfo:0
+msgid "Applyinfo"
+msgstr ""
+
+#. module: tms
+#: field:tms.feetype,name:0
+msgid "Name"
+msgstr ""
+
+#. module: tms
+#: selection:tms.applyinfo,state:0
+msgid "UnReceived"
+msgstr ""
+
+#. module: tms
+#: sql_constraint:tms.feetype:0
+msgid "FeeType name must be unique!"
+msgstr ""
+
+#. module: tms
+#: view:tms.wizard.oa:0
+#: view:tms.wizard.oa.forother:0
+#: view:tms.wizard.oa.forproduct:0
+#: view:tms.wizard.oa.forproductit:0
+#: view:tms.wizard.oa.forsend:0
+msgid "Enter"
+msgstr ""
+
+#. module: tms
+#: field:tms.feeforsend,sendproduct:0
+msgid "Send Product"
+msgstr ""
+
+#. module: tms
 #: field:tms.store,storenum:0
 msgid "Store num"
 msgstr ""
 
 #. module: tms
-#: field:tms.store,dynamicdomainpass:0
-msgid "Dynamic Domain pass"
+#: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforitservice_manager
+#: view:tms.feeforitservice:0
+msgid "IT服务费登记"
 msgstr ""
 
 #. module: tms
-#: field:tms.feebase,sendordernum:0
-msgid "Send Order num"
+#: field:tms.feeforproduct,accountproductprice:0
+#: field:tms.feeforproductit,accountproductprice:0
+msgid "Account Product Price"
 msgstr ""
 
 #. module: tms
@@ -346,34 +761,32 @@ msgid "mobile"
 msgstr ""
 
 #. module: tms
-#: sql_constraint:tms.store:0
-msgid "Storenum must be unique!"
-msgstr ""
-
-#. module: tms
-#: field:tms.applyinfo,processid:0
-#: field:tms.feebase,processid:0
-msgid "ProcessId"
-msgstr ""
-
-#. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_applyinfo_manager
-msgid "Applyinfo Manager"
+#: field:tms.wizard.oa,oanum:0
+#: field:tms.wizard.oa.forother,oanum:0
+#: field:tms.wizard.oa.forproduct,oanum:0
+#: field:tms.wizard.oa.forproductit,oanum:0
+#: field:tms.wizard.oa.forsend,oanum:0
+msgid "OANum"
 msgstr ""
 
 #. module: tms
 #: field:tms.feebase,oanum:0
+#: field:tms.feeforitservice,oanum:0
+#: field:tms.feeforother,oanum:0
+#: field:tms.feeforproduct,oanum:0
+#: field:tms.feeforproductit,oanum:0
+#: field:tms.feeforsend,oanum:0
 msgid "OA Num"
 msgstr ""
 
 #. module: tms
-#: model:ir.model,name:tms.model_tms_feebase
-msgid "tms.feebase"
-msgstr ""
-
-#. module: tms
-#: field:tms.feebase,feetype_id:0
-msgid "Fee Type"
+#: field:tms.feebase,state:0
+#: field:tms.feeforitservice,state:0
+#: field:tms.feeforother,state:0
+#: field:tms.feeforproduct,state:0
+#: field:tms.feeforproductit,state:0
+#: field:tms.feeforsend,state:0
+msgid "States"
 msgstr ""
 
 #. module: tms
@@ -382,31 +795,6 @@ msgid "Net User pwd"
 msgstr ""
 
 #. module: tms
-#: view:tms.applyinfo:0
-msgid "Done"
-msgstr ""
-
-#. module: tms
-#: field:tms.applyinfo,telephone:0
-msgid "telephone"
-msgstr ""
-
-#. module: tms
-#: field:tms.feebase,feedate:0
-msgid "Fee Date"
-msgstr ""
-
-#. module: tms
-#: field:tms.applyinfo,applyinfoitem_ids:0
-msgid "ApplyInfo Items"
-msgstr ""
-
-#. module: tms
-#: model:ir.model,name:tms.model_tms_applyinfoitem
-msgid "tms.applyinfoitem"
-msgstr ""
-
-#. module: tms
-#: field:tms.feebase,hasback:0
-msgid "Has Back"
+#: selection:tms.applyinfo,state:0
+msgid "HasConfirm"
 msgstr ""
