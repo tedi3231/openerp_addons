@@ -27,7 +27,8 @@
     'website': 'http://www.itchoa.com',        
     'data': [
         'tms_view.xml',
-        #'wizard/itcompare_wizard_compare_view.xml'    
+        'tms_workflow.xml',        
+        'wizard/tms_wizard_oa_view.xml',  
     ],
     'update_xml':[
         'tms_workflow.xml',

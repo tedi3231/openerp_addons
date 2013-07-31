@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* tms
+#   * tms
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0-20130205-000102\n"
+"Project-Id-Version: OpenERP Server 7.0-20130304-002107\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-30 14:24+0000\n"
-"PO-Revision-Date: 2013-07-30 14:24+0000\n"
+"POT-Creation-Date: 2013-07-31 08:09+0000\n"
+"PO-Revision-Date: 2013-07-31 08:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -48,12 +48,13 @@ msgstr "托码思"
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_feebase_tree_show
-#: model:ir.ui.menu,name:tms.menu_tms_feebase_manager
+#: model:ir.ui.menu,name:tms.menu_tms_feebase_account_manager
 #: view:tms.feebase:0
 msgid "维护费登记"
 msgstr "维护费登记"
 
 #. module: tms
+#: field:tms.applyinfo,user_id:0
 #: field:tms.applyinfoitem,user_id:0
 msgid "Add Man"
 msgstr "添加人"
@@ -73,12 +74,7 @@ msgstr "省份"
 #. module: tms
 #: view:tms.feeforproductit:0
 msgid "Fee For ProductIT"
-msgstr "Fee For ProductIT"
-
-#. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_finance_center_manager
-msgid "Finance Center"
-msgstr "Finance Center"
+msgstr "IT采购"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_feeforother
@@ -92,17 +88,17 @@ msgstr "其他费用登记"
 #: view:tms.wizard.item.forproductit:0
 #: view:tms.wizard.item.forsend:0
 msgid "Fee Items"
-msgstr "Fee Items"
+msgstr "费用列表"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_feeforsend
 msgid "tms.feeforsend"
-msgstr "tms.feeforsend"
+msgstr "快递费"
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_store_manager_root
 msgid "Stores Management"
-msgstr "Stores Management"
+msgstr "门店管理"
 
 #. module: tms
 #: field:tms.sendcompany,name:0
@@ -110,9 +106,14 @@ msgid "Company Name"
 msgstr "公司名称"
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforproductit_manager
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproductit_account_manager
 msgid "FeeForProductIt Manager"
 msgstr "IT采购费登记"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforsend_account_tree_show
+msgid "Fee for send Account"
+msgstr "快递费对账"
 
 #. module: tms
 #: view:tms.applyinfo:0
@@ -120,20 +121,10 @@ msgid "Received"
 msgstr "已经接收"
 
 #. module: tms
-#: field:tms.applyinfoitem,name:0
-#: field:tms.feebase,remark:0
-#: field:tms.feeforitservice,remark:0
-#: field:tms.feeforother,remark:0
-#: view:tms.feeforproduct:0
-#: field:tms.feeforproduct,remark:0
-#: field:tms.feeforproductit,remark:0
+#: view:tms.feebase:0
 #: view:tms.feeforsend:0
-#: field:tms.feeforsend,remark:0
-#: field:tms.feetype,remark:0
-#: field:tms.sendcompany,remark:0
-#: field:tms.store,remark:0
-msgid "Remark"
-msgstr "备注"
+msgid "Account"
+msgstr "金额"
 
 #. module: tms
 #: field:tms.store,dynamicdomainaddress:0
@@ -159,6 +150,7 @@ msgstr "已完成"
 #: field:tms.feebase,amount:0
 #: view:tms.feeforitservice:0
 #: field:tms.feeforitservice,amount:0
+#: view:tms.feeforother:0
 #: field:tms.feeforother,amount:0
 #: view:tms.feeforproduct:0
 #: field:tms.feeforproduct,amount:0
@@ -171,7 +163,7 @@ msgstr "金额"
 #. module: tms
 #: field:tms.feetype,code:0
 msgid "Code"
-msgstr "Code"
+msgstr "编号"
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_store_tree_show
@@ -190,9 +182,19 @@ msgid "Peanut valid email"
 msgstr "花生壳邮件地址"
 
 #. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_account_tree_show
+msgid "IT服务费对账"
+msgstr "IT服务费对账"
+
+#. module: tms
+#: model:ir.model,name:tms.model_tms_feeforproduct
+msgid "tms.feeforproduct"
+msgstr "配件费登记"
+
+#. module: tms
 #: field:tms.feeforsend,sendordernum:0
 msgid "Send Order num"
-msgstr "Send Order num"
+msgstr "快递单编号"
 
 #. module: tms
 #: view:tms.wizard.oa.forother:0
@@ -208,6 +210,11 @@ msgid "Telephone"
 msgstr "电话"
 
 #. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproductit_account_tree_show
+msgid "Fee for ProductIT Account"
+msgstr "IT采购对账"
+
+#. module: tms
 #: sql_constraint:tms.sendcompany:0
 msgid "SendCompany name must be unique!"
 msgstr "快递公司名称必须是唯一的！"
@@ -215,7 +222,12 @@ msgstr "快递公司名称必须是唯一的！"
 #. module: tms
 #: model:ir.actions.server,name:tms.action_tms_export_fee_to_account
 msgid "Export To Account"
-msgstr "Export To Account"
+msgstr "生成对账单"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feebase_account_tree_show
+msgid "维护费对账"
+msgstr "维护费对账"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_applyinfoitem
@@ -230,7 +242,7 @@ msgstr "申报详细"
 #: selection:tms.feeforproductit,state:0
 #: selection:tms.feeforsend,state:0
 msgid "Has Input OANum"
-msgstr "Has Input OANum"
+msgstr "已输入OA"
 
 #. module: tms
 #: field:tms.applyinfo,state:0
@@ -243,19 +255,14 @@ msgid "Peanut email pass"
 msgstr "花生壳密码"
 
 #. module: tms
-#: view:tms.feebase:0
-#: field:tms.feebase,accountamount:0
-#: view:tms.feeforitservice:0
-#: field:tms.feeforitservice,accountamount:0
-#: field:tms.feeforother,accountamount:0
-#: view:tms.feeforproduct:0
-#: field:tms.feeforproduct,accountamount:0
-#: view:tms.feeforproductit:0
-#: field:tms.feeforproductit,accountamount:0
-#: view:tms.feeforsend:0
-#: field:tms.feeforsend,accountamount:0
-msgid "Account Amount"
-msgstr "对账金额"
+#: model:ir.ui.menu,name:tms.menu_tms_myunreceived_applyinfo_manager
+msgid "My UnReceived Applyinfos"
+msgstr "我的未接收申报"
+
+#. module: tms
+#: field:tms.feetype,name:0
+msgid "Name"
+msgstr "费用名称"
 
 #. module: tms
 #: sql_constraint:tms.store:0
@@ -269,9 +276,9 @@ msgid "Contact Person"
 msgstr "联系人"
 
 #. module: tms
-#: model:ir.model,name:tms.model_tms_feeforproduct
-msgid "tms.feeforproduct"
-msgstr "配件费登记"
+#: view:tms.feeforsend:0
+msgid "Fee For Send"
+msgstr "快递费登记"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_sendcompany
@@ -284,25 +291,37 @@ msgid "Store Manager"
 msgstr "门店管理"
 
 #. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforother_account_tree_show
+msgid "其他费用对账"
+msgstr "其他费用对账"
+
+#. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_feeforsend_tree_show
 msgid "Fee for send"
-msgstr "快递费登记"
+msgstr "快递费用"
 
 #. module: tms
 #: view:tms.feeforsend:0
 msgid "FeeBases"
-msgstr "FeeBases"
+msgstr "维护费"
 
 #. module: tms
 #: field:tms.feeforproduct,productname:0
 #: field:tms.feeforproductit,productname:0
 msgid "Product Name"
-msgstr "Product Name"
+msgstr "产品名称"
 
 #. module: tms
 #: field:tms.feeforproduct,producttype:0
 msgid "Product Type"
-msgstr "Product Type"
+msgstr "产品类型"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_hasdone_applyinfo_tree_show
+#: model:ir.actions.act_window,name:tms.action_tms_myhasdone_applyinfo_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_hasdone_applyinfo_manager
+msgid "HasDone Applyinfos"
+msgstr "已处理申报"
 
 #. module: tms
 #: field:tms.applyinfo,storenum:0
@@ -318,7 +337,7 @@ msgstr "门店编号"
 #. module: tms
 #: field:tms.feeforsend,sendcompany:0
 msgid "Send Company"
-msgstr "Send Company"
+msgstr "快递公司"
 
 #. module: tms
 #: selection:tms.feebase,state:0
@@ -328,17 +347,24 @@ msgstr "Send Company"
 #: selection:tms.feeforproductit,state:0
 #: selection:tms.feeforsend,state:0
 msgid "Has Back"
-msgstr "Has Back"
+msgstr "已回款"
 
 #. module: tms
 #: model:ir.actions.server,name:tms.action_tms_set_hasback
 msgid "Set Has Back"
-msgstr "Set Has Back"
+msgstr "确认回款"
 
 #. module: tms
-#: view:tms.applyinfo:0
-msgid "Workflow actions"
-msgstr "流程动作"
+#: model:ir.actions.act_window,name:tms.action_tms_hasreceived_applyinfo_tree_show
+#: model:ir.actions.act_window,name:tms.action_tms_myhasreceived_applyinfo_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_hasreceived_applyinfo_manager
+msgid "HasReceived Applyinfos"
+msgstr "已接收申报"
+
+#. module: tms
+#: field:tms.applyinfoitem,applyinfo_id:0
+msgid "ApplyInfo"
+msgstr "申报信息"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_wizard_item
@@ -347,7 +373,7 @@ msgstr "流程动作"
 #: model:ir.model,name:tms.model_tms_wizard_item_forproductit
 #: model:ir.model,name:tms.model_tms_wizard_item_forsend
 msgid "FeeBase Item"
-msgstr "FeeBase Item"
+msgstr "维护费"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_feebase
@@ -393,7 +419,7 @@ msgstr "费用"
 #: field:tms.feeforproduct,accountproductcount:0
 #: field:tms.feeforproductit,accountproductcount:0
 msgid "Account Product Count"
-msgstr "Account Product Count"
+msgstr "对账产品数"
 
 #. module: tms
 #: selection:tms.feebase,state:0
@@ -403,22 +429,28 @@ msgstr "Account Product Count"
 #: selection:tms.feeforproductit,state:0
 #: selection:tms.feeforsend,state:0
 msgid "Has Exported"
-msgstr "Has Exported"
+msgstr "已生成对账"
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_account_center_manager
+#: model:ir.ui.menu,name:tms.menu_tms_finance_center_manager
 msgid "Account Center"
-msgstr "Account Center"
+msgstr "对账中心"
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_manager
+#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_account_manager
 msgid "FeeForSend Manager"
-msgstr "快递费登记"
+msgstr "快递费管理"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_applyinfo
 msgid "tms.applyinfo"
 msgstr "申报"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_feebase_manager
+msgid "FeeBase Account"
+msgstr "维护费对账"
 
 #. module: tms
 #: selection:tms.applyinfo,state:0
@@ -454,14 +486,18 @@ msgid "Store"
 msgstr "门店"
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_applyinfo_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproductit_manager
+msgid "FeeForProductIt Account"
+msgstr "IT采购对账"
+
+#. module: tms
 #: view:tms.applyinfo:0
 msgid "Applyinfos"
 msgstr "申报信息"
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_feeforother_tree_show
-#: model:ir.ui.menu,name:tms.menu_tms_feeforother_manager
+#: model:ir.ui.menu,name:tms.menu_tms_feeforother_account_manager
 #: view:tms.feeforother:0
 msgid "其他费用登记"
 msgstr "其他费用登记"
@@ -472,14 +508,19 @@ msgid "Network Information"
 msgstr "网络信息"
 
 #. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_manager
+msgid "FeeForProduct Account"
+msgstr "采购费对账"
+
+#. module: tms
 #: field:tms.store,dynamicdomain:0
 msgid "Dynamic Domain"
 msgstr "动态域名"
 
 #. module: tms
-#: model:ir.model,name:tms.model_tms_feeforitservice
-msgid "tms.feeforitservice"
-msgstr "服务费登记"
+#: view:tms.applyinfo:0
+msgid "Workflow actions"
+msgstr "流程动作"
 
 #. module: tms
 #: view:tms.feeforitservice:0
@@ -497,7 +538,7 @@ msgid "Fee for ProductIT"
 msgstr "IT采购费登记"
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_manager
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_account_manager
 msgid "FeeForProduct Manager"
 msgstr "配件费登记"
 
@@ -512,9 +553,20 @@ msgid "Sotre"
 msgstr "门店"
 
 #. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_manager
+msgid "FeeForSend Account"
+msgstr "快递费对账"
+
+#. module: tms
 #: sql_constraint:tms.feetype:0
 msgid "FeeType code must be unique!"
-msgstr "FeeType code must be unique!"
+msgstr "费用类型编号必须唯一!"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_myunreceived_applyinfo_tree_show
+#: model:ir.actions.act_window,name:tms.action_tms_unreceived_applyinfo_tree_show
+msgid "Unreceived Applyinfos"
+msgstr "末接收申报"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_store
@@ -522,9 +574,10 @@ msgid "tms.store"
 msgstr "门店"
 
 #. module: tms
-#: field:tms.applyinfoitem,applyinfo_id:0
-msgid "ApplyInfo"
-msgstr "申报信息"
+#: view:tms.applyinfo:0
+#: field:tms.applyinfo,content:0
+msgid "Content"
+msgstr "说明"
 
 #. module: tms
 #: view:tms.feeforproduct:0
@@ -546,6 +599,11 @@ msgid "Set OANum"
 msgstr "设置OA编号"
 
 #. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_account_tree_show
+msgid "Fee for Product Account"
+msgstr "采购对账"
+
+#. module: tms
 #: model:ir.model,name:tms.model_tms_wizard_oa
 #: model:ir.model,name:tms.model_tms_wizard_oa_forother
 #: model:ir.model,name:tms.model_tms_wizard_oa_forproduct
@@ -555,19 +613,25 @@ msgid "Set oa"
 msgstr "设置OA编号"
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_applyinfo_manager
-msgid "Applyinfo Manager"
-msgstr "申报管理"
+#: model:ir.ui.menu,name:tms.menu_tms_myapplyinfo_foradmin_manager_root
+msgid "Factory Applyinfo Management"
+msgstr "厂商申报管理"
 
 #. module: tms
-#: view:tms.feeforsend:0
-msgid "Fee For Send"
-msgstr "快递费登记"
+#: model:ir.ui.menu,name:tms.menu_tms_myhasconfirm_applyinfo_manager
+msgid "My HasConfirm Applyinfos"
+msgstr "我的已确认申报"
 
 #. module: tms
 #: view:tms.applyinfo:0
 msgid "Done"
 msgstr "完成"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_applyinfo_tree_show
+#: model:ir.actions.act_window,name:tms.action_tms_myapplyinfo_tree_show
+msgid "All Applyinfos"
+msgstr "所有申报"
 
 #. module: tms
 #: view:tms.wizard.oa:0
@@ -577,6 +641,16 @@ msgstr "完成"
 #: view:tms.wizard.oa.forsend:0
 msgid "Cancel"
 msgstr "取消"
+
+#. module: tms
+#: field:tms.feebase,feedate:0
+#: field:tms.feeforitservice,feedate:0
+#: field:tms.feeforother,feedate:0
+#: field:tms.feeforproduct,feedate:0
+#: field:tms.feeforproductit,feedate:0
+#: field:tms.feeforsend,feedate:0
+msgid "Fee Date"
+msgstr "账单日期"
 
 #. module: tms
 #: field:tms.wizard.oa,feetype:0
@@ -603,6 +677,11 @@ msgid "Net User Name"
 msgstr "网络用户名称"
 
 #. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_myapplyinfo_manager
+msgid "My Applyinfos"
+msgstr "我的申报"
+
+#. module: tms
 #: field:tms.wizard.item,wizard_id:0
 #: field:tms.wizard.item.forother,wizard_id:0
 #: field:tms.wizard.item.forproduct,wizard_id:0
@@ -617,31 +696,19 @@ msgid "Wizard"
 msgstr "向导"
 
 #. module: tms
+#: selection:tms.applyinfo,state:0
+msgid "HasConfirm"
+msgstr "客户已确认"
+
+#. module: tms
 #: view:tms.feebase:0
-#: view:tms.feeforsend:0
-msgid "Account"
-msgstr "金额"
+msgid "Base Info"
+msgstr "Base Info"
 
 #. module: tms
-#: view:tms.applyinfo:0
-#: field:tms.applyinfo,content:0
-msgid "Content"
-msgstr "说明"
-
-#. module: tms
-#: field:tms.feebase,feedate:0
-#: field:tms.feeforitservice,feedate:0
-#: field:tms.feeforother,feedate:0
-#: field:tms.feeforproduct,feedate:0
-#: field:tms.feeforproductit,feedate:0
-#: field:tms.feeforsend,feedate:0
-msgid "Fee Date"
-msgstr "账单日期"
-
-#. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_applyinfo_manager_root
-msgid "Applyinfo Management"
-msgstr "申报管理"
+#: model:ir.ui.menu,name:tms.menu_tms_myhasdone_applyinfo_manager
+msgid "My HasDone Applyinfos"
+msgstr "已处理申报"
 
 #. module: tms
 #: field:tms.feeforproduct,productprice:0
@@ -683,6 +750,11 @@ msgid "ApplyInfo Items"
 msgstr "申报处理"
 
 #. module: tms
+#: model:ir.model,name:tms.model_tms_feeforitservice
+msgid "tms.feeforitservice"
+msgstr "服务费登记"
+
+#. module: tms
 #: view:tms.feeforproductit:0
 msgid "Purpose"
 msgstr "目的"
@@ -704,14 +776,52 @@ msgid "Applyinfo"
 msgstr "申报信息"
 
 #. module: tms
-#: field:tms.feetype,name:0
-msgid "Name"
-msgstr "费用名称"
+#: model:ir.ui.menu,name:tms.menu_tms_unreceived_applyinfo_manager
+msgid "UnReceived Applyinfos"
+msgstr "未接收申报"
+
+#. module: tms
+#: view:tms.feebase:0
+#: field:tms.feebase,accountamount:0
+#: view:tms.feeforitservice:0
+#: field:tms.feeforitservice,accountamount:0
+#: view:tms.feeforother:0
+#: field:tms.feeforother,accountamount:0
+#: view:tms.feeforproduct:0
+#: field:tms.feeforproduct,accountamount:0
+#: view:tms.feeforproductit:0
+#: field:tms.feeforproductit,accountamount:0
+#: view:tms.feeforsend:0
+#: field:tms.feeforsend,accountamount:0
+msgid "Account Amount"
+msgstr "对账金额"
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_hasconfirm_applyinfo_tree_show
+#: model:ir.actions.act_window,name:tms.action_tms_myhasconfirm_applyinfo_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_hasconfirm_applyinfo_manager
+msgid "HasConfirm Applyinfos"
+msgstr "已确认申报"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_feeforother_manager
+msgid "FeeForOther Account"
+msgstr "其他费用对账"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_myhasreceived_applyinfo_manager
+msgid "My HasReceived Applyinfos"
+msgstr "我的已接收申报"
 
 #. module: tms
 #: selection:tms.applyinfo,state:0
 msgid "UnReceived"
 msgstr "未接收"
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_applyinfo_foradmin_manager_root
+msgid "Admin Applyinfo Management"
+msgstr "管理员申报管理"
 
 #. module: tms
 #: sql_constraint:tms.feetype:0
@@ -739,10 +849,25 @@ msgstr "门店编号"
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_tree_show
-#: model:ir.ui.menu,name:tms.menu_tms_feeforitservice_manager
 #: view:tms.feeforitservice:0
 msgid "IT服务费登记"
 msgstr "IT服务费登记"
+
+#. module: tms
+#: field:tms.applyinfoitem,name:0
+#: field:tms.feebase,remark:0
+#: field:tms.feeforitservice,remark:0
+#: field:tms.feeforother,remark:0
+#: view:tms.feeforproduct:0
+#: field:tms.feeforproduct,remark:0
+#: field:tms.feeforproductit,remark:0
+#: view:tms.feeforsend:0
+#: field:tms.feeforsend,remark:0
+#: field:tms.feetype,remark:0
+#: field:tms.sendcompany,remark:0
+#: field:tms.store,remark:0
+msgid "Remark"
+msgstr "备注"
 
 #. module: tms
 #: field:tms.feeforproduct,accountproductprice:0
@@ -770,6 +895,11 @@ msgid "OANum"
 msgstr "OA编号"
 
 #. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_applyinfo_manager
+msgid "Admin Applyinfos"
+msgstr "管理员申报"
+
+#. module: tms
 #: field:tms.feebase,oanum:0
 #: field:tms.feeforitservice,oanum:0
 #: field:tms.feeforother,oanum:0
@@ -793,8 +923,3 @@ msgstr "状态"
 #: field:tms.store,netuserpass:0
 msgid "Net User pwd"
 msgstr "网络密码"
-
-#. module: tms
-#: selection:tms.applyinfo,state:0
-msgid "HasConfirm"
-msgstr "客户已确认"

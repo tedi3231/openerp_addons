@@ -238,7 +238,7 @@
             <field name="arch" type="xml">
                 <form string="维护费登记" version="7.0">
                     <sheet string="Fee">
-                        <group col="4">
+                        <group col="4" string="Base Info">
                             <field name="store_id" on_change="on_change_store(store_id)"/>
                             <field name="province"/>
                             <field name="storenum"/>
