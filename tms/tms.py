@@ -266,7 +266,7 @@ class FeeBase(osv.osv):
         "feetype_id":fields.many2one("tms.feetype","Fee Type"),
         "payman":fields.many2one("res.users","Pay Man"),
         "amount":fields.float(string="Amount"),
-        "accountamount":fields.float(string="Account Amount"),
+        "accountamount":fields.float(string="Account Amount",groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance"),
         "accountperiod":fields.char(string="Account Period", size=20,required=False),
         "oanum":fields.char(string="OA Num",size=100),
         "remark":fields.text(string="Remark"),

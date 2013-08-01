@@ -21,6 +21,10 @@
 			<field name="name">Finance Fee Manager</field>
 			<field name="category_id" ref="module_tms_category"/>
 		</record>
+		<record id="group_tms_fee_accout" model="res.groups">
+			<field name="name">Account Fee Manager</field>
+			<field name="category_id" ref="module_tms_category"/>
+		</record>
 		<!--<record id="group_tms_fee_factory" model="res.groups">
 			<field name="name">Factory Fee Manager</field>
 			<field name="category_id" ref="module_tms_category"/>
