@@ -28,7 +28,9 @@
     'data': [
         'tms_view.xml',
         'tms_workflow.xml',        
+        "tms_sequence.xml",
         'wizard/tms_wizard_oa_view.xml',  
+		"security/tms_security.xml",
     ],
     'update_xml':[
         'tms_workflow.xml',

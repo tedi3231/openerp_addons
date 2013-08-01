@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<openerp>
+	<data noupdate="0">
+		<!-- sequence type -->
+		<record model="ir.sequence.type" id="seq_type_tms_feeforitservice_processid">
+			<field name="name">FeeforService Sequence</field>
+			<field name="code">tms.feeforitservice.processid</field>
+		</record>
+		<record model="ir.sequence.type" id="seq_type_tms_feeforproductit_processid">
+			<field name="name">FeeforProductIt Sequence</field>
+			<field name="code">tms.feeforproductit.processid</field>
+		</record>
+		<record model="ir.sequence.type" id="seq_type_tms_feeforsend_processid">
+			<field name="name">FeeforSend Sequence</field>
+			<field name="code">tms.feeforsend.processid</field>
+		</record>
+		<record model="ir.sequence.type" id="seq_type_tms_feeforproduct_processid">
+			<field name="name">FeeforProduct Sequence</field>
+			<field name="code">tms.feeforproduct.processid</field>
+		</record>
+		<record model="ir.sequence.type" id="seq_type_tms_feeforother_processid">
+			<field name="name">FeeforOther Sequence</field>
+			<field name="code">tms.feeforother.processid</field>
+		</record>
+		<record model="ir.sequence.type" id="seq_type_tms_feebase_processid">
+			<field name="name">Feebase Sequence</field>
+			<field name="code">tms.feebase.processid</field>
+		</record>
+		<record model="ir.sequence.type" id="seq_type_tms_applyinfo_processid">
+			<field name="name">Applyinfo Sequence</field>
+			<field name="code">tms.applyinfo.processid</field>
+		</record>
+		<!-- sequence type end -->
+
+		<!-- sequence -->
+		<record model="ir.sequence" id="seq_tms_applyinfo_processid">
+			<field name="name">Applyinfo Processid</field>	
+			<field name="code">tms.applyinfo.processid</field>
+			<field name="padding">4</field>
+			<field name="number_next">1</field>
+			<field name="prefix">P%(year)s%(month)s%(day)s</field>
+		</record>
+		<record model="ir.sequence" id="seq_tms_feebase_processid">
+			<field name="name">FeeBase Processid</field>	
+			<field name="code">tms.feebase.processid</field>
+			<field name="padding">4</field>
+			<field name="number_next">1</field>
+			<field name="prefix">RPS%(year)s%(month)s%(day)s</field>
+		</record>
+		<record model="ir.sequence" id="seq_tms_feeforitservice_processid">
+			<field name="name">FeeForItService Processid</field>	
+			<field name="code">tms.feeforitservice.processid</field>
+			<field name="padding">4</field>
+			<field name="number_next">1</field>
+			<field name="prefix">ITS%(year)s%(month)s%(day)s</field>
+		</record>
+		<record model="ir.sequence" id="seq_tms_feeforother_processid">
+			<field name="name">FeeforOther Processid</field>	
+			<field name="code">tms.feeforother.processid</field>
+			<field name="padding">4</field>
+			<field name="number_next">1</field>
+			<field name="prefix">ITO%(year)s%(month)s%(day)s</field>
+		</record>
+		<record model="ir.sequence" id="seq_tms_feeforproduct_processid">
+			<field name="name">FeeforProduct Processid</field>	
+			<field name="code">tms.feeforproduct.processid</field>
+			<field name="padding">4</field>
+			<field name="number_next">1</field>
+			<field name="prefix">PMD%(year)s%(month)s%(day)s</field>
+		</record>
+		<record model="ir.sequence" id="seq_tms_feeforproductit_processid">
+			<field name="name">FeeforProductIt Processid</field>	
+			<field name="code">tms.feeforproductit.processid</field>
+			<field name="padding">4</field>
+			<field name="number_next">1</field>
+			<field name="prefix">PIT%(year)s%(month)s%(day)s</field>
+		</record>
+		<record model="ir.sequence" id="seq_tms_feeforsend_processid">
+			<field name="name">FeeforSend Processid</field>	
+			<field name="code">tms.feeforsend.processid</field>
+			<field name="padding">4</field>
+			<field name="number_next">1</field>
+			<field name="prefix">SDI%(year)s%(month)s%(day)s</field>
+		</record>
+		<!-- sequence end-->
+
+	</data>
+</openerp>
