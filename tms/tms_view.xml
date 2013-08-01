@@ -661,23 +661,23 @@
         <!-- 门店管理结束 -->
 
         <!-- 账务中心 -->
-        <menuitem id="menu_tms_finance_center_manager" name="Account Center" parent="menu_tms_root"/>
-        <menuitem id="menu_tms_feeforother_manager" parent="menu_tms_finance_center_manager" name="FeeForOther Account" action="action_tms_feeforother_tree_show"/>
-        <menuitem id="menu_tms_feebase_manager" parent="menu_tms_finance_center_manager" name="FeeBase Account" action="action_tms_feebase_tree_show"/>
+        <menuitem id="menu_tms_finance_center_manager" name="Finance Center" parent="menu_tms_root"/>
+        <menuitem id="menu_tms_feeforother_manager" parent="menu_tms_finance_center_manager" name="FeeForOther Manager" action="action_tms_feeforother_tree_show"/>
+        <menuitem id="menu_tms_feebase_manager" parent="menu_tms_finance_center_manager" name="FeeBase Manager" action="action_tms_feebase_tree_show"/>
         <!--<menuitem id="menu_tms_feeforitservice_manager" parent="menu_tms_finance_center_manager" name="FeeForItService Account" action="action_tms_feeforitservice_tree_show"/>-->
-        <menuitem id="menu_tms_feeforsend_manager" parent="menu_tms_finance_center_manager" name="FeeForSend Account" action="action_tms_feeforsend_tree_show"/>
-        <menuitem id="menu_tms_feeforproduct_manager" parent="menu_tms_finance_center_manager" name="FeeForProduct Account" action="action_tms_feeforproduct_tree_show"/>
-        <menuitem id="menu_tms_feeforproductit_manager" parent="menu_tms_finance_center_manager" name="FeeForProductIt Account" action="action_tms_feeforproductit_tree_show"/>
+        <menuitem id="menu_tms_feeforsend_manager" parent="menu_tms_finance_center_manager" name="FeeForSend Manager" action="action_tms_feeforsend_tree_show"/>
+        <menuitem id="menu_tms_feeforproduct_manager" parent="menu_tms_finance_center_manager" name="FeeForProduct Manager" action="action_tms_feeforproduct_tree_show"/>
+        <menuitem id="menu_tms_feeforproductit_manager" parent="menu_tms_finance_center_manager" name="FeeForProductIt Manager" action="action_tms_feeforproductit_tree_show"/>
         <!-- 账务中心结束 -->
 
         <!-- 对账中心 -->
         <menuitem id="menu_tms_account_center_manager" name="Account Center" parent="menu_tms_root"/>
-        <menuitem id="menu_tms_feeforother_account_manager" parent="menu_tms_account_center_manager" name="其他费用登记" action="action_tms_feeforother_account_tree_show"/>
-        <menuitem id="menu_tms_feebase_account_manager" parent="menu_tms_account_center_manager" name="维护费登记" action="action_tms_feebase_account_tree_show"/>
+        <menuitem id="menu_tms_feeforother_account_manager" parent="menu_tms_account_center_manager" name="FeeForOther Account" action="action_tms_feeforother_account_tree_show"/>
+        <menuitem id="menu_tms_feebase_account_manager" parent="menu_tms_account_center_manager" name="FeeBase Account" action="action_tms_feebase_account_tree_show"/>
         <!-- <menuitem id="menu_tms_feeforitservice_manager" parent="menu_tms_account_center_manager" name="IT服务费登记" action="action_tms_feeforitservice_tree_show"/>-->
-        <menuitem id="menu_tms_feeforsend_account_manager" parent="menu_tms_account_center_manager" name="FeeForSend Manager" action="action_tms_feeforsend_account_tree_show"/>
-        <menuitem id="menu_tms_feeforproduct_account_manager" parent="menu_tms_account_center_manager" name="FeeForProduct Manager" action="action_tms_feeforproduct_account_tree_show"/>
-        <menuitem id="menu_tms_feeforproductit_account_manager" parent="menu_tms_account_center_manager" name="FeeForProductIt Manager" action="action_tms_feeforproductit_account_tree_show"/>
+        <menuitem id="menu_tms_feeforsend_account_manager" parent="menu_tms_account_center_manager" name="FeeForSend Account" action="action_tms_feeforsend_account_tree_show"/>
+        <menuitem id="menu_tms_feeforproduct_account_manager" parent="menu_tms_account_center_manager" name="FeeForProduct Account" action="action_tms_feeforproduct_account_tree_show"/>
+        <menuitem id="menu_tms_feeforproductit_account_manager" parent="menu_tms_account_center_manager" name="FeeForProductIt Account" action="action_tms_feeforproductit_account_tree_show"/>
         <!-- 对账中心结束 -->
     </data>
 </openerp>

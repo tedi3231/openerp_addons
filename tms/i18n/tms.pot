@@ -438,6 +438,12 @@ msgid "Account Center"
 msgstr ""
 
 #. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_account_center_manager
+#: model:ir.ui.menu,name:tms.menu_tms_finance_center_manager
+msgid "Finance Center"
+msgstr ""
+
+#. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_feeforsend_account_manager
 msgid "FeeForSend Manager"
 msgstr ""
