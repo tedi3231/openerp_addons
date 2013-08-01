@@ -36,9 +36,6 @@
             <field name="model">tms.wizard.oa.forsend</field>
             <field name="arch" type="xml">
 				<form string="Set OANum" version="7.0">
-                    <group col="4" colspan="4">
-                        aBC
-                    </group>
 					<group col="4" colspan="4">
 						<field name="oanum"/>
 						<field name="feetype"/>
@@ -70,9 +67,6 @@
             <field name="arch" type="xml">
                 <form string="Set OANum" version="7.0">
                     <group col="4" colspan="4">
-                        aBC
-                    </group>
-                    <group col="4" colspan="4">
                         <field name="oanum"/>
                         <field name="feetype"/>
                     </group>
@@ -97,15 +91,11 @@
             </field>
         </record>
 
-
         <record id="view_tms_feeforproductit_setoa_form" model="ir.ui.view">
             <field name="name">tms.wizard.oa.feeforproductit.form</field>
             <field name="model">tms.wizard.oa.forproductit</field>
             <field name="arch" type="xml">
                 <form string="Set OANum" version="7.0">
-                    <group col="4" colspan="4">
-                        aBC
-                    </group>
                     <group col="4" colspan="4">
                         <field name="oanum"/>
                         <field name="feetype"/>
@@ -137,9 +127,6 @@
             <field name="arch" type="xml">
                 <form string="Set OANum" version="7.0">
                     <group col="4" colspan="4">
-                        aBC
-                    </group>
-                    <group col="4" colspan="4">
                         <field name="oanum"/>
                         <field name="feetype"/>
                     </group>
@@ -166,7 +153,7 @@
 
 
         <act_window id="action_tms_wizard_feebase_oa" name="Set OANum" res_model="tms.wizard.oa" src_model="tms.feebase"
-			key2="client_action_multi" view_type="form" view_mode="form" target="new"/>        
+			key2="client_action_multi" view_type="form" view_mode="form"  target="new"/>        
         
         <act_window id="action_tms_wizard_feeforsend_oa" name="Set OANum" res_model="tms.wizard.oa.forsend" src_model="tms.feeforsend"
             key2="client_action_multi" view_type="form" view_mode="form" target="new" />  

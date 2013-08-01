@@ -266,7 +266,7 @@ class FeeBase(osv.osv):
         "feetype_id":fields.many2one("tms.feetype","Fee Type"),
         "payman":fields.many2one("res.users","Pay Man"),
         "amount":fields.float(string="Amount"),
-        "accountamount":fields.float(string="Account Amount",groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance"),
+        "accountamount":fields.float(string="Account Amount"),
         "accountperiod":fields.char(string="Account Period", size=20,required=False),
         "oanum":fields.char(string="OA Num",size=100),
         "remark":fields.text(string="Remark"),
@@ -347,10 +347,10 @@ class FeeForProductIt(osv.osv):
         }
     _columns={
         "productname":fields.char(string="Product Name",size=200),
-        "productprice":fields.float(string="Product Price"),
-        "productcount":fields.integer(string="Product Count"),
-        "accountproductprice":fields.integer(string="Account Product Price"),
-        "accountproductcount":fields.integer(string="Account Product Count")
+        "productprice":fields.float(string="Product Price",groups="tms.group_tms_fee_finance"),
+        "productcount":fields.integer(string="Product Count",groups="tms.group_tms_fee_finance"),
+        "accountproductprice":fields.integer(string="Account Product Price",groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance"),
+        "accountproductcount":fields.integer(string="Account Product Count",groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance")
     }
 
 FeeForProductIt()
