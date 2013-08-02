@@ -2,7 +2,7 @@
 import datetime
 import utildate
 from openerp.osv import fields, osv
-
+from openerp.tools.translate import _
 class Store(osv.osv):
     _name = "tms.store"
     _columns = {
@@ -225,11 +225,8 @@ class FeeBase(osv.osv):
         return res
 
     def create(self,cr,uid,data,context=None):
-        print "call create method"
-        #print type(self).__name__
         feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
         childtypename = type(self).__name__
-        print childtypename
         processid = ""
         if childtypename=="FeeBase":
             processid = self._get_default_processid(cr,uid,'tms.feebase.processid',context)
@@ -243,24 +240,25 @@ class FeeBase(osv.osv):
             processid = self._get_default_processid(cr,uid,'tms.feeforitservice.processid',context)
         elif childtypename=="tms.feeforother":
             processid = self._get_default_processid(cr,uid,'tms.feeforother.processid',context)
-        print "childtypename is %s and processid is %s"%(childtypename,processid)
         self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":processid},context)
         return feebase_id
 
-    def export_to_account(self,cr,uid,ids,context=None):
+    def _check_fee_state(self,cr,uid,ids,oldstate,targetstate,context=None):
         model_id = context["active_model"]
         model=self.pool.get(model_id)
-        for item in model.browse(cr,uid,ids,context=context):
-            model.write(cr,uid,item.id,{"state":"hasexported"})
+        items = model.browse(cr,uid,ids,context=context)
+        selecteditems=dict([(item.state,item.id) for item in items])
+        if not selecteditems or len(selecteditems)!=1 or not selecteditems.get(oldstate,False):
+            raise osv.except_osv(_('Operation Canceld'),_('Only '+oldstate+' fee can be exported!'))
+        for item in items: 
+            model.write(cr,uid,item.id,{"state":targetstate})
         return True
 
+    def export_to_account(self,cr,uid,ids,context=None):
+        return self._check_fee_state(cr,uid,ids,'draft','hasexported',context=context)
+
     def set_to_hasback(self,cr,uid,ids,context=None):
-        #print context
-        model_id = context["active_model"]
-        model=self.pool.get(model_id)
-        for item in model.browse(cr,uid,ids,context=context):
-            model.write(cr,uid,item.id,{"state":"hasback"})
-        return True
+        return self._check_fee_state(cr,uid,ids,'hasoa','hasback',context=context)
 
     _columns={
         "processid":fields.char(string="ProcessId",size=100,required=False),        

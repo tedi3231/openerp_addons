@@ -436,6 +436,7 @@
             <field name="model_id" ref="model_tms_feebase"/>
             <field name="model">tms.feebase</field>
             <field name="key2">client_action_multi</field>
+			<field name="groups">tms.group_tms_fee_finance</field>
         </record>
         <record id="val_action_tms_export_feeforother_to_account" model="ir.values">
             <field name="name">Export to Account</field>

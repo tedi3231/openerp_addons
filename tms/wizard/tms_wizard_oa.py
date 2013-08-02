@@ -12,6 +12,17 @@ class tms_wizard_oa(osv.osv_memory):
         'feetype':fields.char(string="Feetype",size=100,)
     }
     
+    def _check_fee_state(self,cr,uid,ids,oldstate,targetstate,context=None):
+        model_id = context["active_model"]
+        model=self.pool.get(model_id)
+        items = model.browse(cr,uid,ids,context=context)
+        selecteditems=dict([(item.state,item.id) for item in items])
+        if not selecteditems or len(selecteditems)!=1 or not selecteditems.get(oldstate,False):
+            raise osv.except_osv(_('Operation Canceld'),_('Only '+oldstate+' fee can be exported!'))
+        for item in items: 
+            model.write(cr,uid,item.id,{"state":targetstate})
+        return True
+
     def default_get(self, cr, uid, fields, context=None):
         if context == None:
             context = {}            
@@ -34,10 +45,14 @@ class tms_wizard_oa(osv.osv_memory):
         print context
         active_model = context.get("active_model",None)
         wizard = self.browse(cr,uid,ids,context)[0]
-        fees = wizard.feebase_ids
+        feeids = [item.feebase_id.id for item in wizard.feebase_ids]        
         feebase=self.pool.get(active_model)
-        for item in fees:
-            feebase.write(cr,uid,item.feebase_id.id,{"state":"hasoa","oanum":wizard.oanum})      
+        products = feebase.browse(cr,uid,feeids,context=context)
+        selecteditems=dict([(item.state,item.id) for item in products])
+        if not selecteditems or len(selecteditems)!=1 or not selecteditems.get('hasexported',False):
+            raise osv.except_osv(_('Operation Canceld'),_('Only hasexported fee can be set oa num!'))
+        for id in feeids:
+            feebase.write(cr,uid,id,{"state":"hasoa","oanum":wizard.oanum})
         return True
 
 tms_wizard_oa()
