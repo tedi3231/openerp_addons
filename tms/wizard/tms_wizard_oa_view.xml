@@ -153,18 +153,18 @@
 
 
         <act_window id="action_tms_wizard_feebase_oa" name="Set OANum" res_model="tms.wizard.oa" src_model="tms.feebase"
-			key2="client_action_multi" view_type="form" view_mode="form"  target="new"/>        
+			key2="client_action_multi" view_type="form" view_mode="form" groups="tms.group_tms_fee_accout" target="new"/>        
         
         <act_window id="action_tms_wizard_feeforsend_oa" name="Set OANum" res_model="tms.wizard.oa.forsend" src_model="tms.feeforsend"
-            key2="client_action_multi" view_type="form" view_mode="form" target="new" />  
+            key2="client_action_multi" view_type="form" view_mode="form" target="new" groups="tms.group_tms_fee_accout"/>  
 
         <act_window id="action_tms_wizard_feeforproduct_oa" name="Set OANum" res_model="tms.wizard.oa.forproduct" src_model="tms.feeforproduct"
-			key2="client_action_multi" view_type="form" view_mode="form" target="new" /> 
+			key2="client_action_multi" view_type="form" view_mode="form" target="new" groups="tms.group_tms_fee_accout" /> 
         
         <act_window id="action_tms_wizard_feeforproductit_oa" name="Set OANum" res_model="tms.wizard.oa.forproductit" src_model="tms.feeforproductit"
-            key2="client_action_multi" view_type="form" view_mode="form" target="new" />  
+            key2="client_action_multi" view_type="form" view_mode="form" target="new" groups="tms.group_tms_fee_accout" />  
 
         <act_window id="action_tms_wizard_feeforother_oa" name="Set OANum" res_model="tms.wizard.oa.forother" src_model="tms.feeforother"
-            key2="client_action_multi" view_type="form" view_mode="form" target="new" />       
+            key2="client_action_multi" view_type="form" view_mode="form" target="new" groups="tms.group_tms_fee_accout"/>       
     </data>
 </openerp>

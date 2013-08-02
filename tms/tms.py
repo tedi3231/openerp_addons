@@ -248,13 +248,18 @@ class FeeBase(osv.osv):
         return feebase_id
 
     def export_to_account(self,cr,uid,ids,context=None):
-        for item in self.browse(cr,uid,ids,context=context):
-            self.write(cr,uid,item.id,{"state":"hasexported"})
+        model_id = context["active_model"]
+        model=self.pool.get(model_id)
+        for item in model.browse(cr,uid,ids,context=context):
+            model.write(cr,uid,item.id,{"state":"hasexported"})
         return True
 
     def set_to_hasback(self,cr,uid,ids,context=None):
-        for item in self.browse(cr,uid,ids,context=context):
-            self.write(cr,uid,item.id,{"state":"hasback"})
+        #print context
+        model_id = context["active_model"]
+        model=self.pool.get(model_id)
+        for item in model.browse(cr,uid,ids,context=context):
+            model.write(cr,uid,item.id,{"state":"hasback"})
         return True
 
     _columns={

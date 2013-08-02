@@ -436,7 +436,42 @@
             <field name="model_id" ref="model_tms_feebase"/>
             <field name="model">tms.feebase</field>
             <field name="key2">client_action_multi</field>
-            <!--<field name="groups">tms.group_tms_fee_finance</field>-->
+        </record>
+        <record id="val_action_tms_export_feeforother_to_account" model="ir.values">
+            <field name="name">Export to Account</field>
+            <field name="action_id" ref="action_tms_export_fee_to_account"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_export_fee_to_account'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feeforother"/>
+            <field name="model">tms.feeforother</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+        <record id="val_action_tms_export_feeforproduct_to_account" model="ir.values">
+            <field name="name">Export to Account</field>
+            <field name="action_id" ref="action_tms_export_fee_to_account"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_export_fee_to_account'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feeforproduct"/>
+            <field name="model">tms.feeforproduct</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+        <record id="val_action_tms_export_feeforproductit_to_account" model="ir.values">
+            <field name="name">Export to Account</field>
+            <field name="action_id" ref="action_tms_export_fee_to_account"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_export_fee_to_account'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feeforproductit"/>
+            <field name="model">tms.feeforproductit</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+        <record id="val_action_tms_export_feeforsend_to_account" model="ir.values">
+            <field name="name">Export to Account</field>
+            <field name="action_id" ref="action_tms_export_fee_to_account"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_export_fee_to_account'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feeforsend"/>
+            <field name="model">tms.feeforsend</field>
+            <field name="key2">client_action_multi</field>
         </record>
 
 		<!-- 已经回款 -->
@@ -455,6 +490,42 @@
             <field name="key">action</field>
             <field name="model_id" ref="model_tms_feebase"/>
             <field name="model">tms.feebase</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+        <record id="val_action_tms_feeforother_set_hasback" model="ir.values">
+            <field name="name">Set Hasback</field>
+            <field name="action_id" ref="action_tms_set_hasback"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_set_hasback'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feeforother"/>
+            <field name="model">tms.feeforother</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+        <record id="val_action_tms_feeforproduct_set_hasback" model="ir.values">
+            <field name="name">Set Hasback</field>
+            <field name="action_id" ref="action_tms_set_hasback"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_set_hasback'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feeforproduct"/>
+            <field name="model">tms.feeforproduct</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+        <record id="val_action_tms_feeforproductit_set_hasback" model="ir.values">
+            <field name="name">Set Hasback</field>
+            <field name="action_id" ref="action_tms_set_hasback"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_set_hasback'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feeforproductit"/>
+            <field name="model">tms.feeforproductit</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+        <record id="val_action_tms_feeforsend_set_hasback" model="ir.values">
+            <field name="name">Set Hasback</field>
+            <field name="action_id" ref="action_tms_set_hasback"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_tms_set_hasback'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_tms_feeforsend"/>
+            <field name="model">tms.feeforsend</field>
             <field name="key2">client_action_multi</field>
         </record>
 		<!-- the dropdown menuitems in more menu  start-->
