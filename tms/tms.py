@@ -63,15 +63,24 @@ class ApplyInfo(osv.osv):
             }
         }
 
-    def _get_default_processid(self,cr,uid,context):
-        sequenceid=self.pool.get("ir.sequence").search(cr,uid,[('code','=','tms.applyinfo.processid')])
+    def _get_default_processid(self,cr,uid,code,context):
+        sequenceid=self.pool.get("ir.sequence").search(cr,uid,[('code','=',code)])
         sequence = self.pool.get("ir.sequence").browse(cr,uid,sequenceid,context=None)
         return sequence[0].get_id()
 
     def create(self,cr,uid,data,context=None):
         apply_id = super(ApplyInfo, self).create(cr, uid, data, context=context)
         print "apply_id=%s"%apply_id
-        self.write(cr,uid,apply_id,{"state":"unreceived","processid":self._get_default_processid(cr,uid,context)},context)
+        #print context
+        childtypename = type(self).__name__
+        print childtypename
+        processid = self._get_default_processid(cr,uid,"tms.applyinfo.processid",context)
+        state = "unreceived"
+        if childtypename=="tms.stopandmoveapplyinfo":
+            print "stop and move"
+            processid = self._get_default_processid(cr,uid,"tms.stopmoveapplyinfo.processid",context)
+            state = "hasconfirm"
+        self.write(cr,uid,apply_id,{"state":state,"processid":processid},context)
         return apply_id
 
     def name_get(self,cr,uid,ids,context=None):
@@ -134,6 +143,18 @@ class ApplyInfoItem(osv.osv):
         "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     }
 ApplyInfoItem()
+
+
+class StopAndMoveApplyInfo(osv.osv):
+    _name="tms.stopandmoveapplyinfo"
+    _inherit="tms.applyinfo"
+
+    _defaults={
+        "user_id":lambda self,cr,uid,context:uid,
+        "state":lambda self,cr,uid,context:"hasconfirm",
+    }
+
+StopAndMoveApplyInfo()    
 
 
 class FeeType(osv.osv):

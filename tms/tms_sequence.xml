@@ -30,6 +30,10 @@
 			<field name="name">Applyinfo Sequence</field>
 			<field name="code">tms.applyinfo.processid</field>
 		</record>
+		<record model="ir.sequence.type" id="seq_type_tms_stopandmoveapplyinfo_processid">
+			<field name="name">StopAndMoveApplyinfo Sequence</field>
+			<field name="code">tms.stopmoveapplyinfo.processid</field>
+		</record>
 		<!-- sequence type end -->
 
 		<!-- sequence -->
@@ -39,6 +43,13 @@
 			<field name="padding">4</field>
 			<field name="number_next">1</field>
 			<field name="prefix">P%(year)s%(month)s%(day)s</field>
+		</record>
+		<record model="ir.sequence" id="seq_tms_stopandmoveapplyinfo_processid">
+			<field name="name">StopAndApplyinfo Processid</field>	
+			<field name="code">tms.stopmoveapplyinfo.processid</field>
+			<field name="padding">4</field>
+			<field name="number_next">1</field>
+			<field name="prefix">N%(year)s%(month)s%(day)s</field>
 		</record>
 		<record model="ir.sequence" id="seq_tms_feebase_processid">
 			<field name="name">FeeBase Processid</field>	
