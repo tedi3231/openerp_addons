@@ -45,13 +45,12 @@ class ApplyInfo(osv.osv):
         return pitem.province_id.name
 
     def on_change_store(self,cr,uid,ids,model_id,context=None):
-        print "model_id=%s" % model_id
+    
         if not model_id:
             return False
         item = self.pool.get("tms.store").browse(cr,uid,model_id,context=context)
         if not item :
             return False
-        print item.name
         return {
             "value":{
                 "province":self.get_province_by_store_id(cr,uid,item.id),
@@ -276,9 +275,17 @@ class FeeBase(osv.osv):
         return True
 
     def export_to_account(self,cr,uid,ids,context=None):
+        uitem=self.pool.get("res.users").browse(cr,uid,uid,context=context)
+        groupnames = [item.name for item in uitem.groups_id]
+        if "Finance Fee Manager" in groupnames:
+            raise osv.except_osv(_('Operation Canceld'),_('You are not Finance Fee Manager!'))
         return self._check_fee_state(cr,uid,ids,'draft','hasexported',context=context)
 
     def set_to_hasback(self,cr,uid,ids,context=None):
+        uitem=self.pool.get("res.users").browse(cr,uid,uid,context=context)
+        groupnames = [item.name for item in uitem.groups_id]
+        if "Finance Fee Manager" in groupnames:
+            raise osv.except_osv(_('Operation Canceld'),_('You are not Finance Fee Manager!'))
         return self._check_fee_state(cr,uid,ids,'hasoa','hasback',context=context)
 
     _columns={
