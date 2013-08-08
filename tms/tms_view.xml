@@ -683,42 +683,42 @@
             <field name="res_model">tms.feeforother</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[(1,'=',1)]</field>
+            <field name="domain">[('state','not in',('',))]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforitservice_tree_show">
             <field name="name">IT服务费登记</field>
             <field name="res_model">tms.feeforitservice</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[(1,'=',1)]</field>
+            <field name="domain">[('state','not in',('',))]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feebase_tree_show">
             <field name="name">维护费登记</field>
             <field name="res_model">tms.feebase</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[(1,'=',1)]</field>
+            <field name="domain">[('state','not in',('',))]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforsend_tree_show">
             <field name="name">Fee for send</field>
             <field name="res_model">tms.feeforsend</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[(1,'=',1)]</field>
+            <field name="domain">[('state','not in',('',))]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproduct_tree_show">
             <field name="name">Fee for Product</field>
             <field name="res_model">tms.feeforproduct</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[(1,'=',1)]</field>
+            <field name="domain">[('state','not in',('',))]</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproductit_tree_show">
             <field name="name">Fee for ProductIT</field>
             <field name="res_model">tms.feeforproductit</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-			<field name="domain">[(1,'=',1)]</field>
+            <field name="domain">[('state','not in',('',))]</field>
         </record>
         <!-- 财务中心动作结束 -->
 

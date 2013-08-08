@@ -277,14 +277,14 @@ class FeeBase(osv.osv):
     def export_to_account(self,cr,uid,ids,context=None):
         uitem=self.pool.get("res.users").browse(cr,uid,uid,context=context)
         groupnames = [item.name for item in uitem.groups_id]
-        if "Finance Fee Manager" in groupnames:
+        if "Finance Fee Manager" not in groupnames:
             raise osv.except_osv(_('Operation Canceld'),_('You are not Finance Fee Manager!'))
         return self._check_fee_state(cr,uid,ids,'draft','hasexported',context=context)
 
     def set_to_hasback(self,cr,uid,ids,context=None):
         uitem=self.pool.get("res.users").browse(cr,uid,uid,context=context)
         groupnames = [item.name for item in uitem.groups_id]
-        if "Finance Fee Manager" in groupnames:
+        if "Finance Fee Manager" not in groupnames:
             raise osv.except_osv(_('Operation Canceld'),_('You are not Finance Fee Manager!'))
         return self._check_fee_state(cr,uid,ids,'hasoa','hasback',context=context)
 
