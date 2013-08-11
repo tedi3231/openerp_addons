@@ -93,7 +93,7 @@ class ApplyInfo(osv.osv):
         "processid":fields.char(string="ProcessId",size=100,required=False),
         "store_id":fields.many2one("tms.store",string="Sotre"),
         "province":fields.function(get_province_name,type="char",string="Province"),
-        "storenum":fields.related("store_id","name",type="char",string="Store Num"),
+        "storenum":fields.related("store_id","storenum",type="char",string="Store Num"),
         "telephone":fields.related("store_id","telephone",type="char",string="telephone"),
         "mobile":fields.related("store_id","mobile",type="char",string="mobile"),
         "address":fields.related("store_id","address",type="char",string="Address"),
