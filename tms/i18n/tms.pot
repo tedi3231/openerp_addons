@@ -181,10 +181,6 @@ msgstr ""
 msgid "Peanut valid email"
 msgstr ""
 
-#. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_account_tree_show
-msgid "IT服务费对账"
-msgstr ""
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_feeforproduct
@@ -224,10 +220,6 @@ msgstr ""
 msgid "Export To Account"
 msgstr ""
 
-#. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feebase_account_tree_show
-msgid "维护费对账"
-msgstr ""
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_applyinfoitem
@@ -290,10 +282,6 @@ msgstr ""
 msgid "Store Manager"
 msgstr ""
 
-#. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforother_account_tree_show
-msgid "其他费用对账"
-msgstr ""
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_feeforsend_tree_show
@@ -502,19 +490,13 @@ msgid "Applyinfos"
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforother_tree_show
-#: model:ir.ui.menu,name:tms.menu_tms_feeforother_account_manager
-#: view:tms.feeforother:0
-msgid "其他费用登记"
-msgstr ""
-
-#. module: tms
 #: view:tms.store:0
 msgid "Network Information"
 msgstr ""
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_manager
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_tree_show
 msgid "FeeForProduct Account"
 msgstr ""
 
@@ -853,11 +835,6 @@ msgstr ""
 msgid "Store num"
 msgstr ""
 
-#. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_tree_show
-#: view:tms.feeforitservice:0
-msgid "IT服务费登记"
-msgstr ""
 
 #. module: tms
 #: field:tms.applyinfoitem,name:0

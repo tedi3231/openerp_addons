@@ -104,21 +104,23 @@ class ApplyInfo(osv.osv):
                                   ("hasdone","HasDone"),("hasconfirm","HasConfirm")],string="State",required=True,readonly=True),
     }
 
-    def applyinfo_unreceived(self,cr,uid,ids):
+    def applyinfo_unreceived(self,cr,uid,ids,args=None,context=None):
         self.write(cr,uid,ids,{'state':'unreceived'})
         return True
 
-    def applyinfo_hasreceived(self,cr,uid,ids):
+    def applyinfo_hasreceived(self,cr,uid,ids,args=None,context=None):
         self.write(cr,uid,ids,{'state':'hasreceived'})
         return True
 
-    def applyinfo_hasdone(self,cr,uid,ids):
+    def applyinfo_hasdone(self,cr,uid,ids,args=None,context=None):
         self.write(cr,uid,ids,{'state':'hasdone'})
         return True
 
-    def applyinfo_hasconfirm(self,cr,uid,ids):
+    def applyinfo_hasconfirm(self,cr,uid,ids,args=None,context=None):
         self.write(cr,uid,ids,{'state':'hasconfirm'})
         return True
+
+    _order = "processid desc"
 
     _defaults={
         #"processid":_get_default_processid,
@@ -133,13 +135,13 @@ class ApplyInfoItem(osv.osv):
     _columns={
         "name":fields.text(string="Remark"),
         "user_id":fields.many2one("res.users",string="Add Man"),
-        "create_time":fields.datetime(string="Add time"),
+        "create_time":fields.date(string="Add time"),
         "applyinfo_id":fields.many2one("tms.applyinfo",string="ApplyInfo"),
     }
 
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
-        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d'),
     }
 ApplyInfoItem()
 
@@ -293,7 +295,7 @@ class FeeBase(osv.osv):
         "feedate":fields.date(string="Fee Date"),
         "store_id":fields.many2one("tms.store",string="Store"),
         "storenum":fields.related("store_id","name",type="char",string="Store Num"),
-        "province":fields.function(get_province_name,type="char",string="Province"),
+        "province":fields.function(get_province_name,type="char",string="Province",store=True),
         "feetype_id":fields.many2one("tms.feetype","Fee Type"),
         "payman":fields.many2one("res.users","Pay Man"),
         "amount":fields.float(string="Amount"),
@@ -305,6 +307,7 @@ class FeeBase(osv.osv):
                                  string="States"),
     }
 
+    _order = "processid desc"
     _defaults={
         "feedate":lambda self,cr,uid,context:datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "payman":lambda self,cr,uid,context:uid,

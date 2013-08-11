@@ -47,13 +47,6 @@ msgid "TMS"
 msgstr "托码思"
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feebase_tree_show
-#: model:ir.ui.menu,name:tms.menu_tms_feebase_account_manager
-#: view:tms.feebase:0
-msgid "维护费登记"
-msgstr "维护费登记"
-
-#. module: tms
 #: field:tms.applyinfo,user_id:0
 #: field:tms.applyinfoitem,user_id:0
 msgid "Add Man"
@@ -181,10 +174,6 @@ msgstr "已接收"
 msgid "Peanut valid email"
 msgstr "花生壳邮件地址"
 
-#. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_account_tree_show
-msgid "IT服务费对账"
-msgstr "IT服务费对账"
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_feeforproduct
@@ -195,14 +184,6 @@ msgstr "配件费登记"
 #: field:tms.feeforsend,sendordernum:0
 msgid "Send Order num"
 msgstr "快递单编号"
-
-#. module: tms
-#: view:tms.wizard.oa.forother:0
-#: view:tms.wizard.oa.forproduct:0
-#: view:tms.wizard.oa.forproductit:0
-#: view:tms.wizard.oa.forsend:0
-msgid "aBC"
-msgstr "aBC"
 
 #. module: tms
 #: field:tms.store,telephone:0
@@ -396,15 +377,6 @@ msgid "Dynamic Domain pass"
 msgstr "动态域名密码"
 
 #. module: tms
-#: view:tms.wizard.oa:0
-#: view:tms.wizard.oa.forother:0
-#: view:tms.wizard.oa.forproduct:0
-#: view:tms.wizard.oa.forproductit:0
-#: view:tms.wizard.oa.forsend:0
-msgid "or"
-msgstr "or"
-
-#. module: tms
 #: view:tms.feebase:0
 #: view:tms.feeforsend:0
 #: field:tms.wizard.item,feebase_id:0
@@ -441,7 +413,7 @@ msgstr "对账中心"
 #: model:ir.ui.menu,name:tms.menu_tms_account_center_manager
 #: model:ir.ui.menu,name:tms.menu_tms_finance_center_manager
 msgid "Finance Center"
-msgstr "账务中心"
+msgstr "财务中心"
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_feeforsend_account_manager
@@ -501,12 +473,6 @@ msgstr "IT采购对账"
 msgid "Applyinfos"
 msgstr "申报信息"
 
-#. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforother_tree_show
-#: model:ir.ui.menu,name:tms.menu_tms_feeforother_account_manager
-#: view:tms.feeforother:0
-msgid "其他费用登记"
-msgstr "其他费用登记"
 
 #. module: tms
 #: view:tms.store:0
@@ -529,24 +495,19 @@ msgid "Workflow actions"
 msgstr "流程动作"
 
 #. module: tms
-#: view:tms.feeforitservice:0
-msgid "IT服务费"
-msgstr "IT服务费"
-
-#. module: tms
 #: field:tms.applyinfoitem,create_time:0
 msgid "Add time"
 msgstr "添加时间"
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_feeforproductit_tree_show
-msgid "Fee for ProductIT"
+msgid "FeeForProductIT Manager"
 msgstr "IT采购费登记"
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_account_manager
-msgid "FeeForProduct Manager"
-msgstr "配件费登记"
+msgid "FeeForProduct Account"
+msgstr "配件费对账"
 
 #. module: tms
 #: field:tms.applyinfo,telephone:0
@@ -587,7 +548,7 @@ msgstr "说明"
 
 #. module: tms
 #: view:tms.feeforproduct:0
-msgid "Fee For Product"
+msgid "FeeForProduct Manager"
 msgstr "配件费登记"
 
 #. module: tms
@@ -626,7 +587,7 @@ msgstr "厂商申报管理"
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_myhasconfirm_applyinfo_manager
 msgid "My HasConfirm Applyinfos"
-msgstr "我的已确认申报"
+msgstr "已确认申报"
 
 #. module: tms
 #: view:tms.applyinfo:0
@@ -674,7 +635,7 @@ msgstr "IT采购费登记"
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_tree_show
-msgid "Fee for Product"
+msgid "FeeForProduct Manager"
 msgstr "配件费登记"
 
 #. module: tms
@@ -817,7 +778,7 @@ msgstr "其他费用对账"
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_myhasreceived_applyinfo_manager
 msgid "My HasReceived Applyinfos"
-msgstr "我的已接收申报"
+msgstr "已接收申报"
 
 #. module: tms
 #: selection:tms.applyinfo,state:0
@@ -853,11 +814,6 @@ msgstr "发送物品"
 msgid "Store num"
 msgstr "门店编号"
 
-#. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_tree_show
-#: view:tms.feeforitservice:0
-msgid "IT服务费登记"
-msgstr "IT服务费登记"
 
 #. module: tms
 #: field:tms.applyinfoitem,name:0
