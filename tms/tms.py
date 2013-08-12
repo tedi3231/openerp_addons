@@ -5,6 +5,31 @@ from openerp.osv import fields, osv
 from openerp.tools.translate import _
 class Store(osv.osv):
     _name = "tms.store"
+
+    def name_get(self,cr,uid,ids,context=None):
+        res=[]
+        display_widget=None
+        if context:
+            display_widget = context.get("display_widget",None)
+        for r in self.read(cr,uid,ids,['name','storenum']):
+            if display_widget =="dropdownlist":
+                res.append((r['id'],'(%s)%s'%(r['storenum'],r['name'])))
+            else:
+                res.append((r['id'],r['name']))
+        return res
+
+    def name_search(self,cr,uid,name="",args=None,operator="ilike",context=None,limit=100):
+        if not args:
+            args=[]
+        if not context:
+            context={}
+        ids=[]
+        if name:
+            ids = self.search(cr, uid, [('storenum',operator,name)]+ args, limit=limit, context=context)
+        if not ids:
+            ids = self.search(cr, uid, [('name',operator,name)]+ args, limit=limit, context=context)
+        return self.name_get(cr, uid, ids, context=context)
+
     _columns = {
         "name":fields.char(string="Store Name", required=True, size=200),
         "storenum":fields.char(string="Store num", required=True, size=100),

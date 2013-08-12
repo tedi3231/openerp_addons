@@ -132,7 +132,7 @@
                             <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_accout"/>
                         </group>
                         <group col="4">
-                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="store_id" on_change="on_change_store(store_id)" context="{'display_widget':'dropdownlist'}"/>
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="contactperson"/>
@@ -187,7 +187,7 @@
                             <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_accout"/>
                         </group>
                         <group col="4">
-                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="contactperson"/>
@@ -253,7 +253,7 @@
                 <form string="FeeForOther Manager" version="7.0">
                     <sheet string="FeeForOther">
                         <group col="4">
-                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
@@ -300,7 +300,7 @@
                 <form string="FeeForItService Manager" version="7.0">
                     <sheet string="FeeForItService">
                         <group col="4">
-                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
@@ -346,7 +346,7 @@
                 <form string="FeeBase Manager" version="7.0">
                     <sheet string="Fee">
                         <group col="4" string="Base Info">
-                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
@@ -406,7 +406,7 @@
                 <form string="FeeForSend Manager" version="7.0">
                     <sheet string="Fee">
                         <group col="4">
-                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="accountperiod"/>
@@ -473,7 +473,7 @@
 							<field name="store_id"/>
 						</group>-->
 						<group col="4">
-                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
@@ -529,7 +529,7 @@
 							<field name="store_id"/>
 						</group>-->
 						<group col="4">
-                            <field name="store_id" on_change="on_change_store(store_id)"/>
+							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
