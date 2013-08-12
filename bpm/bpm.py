@@ -17,6 +17,33 @@ class ParamList(osv.Model):
             self.write(cr,uid,id,{"sortnum":100})
         return False
     
+    def name_get(self, cr, uid, ids, context=None):
+        print context
+        res = []
+        display=None
+        if context:
+            display = context.get('display_widget',None)         
+        print display   
+        for r in self.read(cr,uid,ids,['name','value']):            
+            if display=='dropdownlist':
+                res.append((r['id'], '(%s) %s'%(r['value'],r['name'])))
+            else:
+                res.append((r['id'],r['name']))
+        return res
+    
+    def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=100):
+        print "name_search called!"
+        if not args:
+            args=[]
+        if not context:
+            context={}
+        ids = []
+        if name:
+            ids = self.search(cr, user, [('value',operator,name)]+ args, limit=limit, context=context)
+        if not ids:
+            ids = self.search(cr, user, [('name',operator,name)]+ args, limit=limit, context=context)
+        return self.name_get(cr, user, ids, context=context)
+    
     def _check_value(self,cr,uid,ids):
         """
         check paramlist value exists

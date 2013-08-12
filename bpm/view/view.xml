@@ -26,6 +26,19 @@
                 </tree>
             </field>
         </record>
+        <record model="ir.ui.view" id="paramitem_form">
+            <field name="name">bpm.paramitem.form</field>
+            <field name="model">bpm.paramitem</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="ParamItem List" version="7.0">
+                    <field name="parentlistid" context="{'display_widget':'dropdownlist'}" />
+                    <field name="text"/>
+                    <field name="value" />
+                    <field name="sortnum"/>
+                </form>
+            </field>
+        </record>
         <record model="ir.ui.view" id="processbase_tree">
             <field name="name">bpm.processbase.tree</field>
             <field name="model">bpm.processbase</field>
