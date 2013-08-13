@@ -261,6 +261,9 @@ class FeeBase(osv.osv):
         return res
 
     def _get_accountperiod_list(self,cr,uid,context=None):
+        """
+        暂时不使用，账期由入账时间直接生成
+        """
         res=[]
         for index in range(-6,6):
             item = utildate.getyearandmonth(index)
@@ -298,25 +301,24 @@ class FeeBase(osv.osv):
         model=self.pool.get(model_id)
         items = model.browse(cr,uid,ids,context=context)
         if any([item.state!=oldstate for item in items]):
-        #selecteditems=dict([(item.state,item.id) for item in items])
-        #if not selecteditems or len(selecteditems)!=1 or not selecteditems.get(oldstate,False):
             raise osv.except_osv(_('Operation Canceld'),_('Only '+oldstate+' fee can be exported!'))
         for item in items: 
             model.write(cr,uid,item.id,{"state":targetstate})
         return True
-
-    def export_to_account(self,cr,uid,ids,context=None):
-        uitem=self.pool.get("res.users").browse(cr,uid,uid,context=context)
+    
+    def _check_is_finance(self,cr,uid):
+        uitem=self.pool.get("res.users").browse(cr,uid,uid)
         groupnames = [item.name for item in uitem.groups_id]
+        print groupnames
         if "Finance Fee Manager" not in groupnames:
             raise osv.except_osv(_('Operation Canceld'),_('You are not Finance Fee Manager!'))
+
+    def export_to_account(self,cr,uid,ids,context=None):
+        self._check_is_finance(cr,uid)
         return self._check_fee_state(cr,uid,ids,'draft','hasexported',context=context)
 
     def set_to_hasback(self,cr,uid,ids,context=None):
-        uitem=self.pool.get("res.users").browse(cr,uid,uid,context=context)
-        groupnames = [item.name for item in uitem.groups_id]
-        if "Finance Fee Manager" not in groupnames:
-            raise osv.except_osv(_('Operation Canceld'),_('You are not Finance Fee Manager!'))
+        self._check_is_finance(cr,uid)
         return self._check_fee_state(cr,uid,ids,'hasoa','hasback',context=context)
 
     _columns={

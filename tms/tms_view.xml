@@ -221,6 +221,7 @@
 					<field name="province"/>
 					<group expand="0" string="Group By...">
 						<filter string="Province" domain="[]" context="{'group_by':'province'}"/>
+						<filter string="State" domain="[]" context="{'group_by':'state'}"/>
 					</group>
 				</search>	
 			</field>
