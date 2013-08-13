@@ -175,6 +175,9 @@ class StopAndMoveApplyInfo(osv.osv):
     _name="tms.stopandmoveapplyinfo"
     _inherit="tms.applyinfo"
 
+    _columns={
+        "applyinfotype":fields.selection([("move","Move"),("offnet","Off Net"),("powercut","Power Cut")],string="ApplyInfo Type",required=True)
+    }
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
         "state":lambda self,cr,uid,context:"hasconfirm",
@@ -294,8 +297,9 @@ class FeeBase(osv.osv):
         model_id = context["active_model"]
         model=self.pool.get(model_id)
         items = model.browse(cr,uid,ids,context=context)
-        selecteditems=dict([(item.state,item.id) for item in items])
-        if not selecteditems or len(selecteditems)!=1 or not selecteditems.get(oldstate,False):
+        if any([item.state!=oldstate for item in items]):
+        #selecteditems=dict([(item.state,item.id) for item in items])
+        #if not selecteditems or len(selecteditems)!=1 or not selecteditems.get(oldstate,False):
             raise osv.except_osv(_('Operation Canceld'),_('Only '+oldstate+' fee can be exported!'))
         for item in items: 
             model.write(cr,uid,item.id,{"state":targetstate})

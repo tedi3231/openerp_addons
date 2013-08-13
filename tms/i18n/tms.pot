@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#   * tms
+#	* tms
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130304-002107\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-31 08:09+0000\n"
-"PO-Revision-Date: 2013-07-31 08:09+0000\n"
+"POT-Creation-Date: 2013-08-13 06:09+0000\n"
+"PO-Revision-Date: 2013-08-13 06:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,13 @@ msgstr ""
 #. module: tms
 #: field:tms.store,name:0
 msgid "Store Name"
+msgstr ""
+
+#. module: tms
+#: model:ir.module.category,name:tms.module_tms_category
+#: model:ir.ui.menu,name:tms.menu_tms_manager
+#: model:ir.ui.menu,name:tms.menu_tms_root
+msgid "TMS"
 msgstr ""
 
 #. module: tms
@@ -32,30 +39,39 @@ msgstr ""
 
 #. module: tms
 #: view:tms.applyinfo:0
+#: view:tms.stopandmoveapplyinfo:0
 msgid "Cofirm"
 msgstr ""
 
 #. module: tms
+#: view:tms.store:0
 #: field:tms.store,poscdk:0
 msgid "POSCDK"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_manager
-#: model:ir.ui.menu,name:tms.menu_tms_root
-msgid "TMS"
+#: view:tms.feeforother:0
+#: view:tms.feeforproduct:0
+#: view:tms.feeforsend:0
+#: view:tms.store:0
+msgid "Group By..."
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feebase_tree_show
-#: model:ir.ui.menu,name:tms.menu_tms_feebase_account_manager
 #: view:tms.feebase:0
-msgid "维护费登记"
+#: view:tms.feeforsend:0
+#: field:tms.wizard.item,feebase_id:0
+#: field:tms.wizard.item.forother,feebase_id:0
+#: field:tms.wizard.item.forproduct,feebase_id:0
+#: field:tms.wizard.item.forproductit,feebase_id:0
+#: field:tms.wizard.item.forsend,feebase_id:0
+msgid "Fee"
 msgstr ""
 
 #. module: tms
 #: field:tms.applyinfo,user_id:0
 #: field:tms.applyinfoitem,user_id:0
+#: field:tms.stopandmoveapplyinfo,user_id:0
 msgid "Add Man"
 msgstr ""
 
@@ -63,17 +79,28 @@ msgstr ""
 #: field:tms.applyinfo,province:0
 #: field:tms.feebase,province:0
 #: field:tms.feeforitservice,province:0
+#: view:tms.feeforother:0
 #: field:tms.feeforother,province:0
+#: view:tms.feeforproduct:0
 #: field:tms.feeforproduct,province:0
 #: field:tms.feeforproductit,province:0
+#: view:tms.feeforsend:0
 #: field:tms.feeforsend,province:0
+#: field:tms.stopandmoveapplyinfo,province:0
+#: view:tms.store:0
 #: field:tms.store,province_id:0
 msgid "Province"
 msgstr ""
 
 #. module: tms
-#: view:tms.feeforproductit:0
-msgid "Fee For ProductIT"
+#: model:ir.ui.menu,name:tms.menu_tms_myunreceived_applyinfo_manager
+#: model:ir.ui.menu,name:tms.menu_tms_unreceived_applyinfo_manager
+msgid "UnReceived Applyinfos"
+msgstr ""
+
+#. module: tms
+#: model:ir.ui.menu,name:tms.menu_tms_finance_center_manager
+msgid "Finance Center"
 msgstr ""
 
 #. module: tms
@@ -96,8 +123,23 @@ msgid "tms.feeforsend"
 msgstr ""
 
 #. module: tms
+#: selection:tms.stopandmoveapplyinfo,applyinfotype:0
+msgid "Off Net"
+msgstr ""
+
+#. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_store_manager_root
 msgid "Stores Management"
+msgstr ""
+
+#. module: tms
+#: model:res.groups,name:tms.group_tms_fee_finance
+msgid "Finance Fee Manager"
+msgstr ""
+
+#. module: tms
+#: selection:tms.stopandmoveapplyinfo,applyinfotype:0
+msgid "Power Cut"
 msgstr ""
 
 #. module: tms
@@ -106,17 +148,13 @@ msgid "Company Name"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforproductit_account_manager
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproductit_manager
 msgid "FeeForProductIt Manager"
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforsend_account_tree_show
-msgid "Fee for send Account"
-msgstr ""
-
-#. module: tms
 #: view:tms.applyinfo:0
+#: view:tms.stopandmoveapplyinfo:0
 msgid "Received"
 msgstr ""
 
@@ -142,7 +180,21 @@ msgid "Domain Other Address"
 msgstr ""
 
 #. module: tms
+#: code:addons/tms/tms.py:303
+#: code:addons/tms/wizard/tms_wizard_oa.py:21
+#, python-format
+msgid "Only  fee can be exported!"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_account_tree_show
+msgid "FeeForItService Account"
+msgstr ""
+
+#. module: tms
+#: view:tms.applyinfo:0
 #: selection:tms.applyinfo,state:0
+#: selection:tms.stopandmoveapplyinfo,state:0
 msgid "HasDone"
 msgstr ""
 
@@ -161,8 +213,8 @@ msgid "Amount"
 msgstr ""
 
 #. module: tms
-#: field:tms.feetype,code:0
-msgid "Code"
+#: model:ir.model,name:tms.model_tms_stopandmoveapplyinfo
+msgid "tms.stopandmoveapplyinfo"
 msgstr ""
 
 #. module: tms
@@ -173,6 +225,7 @@ msgstr ""
 
 #. module: tms
 #: selection:tms.applyinfo,state:0
+#: selection:tms.stopandmoveapplyinfo,state:0
 msgid "HasReceived"
 msgstr ""
 
@@ -181,23 +234,21 @@ msgstr ""
 msgid "Peanut valid email"
 msgstr ""
 
-
-#. module: tms
-#: model:ir.model,name:tms.model_tms_feeforproduct
-msgid "tms.feeforproduct"
-msgstr ""
-
 #. module: tms
 #: field:tms.feeforsend,sendordernum:0
 msgid "Send Order num"
 msgstr ""
 
 #. module: tms
-#: view:tms.wizard.oa.forother:0
-#: view:tms.wizard.oa.forproduct:0
-#: view:tms.wizard.oa.forproductit:0
-#: view:tms.wizard.oa.forsend:0
-msgid "aBC"
+#: model:ir.actions.act_window,name:tms.action_tms_feeforother_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforother_manager
+#: view:tms.feeforother:0
+msgid "FeeForOther Manager"
+msgstr ""
+
+#. module: tms
+#: selection:tms.stopandmoveapplyinfo,applyinfotype:0
+msgid "Move"
 msgstr ""
 
 #. module: tms
@@ -206,8 +257,8 @@ msgid "Telephone"
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforproductit_account_tree_show
-msgid "Fee for ProductIT Account"
+#: model:ir.model,name:tms.model_tms_feetype
+msgid "tms.feetype"
 msgstr ""
 
 #. module: tms
@@ -220,10 +271,29 @@ msgstr ""
 msgid "Export To Account"
 msgstr ""
 
+#. module: tms
+#: code:addons/tms/tms.py:303
+#: code:addons/tms/tms.py:312
+#: code:addons/tms/tms.py:319
+#: code:addons/tms/wizard/tms_wizard_oa.py:21
+#: code:addons/tms/wizard/tms_wizard_oa.py:53
+#, python-format
+msgid "Operation Canceld"
+msgstr ""
 
 #. module: tms
 #: model:ir.model,name:tms.model_tms_applyinfoitem
 msgid "tms.applyinfoitem"
+msgstr ""
+
+#. module: tms
+#: model:res.groups,name:tms.group_tms_applyinfo_finance
+msgid "Finance Applyinfo Manager"
+msgstr ""
+
+#. module: tms
+#: view:tms.applyinfo:0
+msgid "Confirm"
 msgstr ""
 
 #. module: tms
@@ -238,17 +308,13 @@ msgstr ""
 
 #. module: tms
 #: field:tms.applyinfo,state:0
+#: field:tms.stopandmoveapplyinfo,state:0
 msgid "State"
 msgstr ""
 
 #. module: tms
 #: field:tms.store,peanutemailpass:0
 msgid "Peanut email pass"
-msgstr ""
-
-#. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_myunreceived_applyinfo_manager
-msgid "My UnReceived Applyinfos"
 msgstr ""
 
 #. module: tms
@@ -263,13 +329,9 @@ msgstr ""
 
 #. module: tms
 #: field:tms.applyinfo,contactperson:0
+#: field:tms.stopandmoveapplyinfo,contactperson:0
 #: field:tms.store,contactperson:0
 msgid "Contact Person"
-msgstr ""
-
-#. module: tms
-#: view:tms.feeforsend:0
-msgid "Fee For Send"
 msgstr ""
 
 #. module: tms
@@ -279,13 +341,8 @@ msgstr ""
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_store_manager
+#: model:res.groups,name:tms.group_tms_storemanager
 msgid "Store Manager"
-msgstr ""
-
-
-#. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforsend_tree_show
-msgid "Fee for send"
 msgstr ""
 
 #. module: tms
@@ -300,14 +357,26 @@ msgid "Product Name"
 msgstr ""
 
 #. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforitservice_tree_show
+#: view:tms.feeforitservice:0
+msgid "FeeForItService Manager"
+msgstr ""
+
+#. module: tms
 #: field:tms.feeforproduct,producttype:0
 msgid "Product Type"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproductit_account_tree_show
+msgid "FeeForProductIT Account"
 msgstr ""
 
 #. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_hasdone_applyinfo_tree_show
 #: model:ir.actions.act_window,name:tms.action_tms_myhasdone_applyinfo_tree_show
 #: model:ir.ui.menu,name:tms.menu_tms_hasdone_applyinfo_manager
+#: model:ir.ui.menu,name:tms.menu_tms_myhasdone_applyinfo_manager
 msgid "HasDone Applyinfos"
 msgstr ""
 
@@ -319,6 +388,7 @@ msgstr ""
 #: field:tms.feeforproduct,storenum:0
 #: field:tms.feeforproductit,storenum:0
 #: field:tms.feeforsend,storenum:0
+#: field:tms.stopandmoveapplyinfo,storenum:0
 msgid "Store Num"
 msgstr ""
 
@@ -343,15 +413,28 @@ msgid "Set Has Back"
 msgstr ""
 
 #. module: tms
+#: view:tms.feeforother:0
+msgid "FeeForOther"
+msgstr ""
+
+#. module: tms
+#: selection:tms.applyinfo,state:0
+#: selection:tms.stopandmoveapplyinfo,state:0
+msgid "UnReceived"
+msgstr ""
+
+#. module: tms
 #: model:ir.actions.act_window,name:tms.action_tms_hasreceived_applyinfo_tree_show
 #: model:ir.actions.act_window,name:tms.action_tms_myhasreceived_applyinfo_tree_show
 #: model:ir.ui.menu,name:tms.menu_tms_hasreceived_applyinfo_manager
+#: model:ir.ui.menu,name:tms.menu_tms_myhasreceived_applyinfo_manager
 msgid "HasReceived Applyinfos"
 msgstr ""
 
 #. module: tms
-#: field:tms.applyinfoitem,applyinfo_id:0
-msgid "ApplyInfo"
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproductit_tree_show
+#: view:tms.feeforproductit:0
+msgid "FeeForProductIT Manager"
 msgstr ""
 
 #. module: tms
@@ -361,6 +444,12 @@ msgstr ""
 #: model:ir.model,name:tms.model_tms_wizard_item_forproductit
 #: model:ir.model,name:tms.model_tms_wizard_item_forsend
 msgid "FeeBase Item"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_moveandstopapplyinfo_tree_show
+#: view:tms.stopandmoveapplyinfo:0
+msgid "Stop And Move Applyinfo"
 msgstr ""
 
 #. module: tms
@@ -393,20 +482,19 @@ msgid "or"
 msgstr ""
 
 #. module: tms
-#: view:tms.feebase:0
-#: view:tms.feeforsend:0
-#: field:tms.wizard.item,feebase_id:0
-#: field:tms.wizard.item.forother,feebase_id:0
-#: field:tms.wizard.item.forproduct,feebase_id:0
-#: field:tms.wizard.item.forproductit,feebase_id:0
-#: field:tms.wizard.item.forsend,feebase_id:0
-msgid "Fee"
+#: model:res.groups,name:tms.group_tms_fee_accout
+msgid "Account Fee Manager"
 msgstr ""
 
 #. module: tms
 #: field:tms.feeforproduct,accountproductcount:0
 #: field:tms.feeforproductit,accountproductcount:0
 msgid "Account Product Count"
+msgstr ""
+
+#. module: tms
+#: field:tms.applyinfoitem,applyinfo_id:0
+msgid "ApplyInfo"
 msgstr ""
 
 #. module: tms
@@ -421,18 +509,13 @@ msgstr ""
 
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_account_center_manager
-#: model:ir.ui.menu,name:tms.menu_tms_finance_center_manager
 msgid "Account Center"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_account_center_manager
-#: model:ir.ui.menu,name:tms.menu_tms_finance_center_manager
-msgid "Finance Center"
-msgstr ""
-
-#. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_account_manager
+#: model:ir.actions.act_window,name:tms.action_tms_feeforsend_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_manager
+#: view:tms.feeforsend:0
 msgid "FeeForSend Manager"
 msgstr ""
 
@@ -442,7 +525,8 @@ msgid "tms.applyinfo"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feebase_manager
+#: model:ir.actions.act_window,name:tms.action_tms_feebase_account_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feebase_account_manager
 msgid "FeeBase Account"
 msgstr ""
 
@@ -454,6 +538,7 @@ msgstr ""
 #: selection:tms.feeforproduct,state:0
 #: selection:tms.feeforproductit,state:0
 #: selection:tms.feeforsend,state:0
+#: selection:tms.stopandmoveapplyinfo,state:0
 msgid "Draft"
 msgstr ""
 
@@ -480,7 +565,7 @@ msgid "Store"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforproductit_manager
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproductit_account_manager
 msgid "FeeForProductIt Account"
 msgstr ""
 
@@ -490,13 +575,18 @@ msgid "Applyinfos"
 msgstr ""
 
 #. module: tms
+#: view:tms.feeforother:0
+msgid "Search FeeForOther"
+msgstr ""
+
+#. module: tms
 #: view:tms.store:0
 msgid "Network Information"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_manager
-#: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_tree_show
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_account_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_account_manager
 msgid "FeeForProduct Account"
 msgstr ""
 
@@ -507,12 +597,14 @@ msgstr ""
 
 #. module: tms
 #: view:tms.applyinfo:0
+#: view:tms.stopandmoveapplyinfo:0
 msgid "Workflow actions"
 msgstr ""
 
 #. module: tms
-#: view:tms.feeforitservice:0
-msgid "IT服务费"
+#: code:addons/tms/wizard/tms_wizard_oa.py:53
+#, python-format
+msgid "Only hasexported fee can be set oa num!"
 msgstr ""
 
 #. module: tms
@@ -521,27 +613,48 @@ msgid "Add time"
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforproductit_tree_show
-msgid "Fee for ProductIT"
+#: selection:tms.applyinfo,state:0
+#: selection:tms.stopandmoveapplyinfo,state:0
+msgid "HasConfirm"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_account_manager
+#: model:res.groups,name:tms.group_tms_applyinfo_factory
+msgid "Factory Applyinfo Manager"
+msgstr ""
+
+#. module: tms
+#: view:tms.feeforitservice:0
+msgid "FeeForItService"
+msgstr ""
+
+#. module: tms
+#: field:tms.store,storenum:0
+msgid "Store num"
+msgstr ""
+
+#. module: tms
+#: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforproduct_manager
+#: view:tms.feeforproduct:0
 msgid "FeeForProduct Manager"
 msgstr ""
 
 #. module: tms
 #: field:tms.applyinfo,telephone:0
+#: field:tms.stopandmoveapplyinfo,telephone:0
 msgid "telephone"
 msgstr ""
 
 #. module: tms
 #: field:tms.applyinfo,store_id:0
+#: field:tms.stopandmoveapplyinfo,store_id:0
 msgid "Sotre"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_manager
+#: model:ir.actions.act_window,name:tms.action_tms_feeforsend_account_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforsend_account_manager
 msgid "FeeForSend Account"
 msgstr ""
 
@@ -557,6 +670,11 @@ msgid "Unreceived Applyinfos"
 msgstr ""
 
 #. module: tms
+#: view:tms.feeforsend:0
+msgid "Search FeeForSend"
+msgstr ""
+
+#. module: tms
 #: model:ir.model,name:tms.model_tms_store
 msgid "tms.store"
 msgstr ""
@@ -564,12 +682,14 @@ msgstr ""
 #. module: tms
 #: view:tms.applyinfo:0
 #: field:tms.applyinfo,content:0
+#: view:tms.stopandmoveapplyinfo:0
+#: field:tms.stopandmoveapplyinfo,content:0
 msgid "Content"
 msgstr ""
 
 #. module: tms
-#: view:tms.feeforproduct:0
-msgid "Fee For Product"
+#: field:tms.feetype,code:0
+msgid "Code"
 msgstr ""
 
 #. module: tms
@@ -587,11 +707,6 @@ msgid "Set OANum"
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_account_tree_show
-msgid "Fee for Product Account"
-msgstr ""
-
-#. module: tms
 #: model:ir.model,name:tms.model_tms_wizard_oa
 #: model:ir.model,name:tms.model_tms_wizard_oa_forother
 #: model:ir.model,name:tms.model_tms_wizard_oa_forproduct
@@ -606,12 +721,13 @@ msgid "Factory Applyinfo Management"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_myhasconfirm_applyinfo_manager
-msgid "My HasConfirm Applyinfos"
+#: model:ir.model,name:tms.model_tms_feeforproduct
+msgid "tms.feeforproduct"
 msgstr ""
 
 #. module: tms
 #: view:tms.applyinfo:0
+#: view:tms.stopandmoveapplyinfo:0
 msgid "Done"
 msgstr ""
 
@@ -631,16 +747,6 @@ msgid "Cancel"
 msgstr ""
 
 #. module: tms
-#: field:tms.feebase,feedate:0
-#: field:tms.feeforitservice,feedate:0
-#: field:tms.feeforother,feedate:0
-#: field:tms.feeforproduct,feedate:0
-#: field:tms.feeforproductit,feedate:0
-#: field:tms.feeforsend,feedate:0
-msgid "Fee Date"
-msgstr ""
-
-#. module: tms
 #: field:tms.wizard.oa,feetype:0
 #: field:tms.wizard.oa.forother,feetype:0
 #: field:tms.wizard.oa.forproduct,feetype:0
@@ -655,13 +761,13 @@ msgid "tms.feeforproductit"
 msgstr ""
 
 #. module: tms
-#: model:ir.actions.act_window,name:tms.action_tms_feeforproduct_tree_show
-msgid "Fee for Product"
+#: field:tms.store,netusername:0
+msgid "Net User Name"
 msgstr ""
 
 #. module: tms
-#: field:tms.store,netusername:0
-msgid "Net User Name"
+#: model:ir.ui.menu,name:tms.menu_tms_moveandstopapplyinfo_manager
+msgid "Move And Stop Applyinfo"
 msgstr ""
 
 #. module: tms
@@ -684,8 +790,33 @@ msgid "Wizard"
 msgstr ""
 
 #. module: tms
-#: selection:tms.applyinfo,state:0
-msgid "HasConfirm"
+#: field:tms.applyinfoitem,name:0
+#: view:tms.feebase:0
+#: field:tms.feebase,remark:0
+#: field:tms.feeforitservice,remark:0
+#: view:tms.feeforother:0
+#: field:tms.feeforother,remark:0
+#: view:tms.feeforproduct:0
+#: field:tms.feeforproduct,remark:0
+#: field:tms.feeforproductit,remark:0
+#: view:tms.feeforsend:0
+#: field:tms.feeforsend,remark:0
+#: field:tms.feetype,remark:0
+#: field:tms.sendcompany,remark:0
+#: view:tms.store:0
+#: field:tms.store,remark:0
+msgid "Remark"
+msgstr ""
+
+#. module: tms
+#: field:tms.stopandmoveapplyinfo,applyinfotype:0
+msgid "ApplyInfo Type"
+msgstr ""
+
+#. module: tms
+#: view:tms.applyinfo:0
+#: view:tms.store:0
+msgid "Search Sotre"
 msgstr ""
 
 #. module: tms
@@ -694,8 +825,13 @@ msgid "Base Info"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_myhasdone_applyinfo_manager
-msgid "My HasDone Applyinfos"
+#: field:tms.feebase,feedate:0
+#: field:tms.feeforitservice,feedate:0
+#: field:tms.feeforother,feedate:0
+#: field:tms.feeforproduct,feedate:0
+#: field:tms.feeforproductit,feedate:0
+#: field:tms.feeforsend,feedate:0
+msgid "Fee Date"
 msgstr ""
 
 #. module: tms
@@ -705,10 +841,14 @@ msgid "Product Price"
 msgstr ""
 
 #. module: tms
-#: view:tms.feebase:0
 #: view:tms.feeforitservice:0
-#: view:tms.feeforother:0
 msgid "说明"
+msgstr ""
+
+#. module: tms
+#: code:addons/tms/tms.py:312
+#: code:addons/tms/tms.py:319
+msgid "You are not Finance Fee Manager!"
 msgstr ""
 
 #. module: tms
@@ -719,6 +859,7 @@ msgstr ""
 #: field:tms.feeforproduct,processid:0
 #: field:tms.feeforproductit,processid:0
 #: field:tms.feeforsend,processid:0
+#: field:tms.stopandmoveapplyinfo,processid:0
 msgid "ProcessId"
 msgstr ""
 
@@ -733,11 +874,6 @@ msgid "Pay Man"
 msgstr ""
 
 #. module: tms
-#: field:tms.applyinfo,applyinfoitem_ids:0
-msgid "ApplyInfo Items"
-msgstr ""
-
-#. module: tms
 #: model:ir.model,name:tms.model_tms_feeforitservice
 msgid "tms.feeforitservice"
 msgstr ""
@@ -749,23 +885,21 @@ msgstr ""
 
 #. module: tms
 #: field:tms.applyinfo,address:0
+#: field:tms.stopandmoveapplyinfo,address:0
 #: field:tms.store,address:0
 msgid "Address"
 msgstr ""
 
 #. module: tms
-#: model:ir.model,name:tms.model_tms_feetype
-msgid "tms.feetype"
+#: model:ir.actions.act_window,name:tms.action_tms_feebase_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feebase_manager
+#: view:tms.feebase:0
+msgid "FeeBase Manager"
 msgstr ""
 
 #. module: tms
 #: view:tms.applyinfo:0
 msgid "Applyinfo"
-msgstr ""
-
-#. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_unreceived_applyinfo_manager
-msgid "UnReceived Applyinfos"
 msgstr ""
 
 #. module: tms
@@ -788,22 +922,19 @@ msgstr ""
 #: model:ir.actions.act_window,name:tms.action_tms_hasconfirm_applyinfo_tree_show
 #: model:ir.actions.act_window,name:tms.action_tms_myhasconfirm_applyinfo_tree_show
 #: model:ir.ui.menu,name:tms.menu_tms_hasconfirm_applyinfo_manager
+#: model:ir.ui.menu,name:tms.menu_tms_myhasconfirm_applyinfo_manager
 msgid "HasConfirm Applyinfos"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_feeforother_manager
+#: model:ir.actions.act_window,name:tms.action_tms_feeforother_account_tree_show
+#: model:ir.ui.menu,name:tms.menu_tms_feeforother_account_manager
 msgid "FeeForOther Account"
 msgstr ""
 
 #. module: tms
-#: model:ir.ui.menu,name:tms.menu_tms_myhasreceived_applyinfo_manager
-msgid "My HasReceived Applyinfos"
-msgstr ""
-
-#. module: tms
-#: selection:tms.applyinfo,state:0
-msgid "UnReceived"
+#: view:tms.applyinfo:0
+msgid "Remove"
 msgstr ""
 
 #. module: tms
@@ -831,25 +962,14 @@ msgid "Send Product"
 msgstr ""
 
 #. module: tms
-#: field:tms.store,storenum:0
-msgid "Store num"
+#: view:tms.feeforproduct:0
+msgid "Search FeeForProduct"
 msgstr ""
 
-
 #. module: tms
-#: field:tms.applyinfoitem,name:0
-#: field:tms.feebase,remark:0
-#: field:tms.feeforitservice,remark:0
-#: field:tms.feeforother,remark:0
-#: view:tms.feeforproduct:0
-#: field:tms.feeforproduct,remark:0
-#: field:tms.feeforproductit,remark:0
-#: view:tms.feeforsend:0
-#: field:tms.feeforsend,remark:0
-#: field:tms.feetype,remark:0
-#: field:tms.sendcompany,remark:0
-#: field:tms.store,remark:0
-msgid "Remark"
+#: field:tms.applyinfo,applyinfoitem_ids:0
+#: field:tms.stopandmoveapplyinfo,applyinfoitem_ids:0
+msgid "ApplyInfo Items"
 msgstr ""
 
 #. module: tms
@@ -865,6 +985,7 @@ msgstr ""
 
 #. module: tms
 #: field:tms.applyinfo,mobile:0
+#: field:tms.stopandmoveapplyinfo,mobile:0
 msgid "mobile"
 msgstr ""
 
@@ -903,6 +1024,12 @@ msgid "States"
 msgstr ""
 
 #. module: tms
+#: view:tms.feeforother:0
+msgid "/>"
+msgstr ""
+
+#. module: tms
 #: field:tms.store,netuserpass:0
 msgid "Net User pwd"
 msgstr ""
+

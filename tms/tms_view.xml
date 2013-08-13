@@ -194,6 +194,7 @@
                             <field name="telephone"/>
                             <field name="mobile"/>
                             <field name="address"/>
+							<field name="applyinfotype"/>
                         </group>
                         <group col="4" string="Content">
                             <field name="content" colspan="4"  nolabel="1" />
@@ -235,7 +236,6 @@
                     <field name="province"/>
                     <field name="storenum"/>
                     <field name="accountperiod"/>
-                    <field name="feetype_id"/>
                     <field name="feedate"/>
                     <field name="payman"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
@@ -257,11 +257,9 @@
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
-                            <field name="feetype_id"/>
                             <field name="payman"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>/>
                             <field name="accountamount"/>
-							<field name="state"/>
                         </group>
                         <group col="4" string="Remark">
                             <field name="remark" colspan="4"  nolabel="1" />
@@ -282,7 +280,6 @@
                     <field name="province"/>
                     <field name="storenum"/>
                     <field name="accountperiod"/>
-                    <field name="feetype_id"/>
                     <field name="feedate"/>
                     <field name="payman"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
@@ -304,7 +301,6 @@
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
-                            <field name="feetype_id"/>
                             <field name="payman"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
                             <field name="accountamount"/>
@@ -328,7 +324,6 @@
                     <field name="province"/>
                     <field name="storenum"/>
                     <field name="accountperiod"/>
-                    <field name="feetype_id"/>
                     <field name="feedate"/>
                     <field name="payman"/>
                     <field name="amount" sum="Account" groups="tms.group_tms_fee_finance"/>
@@ -350,7 +345,6 @@
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
-                            <field name="feetype_id"/>
                             <field name="payman"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
                             <field name="accountamount"/>
@@ -388,7 +382,6 @@
                     <field name="province"/>
                     <field name="storenum"/>
                     <field name="accountperiod"/>
-                    <field name="feetype_id"/>
                     <field name="feedate"/>
                     <field name="payman"/>
                     <field name="amount" sum="Account" groups="tms.group_tms_fee_finance"/>
@@ -410,7 +403,6 @@
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="accountperiod"/>
-                            <field name="feetype_id"/>
                             <field name="feedate"/>
                             <field name="payman"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
@@ -453,7 +445,6 @@
                     <field name="province"/>
                     <field name="storenum"/>
                     <field name="feedate"/>
-                    <field name="feetype_id"/>
                     <field name="payman"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount"/>
@@ -477,7 +468,6 @@
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
-                            <field name="feetype_id"/>
                             <field name="payman"/>
 						</group>
 						<group col="4">
@@ -509,7 +499,6 @@
                     <field name="province"/>
                     <field name="storenum"/>
                     <field name="feedate"/>
-                    <field name="feetype_id"/>
                     <field name="payman"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount"/>
@@ -533,7 +522,6 @@
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
-                            <field name="feetype_id"/>
                             <field name="payman"/>
 						</group>
 						<group col="4">
