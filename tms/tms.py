@@ -116,7 +116,7 @@ class ApplyInfo(osv.osv):
     _columns = {
         "user_id":fields.many2one("res.users",string="Add Man"),
         "processid":fields.char(string="ProcessId",size=100,required=False),
-        "store_id":fields.many2one("tms.store",string="Sotre"),
+        "store_id":fields.many2one("tms.store",string="Sotre",required=True),
         "province":fields.function(get_province_name,type="char",string="Province"),
         "storenum":fields.related("store_id","storenum",type="char",string="Store Num"),
         "telephone":fields.related("store_id","telephone",type="char",string="telephone"),
