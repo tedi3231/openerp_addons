@@ -390,6 +390,7 @@
 					<group expand="0" string="Group By...">
 						<filter name="groupby_province" string="Province" domain="[]" context="{'group_by':'province'}"/>
 						<filter name="groupby_state" string="State" domain="[]" context="{'group_by':'state'}"/>
+						<filter name="groupby_oanum" string="OANum" domain="[]" context="{'group_by':'oanum'}"/>
 					</group>
 				</search>	
 			</field>
@@ -463,6 +464,7 @@
 					<group expand="0" string="Group By...">
 						<filter name="groupby_province" string="Province" domain="[]" context="{'group_by':'province'}"/>
 						<filter name="groupby_state" string="State" domain="[]" context="{'group_by':'state'}"/>
+						<filter name="groupby_oanum" string="OANum" domain="[]" context="{'group_by':'oanum'}"/>
 					</group>
 				</search>	
 			</field>
