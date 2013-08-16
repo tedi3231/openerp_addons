@@ -303,7 +303,7 @@ class FeeBase(osv.osv):
         model_id = context["active_model"]
         model=self.pool.get(model_id)
         items = model.browse(cr,uid,ids,context=context)
-        if any([item.state!=oldstate for item in items]):
+        if targetstate!='hasback' and any([item.state!=oldstate for item in items]):
             raise osv.except_osv(_('Operation Canceld'),_('Only '+oldstate+' fee can be exported!'))
         for item in items: 
             model.write(cr,uid,item.id,{"state":targetstate})
