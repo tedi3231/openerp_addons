@@ -9,7 +9,7 @@ class tms_wizard_oa(osv.osv_memory):
     _columns = {
         "feebase_ids":fields.one2many("tms.wizard.item", "wizard_id", string="Wizard"),
         'oanum': fields.char(string='OANum',size=50, required=True),
-        'feetype':fields.char(string="Feetype",size=100,)
+        'feetype':fields.char(string="Feetype",size=100,readonly=True)
     }
     
     def _check_fee_state(self,cr,uid,ids,oldstate,targetstate,context=None):
@@ -49,8 +49,13 @@ class tms_wizard_oa(osv.osv_memory):
         feebase=self.pool.get(active_model)
         products = feebase.browse(cr,uid,feeids,context=context)
         selecteditems=dict([(item.state,item.id) for item in products])
-        if not selecteditems or len(selecteditems)!=1 or not selecteditems.get('hasexported',False):
+
+        if any([item.state!='hasexported' for item in products]):
             raise osv.except_osv(_('Operation Canceld'),_('Only hasexported fee can be set oa num!'))
+
+        if sum([item.accountamount for item in products])>2000:
+            raise osv.except_osv(_('Operation Canceld'),_('Must be less than 2000!'))
+
         for id in feeids:
             feebase.write(cr,uid,id,{"state":"hasoa","oanum":wizard.oanum})
         return True
