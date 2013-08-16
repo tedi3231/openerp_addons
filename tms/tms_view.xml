@@ -380,8 +380,16 @@
 					<field name="storenum"/>
 					<field name="store_id"/>
 					<field name="province"/>
+					<field name="oanum"/>
+					<group expand="0" string="Filter">
+						<filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+						<filter name="hasexported" string="Has Exported" domain="[('state','=','hasexported')]"/>
+						<filter name="hasoa" string="Has Input OANum" domain="[('state','=','hasoa')]"/>
+						<filter name="hasoa" string="Has Back" domain="[('state','=','hasback')]"/>
+					</group>
 					<group expand="0" string="Group By...">
 						<filter name="groupby_province" string="Province" domain="[]" context="{'group_by':'province'}"/>
+						<filter name="groupby_state" string="State" domain="[]" context="{'group_by':'state'}"/>
 					</group>
 				</search>	
 			</field>
@@ -393,16 +401,18 @@
             <field name="arch" type="xml">
                 <tree string="FeeBases">
                     <field name="processid"/>
-                    <field name="store_id" />
-                    <field name="province"/>
-                    <field name="storenum"/>
                     <field name="accountperiod"/>
                     <field name="feedate"/>
-                    <field name="payman"/>
+                    <field name="province"/>
+                    <field name="store_id" />
+                    <field name="storenum"/>
+                    <field name="sendproduct"/>
+                    <field name="sendcompany"/>
+                    <field name="sendordernum"/>
                     <field name="amount" sum="Account" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount" />
-					<field name="state"/>
 					<field name="oanum"/>
+					<field name="state"/>
                 </tree>
             </field>
         </record>
@@ -419,7 +429,7 @@
                             <field name="storenum"/>
                             <field name="accountperiod"/>
                             <field name="feedate"/>
-                            <field name="payman"/>
+                            <field name="payman" groups="tms.group_tms_fee_finance"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
                             <field name="accountamount"/>
 							<field name="sendcompany"/>
@@ -443,8 +453,16 @@
 					<field name="storenum"/>
 					<field name="store_id"/>
 					<field name="province"/>
+					<field name="oanum"/>
+					<group expand="0" string="Filter">
+						<filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+						<filter name="hasexported" string="Has Exported" domain="[('state','=','hasexported')]"/>
+						<filter name="hasoa" string="Has Input OANum" domain="[('state','=','hasoa')]"/>
+						<filter name="hasoa" string="Has Back" domain="[('state','=','hasback')]"/>
+					</group>
 					<group expand="0" string="Group By...">
 						<filter name="groupby_province" string="Province" domain="[]" context="{'group_by':'province'}"/>
+						<filter name="groupby_state" string="State" domain="[]" context="{'group_by':'state'}"/>
 					</group>
 				</search>	
 			</field>
@@ -456,15 +474,19 @@
             <field name="arch" type="xml">
                 <tree string="FeeForProduct Manager">
                     <field name="processid"/>
-                    <field name="store_id" />
+					<field name="accountperiod"/>
+					<field name="feedate"/>
                     <field name="province"/>
+                    <field name="store_id" />
                     <field name="storenum"/>
-                    <field name="feedate"/>
-                    <field name="payman"/>
+					<field name="productname"/>
+					<field name="producttype"/>
+					<field name="productprice"/>
+					<field name="productcount"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount"/>
-					<field name="state"/>
 					<field name="oanum"/>
+					<field name="state"/>
                 </tree>
             </field>
         </record>
@@ -478,16 +500,19 @@
 						<!--<group col="4">
 							<field name="store_id"/>
 						</group>-->
-						<group col="4">
+						<group col="4" string="Base Info">
 							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
-                            <field name="payman"/>
+						</group>
+						<group col="4" colspan="4">
+							<field name="productname"/>
+						</group>	
+						<group col="4" colspan="4">
+							<field name="producttype"/>
 						</group>
 						<group col="4">
-							<field name="productname"/>
-							<field name="producttype"/>
 							<field name="productprice" groups="tms.group_tms_fee_finance" on_change="on_change_productaccount(productcount,productprice)"/>
 							<field name="productcount" groups="tms.group_tms_fee_finance" on_change="on_change_productaccount(productcount,productprice)"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
@@ -537,7 +562,7 @@
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
-                            <field name="payman"/>
+                            <field name="payman" groups="tms.group_tms_fee_finance"/>
 						</group>
 						<group col="4">
 							<field name="productname"/>
