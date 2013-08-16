@@ -86,10 +86,10 @@
 				<search string="Search Sotre">
 					<field name="storenum"/>
 					<field name="store_id"/>
-					<!--<field name="province"/>-->
-					<!--<group expand="0" string="Group By...">
-						<filter string="Province" domain="[]" context="{'group_by':'province_id'}"/>
-					</group>-->
+					<field name="province"/>
+					<group expand="0" string="Group By...">
+						<filter string="Province" domain="[]" context="{'group_by':'province'}"/>
+					</group>
 				</search>	
 			</field>
 		</record>
@@ -123,14 +123,13 @@
             <field name="arch" type="xml">
                 <form string="Applyinfo" version="7.0">
                     <sheet>
-                        <separator string="Workflow actions" colspan="4"/>
                         <group col="4">
                             <field name="state" invisible="1"/>
                             <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_fee_finance"/>
                             <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_fee_finance" />
                             <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_accout"/>
                         </group>
-                        <group col="4">
+                        <group col="4" string="Base Info">
 							<field name="store_id" on_change="on_change_store(store_id)" context="{'display_widget':'dropdownlist'}"/>
                             <field name="province"/>
                             <field name="storenum"/>
@@ -154,6 +153,20 @@
             </field>
         </record>
 
+		<record model="ir.ui.view" id="view_tms_stopandmoveapplyinfo_filter">
+			<field name="name">tms.stopandmoveapplyinfo.filter</field>
+			<field name="model">tms.stopandmoveapplyinfo</field>
+			<field name="arch" type="xml">
+				<search string="Search Sotre">
+					<field name="storenum"/>
+					<field name="store_id"/>
+					<field name="province"/>
+					<group expand="0" string="Group By...">
+						<filter string="Province" domain="[]" context="{'group_by':'province'}"/>
+					</group>
+				</search>	
+			</field>
+		</record>
         <record model="ir.ui.view" id="view_tms_stopandmoveapplyinfo_tree">
             <field name="name">tms.stopandmoveapplyinfo.tree</field>
             <field name="model">tms.stopandmoveapplyinfo</field>
@@ -167,7 +180,8 @@
                     <field name="contactperson"/>
                     <field name="telephone"/>
                     <field name="content"/>
-                    <field name="state"/>
+					<field name="applyinfotype"/>
+					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="gtk-remove"/> 
                 </tree>
             </field>
         </record>
@@ -178,23 +192,24 @@
             <field name="arch" type="xml">
                 <form string="Stop And Move Applyinfo" version="7.0">
                     <sheet>
-                        <separator string="Workflow actions" colspan="4"/>
                         <group col="4">
                             <field name="state" invisible="1"/>
                             <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_fee_finance"/>
                             <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_fee_finance" />
                             <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_accout"/>
                         </group>
-                        <group col="4">
-							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
-                            <field name="province"/>
-                            <field name="storenum"/>
-                            <field name="contactperson"/>
-                            <field name="telephone"/>
-                            <field name="mobile"/>
-                            <field name="address"/>
+                        <group col="4" string="Base Info">
 							<field name="applyinfotype"/>
-                        </group>
+							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
+                            <field name="storenum"/>
+                            <field name="province"/>
+                            <field name="telephone"/>
+                            <field name="contactperson"/>
+                            <field name="mobile"/>
+						</group>
+						<group colspan="4" col="4">
+							<field name="address" colspan="4"/>
+						</group>
                         <group col="4" string="Content">
                             <field name="content" colspan="4"  nolabel="1" />
                         </group>

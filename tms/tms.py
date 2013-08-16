@@ -33,7 +33,7 @@ class Store(osv.osv):
     _columns = {
         "name":fields.char(string="Store Name", required=True, size=200),
         "storenum":fields.char(string="Store num", required=True, size=100),
-        "province_id":fields.many2one("res.country.state", string="Province",required=True),
+        "province_id":fields.many2one("res.country.state", string="Province",store=True,required=True),
         "address":fields.char(string="Address", size=200),
         "contactperson":fields.char(string="Contact Person", size=100),
         "telephone":fields.char(string="Telephone", size=50),
@@ -117,7 +117,7 @@ class ApplyInfo(osv.osv):
         "user_id":fields.many2one("res.users",string="Add Man"),
         "processid":fields.char(string="ProcessId",size=100,required=False),
         "store_id":fields.many2one("tms.store",string="Sotre",required=True),
-        "province":fields.function(get_province_name,type="char",string="Province"),
+        "province":fields.function(get_province_name,type="char",string="Province",store=True),
         "storenum":fields.related("store_id","storenum",type="char",string="Store Num"),
         "telephone":fields.related("store_id","telephone",type="char",string="telephone"),
         "mobile":fields.related("store_id","mobile",type="char",string="mobile"),
@@ -176,7 +176,10 @@ class StopAndMoveApplyInfo(osv.osv):
     _inherit="tms.applyinfo"
 
     _columns={
-        "applyinfotype":fields.selection([("move","Move"),("offnet","Off Net"),("powercut","Power Cut")],string="ApplyInfo Type",required=True)
+        "applyinfotype":fields.selection([("move","Move"),("offnet","Off Net"),("powercut","Power Cut"),
+                                          ("govermentcheck","Goverment Check"),("duetoeletricity","Due to electricity"),
+                                          ("duetonet","Due to net"),("duetohouse","Due to House"),("other","Other")
+                                         ],string="ApplyInfo Type",required=True)
     }
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
