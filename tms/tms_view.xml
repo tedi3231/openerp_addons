@@ -108,7 +108,6 @@
                     <field name="content"/>
 					<field name="state"/>
 					<field name="user_id"/>
-					<!--<button name="edit" type="object" string="Edit" icon="gtk-edit"/>--> 
 					<button name="unlink" type="object" string="Remove" states="unreceived,draft" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="gtk-remove"/> 
 					<button name="applyinfo_hasreceived" type="object" string="Received" states="unreceived" groups="tms.group_tms_fee_finance" icon="gtk-apply"/> 
 					<button name="applyinfo_hasdone" type="object" string="HasDone" states="hasreceived" groups="tms.group_tms_fee_finance" icon="gtk-apply"/> 
@@ -179,8 +178,9 @@
                     <field name="province"/>
                     <field name="contactperson"/>
                     <field name="telephone"/>
-                    <field name="content"/>
+					<field name="content" width="50" />
 					<field name="applyinfotype"/>
+					<field name="user_id"/>
 					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="gtk-remove"/> 
                 </tree>
             </field>
@@ -252,7 +252,7 @@
                     <field name="storenum"/>
                     <field name="accountperiod"/>
                     <field name="feedate"/>
-                    <field name="payman"/>
+					<field name="payman" groups="tms.group_tms_fee_finance"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance"/>
 					<field name="state"/>
@@ -272,7 +272,7 @@
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
-                            <field name="payman"/>
+                            <field name="payman" groups="tms.group_tms_fee_finance"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>/>
                             <field name="accountamount"/>
                         </group>
@@ -296,9 +296,9 @@
                     <field name="storenum"/>
                     <field name="accountperiod"/>
                     <field name="feedate"/>
-                    <field name="payman"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount" />
+                    <field name="payman" groups="tms.group_tms_fee_finance"/>
                     <field name="state"/>
                     <field name="oanum"/>
                 </tree>
@@ -316,7 +316,7 @@
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
-                            <field name="payman"/>
+                            <field name="payman" groups="tms.group_tms_fee_finance"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
                             <field name="accountamount"/>
                         </group>
@@ -328,6 +328,20 @@
             </field>
         </record>
         <!-- feebase info start -->
+		<record model="ir.ui.view" id="view_tms_feebase_filter">
+			<field name="name">tms.feebase.filter</field>
+			<field name="model">tms.feebase</field>
+			<field name="arch" type="xml">
+				<search string="Search FeeBase">
+					<field name="storenum"/>
+					<field name="store_id"/>
+					<field name="oanum"/>
+					<group expand="0" string="Group By...">
+						<filter string="Province" domain="[]" context="{'group_by':'province'}"/>
+					</group>
+				</search>	
+			</field>
+		</record>
         <record model="ir.ui.view" id="view_tms_feebase_tree">
             <field name="name">tms.feebase.tree</field>
             <field name="model">tms.feebase</field>
@@ -340,10 +354,8 @@
                     <field name="storenum"/>
                     <field name="accountperiod"/>
                     <field name="feedate"/>
-                    <field name="payman"/>
+                    <field name="payman" groups="tms.group_tms_fee_finance"/>
                     <field name="amount" sum="Account" groups="tms.group_tms_fee_finance"/>
-                    <field name="accountamount" sum="Account Amount"/>
-					<field name="state"/>
 					<field name="oanum"/>
                 </tree>
             </field>
@@ -360,7 +372,7 @@
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
-                            <field name="payman"/>
+                            <field name="payman" groups="tms.group_tms_fee_finance"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
                             <field name="accountamount"/>
                         </group>
@@ -403,13 +415,13 @@
                 <tree string="FeeBases">
                     <field name="processid"/>
                     <field name="accountperiod"/>
-                    <field name="feedate"/>
                     <field name="province"/>
                     <field name="store_id" />
                     <field name="storenum"/>
                     <field name="sendproduct"/>
                     <field name="sendcompany"/>
                     <field name="sendordernum"/>
+					<field name="payman" groups="tms.group_tms_fee_finance"/>
                     <field name="amount" sum="Account" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount" />
 					<field name="oanum"/>
@@ -477,14 +489,13 @@
                 <tree string="FeeForProduct Manager">
                     <field name="processid"/>
 					<field name="accountperiod"/>
-					<field name="feedate"/>
-                    <field name="province"/>
+                    <field name="province" width="50"/>
                     <field name="store_id" />
                     <field name="storenum"/>
-					<field name="productname"/>
-					<field name="producttype"/>
+					<field name="productname" width="30"/>
 					<field name="productprice"/>
 					<field name="productcount"/>
+					<field name="payman" groups="tms.group_tms_fee_finance"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount"/>
 					<field name="oanum"/>
@@ -499,19 +510,17 @@
             <field name="arch" type="xml">
                 <form string="FeeForProduct Manager" version="7.0">
                     <sheet>
-						<!--<group col="4">
-							<field name="store_id"/>
-						</group>-->
 						<group col="4" string="Base Info">
 							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
+							<field name="state"/>
 						</group>
-						<group col="4" colspan="4">
+						<group col="4">
 							<field name="productname"/>
 						</group>	
-						<group col="4" colspan="4">
+						<group col="4">
 							<field name="producttype"/>
 						</group>
 						<group col="4">
@@ -541,7 +550,7 @@
                     <field name="province"/>
                     <field name="storenum"/>
                     <field name="feedate"/>
-                    <field name="payman"/>
+                    <field name="payman" groups="tms.group_tms_fee_finance"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount"/>
 					<field name="state"/>

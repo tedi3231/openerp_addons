@@ -37,6 +37,7 @@
         'tms_view.xml',
          'wizard/tms_wizard_oa_view.xml',
     ],
+    'css':['static/src/css/tms.css'],
     'installable': True,
     'auto_install': False,
 }
