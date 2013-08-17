@@ -328,7 +328,7 @@ class FeeBase(osv.osv):
         "processid":fields.char(string="ProcessId",size=100,required=False),        
         "feedate":fields.date(string="Fee Date"),
         "store_id":fields.many2one("tms.store",string="Store"),
-        "storenum":fields.related("store_id","name",type="char",string="Store Num"),
+        "storenum":fields.related("store_id","storenum",type="char",string="Store Num"),
         "province":fields.function(get_province_name,type="char",string="Province",store=True),
         "feetype_id":fields.many2one("tms.feetype","Fee Type"),
         "payman":fields.many2one("res.users","Pay Man"),
