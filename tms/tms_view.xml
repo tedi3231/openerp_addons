@@ -349,14 +349,13 @@
             <field name="arch" type="xml">
                 <tree string="FeeBase Manager">
                     <field name="processid"/>
-                    <field name="store_id" />
-                    <field name="province"/>
-                    <field name="storenum"/>
-                    <field name="accountperiod"/>
                     <field name="feedate"/>
-                    <field name="payman" groups="tms.group_tms_fee_finance"/>
+                    <field name="province"/>
+                    <field name="store_id" />
+                    <field name="storenum"/>
+                    <field name="remark"/>
                     <field name="amount" sum="Account" groups="tms.group_tms_fee_finance"/>
-					<field name="oanum"/>
+                    <field name="payman" groups="tms.group_tms_fee_finance"/>
                 </tree>
             </field>
         </record>
@@ -372,9 +371,11 @@
                             <field name="province"/>
                             <field name="storenum"/>
                             <field name="feedate"/>
-                            <field name="payman" groups="tms.group_tms_fee_finance"/>
+                            <field name="accountperiod" colspan="4"/>
+                            <field name="payman" colspan="4" groups="tms.group_tms_fee_finance"/>
+							<field name="feecontent"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
-                            <field name="accountamount"/>
+							<!--<field name="accountamount"/>-->
                         </group>
                         <group col="4" string="Remark">
                             <field name="remark" colspan="4"  nolabel="1" />

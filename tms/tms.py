@@ -337,6 +337,7 @@ class FeeBase(osv.osv):
         "accountamount":fields.float(string="Account Amount"),
         "accountperiod":fields.char(string="Account Period", size=20,required=False),
         "oanum":fields.char(string="OA Num",size=100),
+        "feecontent":fields.char(string="Fee Content",size=100),
         "remark":fields.text(string="Remark"),
         "state":fields.selection([("draft","Draft"),("hasexported","Has Exported"),("hasoa","Has Input OANum"),("hasback","Has Back")],
                                  string="States"),
@@ -346,7 +347,8 @@ class FeeBase(osv.osv):
     _defaults={
         "feedate":lambda self,cr,uid,context:datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "payman":lambda self,cr,uid,context:uid,
-        "state":lambda self,cr,uid,context:'draft'
+        "state":lambda self,cr,uid,context:'draft',
+        "feecontent":lambda self,cr,uid,context:'上门服务费',
     }
 FeeBase()
 
