@@ -40,5 +40,6 @@
     'css':['static/src/css/tms.css'],
     'installable': True,
     'auto_install': False,
+    'sequence':150,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -28,6 +28,21 @@ msgid "TMS"
 msgstr "托码思"
 
 #. module: tms
+#: field:tms.feebase,applyprocessid:0
+#: field:tms.feeforitservice,applyprocessid:0
+#: field:tms.feeforother,applyprocessid:0
+#: field:tms.feeforproduct,applyprocessid:0
+#: field:tms.feeforproductit,applyprocessid:0
+#: field:tms.feeforsend,applyprocessid:0
+#: view:tms.feeforother:0
+#: view:tms.feeforproduct:0
+#: view:tms.feeforsend:0
+#: view:tms.feebase:0
+#: view:tms.feeforitservice:0
+msgid "Applyinfo Num"
+msgstr "报修单号"
+
+#. module: tms
 #: field:tms.feebase,accountperiod:0
 #: field:tms.feeforitservice,accountperiod:0
 #: field:tms.feeforother,accountperiod:0
@@ -209,6 +224,7 @@ msgstr "已完成"
 #: view:tms.feeforproductit:0
 #: field:tms.feeforproductit,amount:0
 #: field:tms.feeforsend,amount:0
+#: view:tms.feeforsend:0
 msgid "Amount"
 msgstr "金额"
 
@@ -364,6 +380,8 @@ msgstr "IT服务费登记"
 
 #. module: tms
 #: field:tms.feeforproduct,producttype:0
+#: field:tms.feeforproductit,producttype:0
+#: view:tms.feeforproductit:0
 msgid "Product Type"
 msgstr "产品类型"
 
@@ -531,7 +549,7 @@ msgstr "维护费对账"
 #: selection:tms.feeforsend,state:0
 #: selection:tms.stopandmoveapplyinfo,state:0
 msgid "Draft"
-msgstr "草稿"
+msgstr "已登记"
 
 #. module: tms
 #: view:tms.store:0
@@ -812,6 +830,10 @@ msgstr "搜索门店"
 
 #. module: tms
 #: view:tms.feebase:0
+#: view:tms.feeforother:0
+#: view:tms.feeforproduct:0
+#: view:tms.feeforproductit:0
+#: view:tms.feeforitservice:0
 msgid "Base Info"
 msgstr "基本信息"
 

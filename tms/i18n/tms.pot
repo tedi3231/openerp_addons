@@ -28,6 +28,21 @@ msgid "TMS"
 msgstr ""
 
 #. module: tms
+#: field:tms.feebase,applyprocessid:0
+#: field:tms.feeforitservice,applyprocessid:0
+#: field:tms.feeforother,applyprocessid:0
+#: field:tms.feeforproduct,applyprocessid:0
+#: field:tms.feeforproductit,applyprocessid:0
+#: field:tms.feeforsend,applyprocessid:0
+#: view:tms.feeforother:0
+#: view:tms.feeforproduct:0
+#: view:tms.feeforsend:0
+#: view:tms.feebase:0
+#: view:tms.feeforitservice:0
+msgid "Applyinfo Num"
+msgstr ""
+
+#. module: tms
 #: field:tms.feebase,accountperiod:0
 #: field:tms.feeforitservice,accountperiod:0
 #: field:tms.feeforother,accountperiod:0
@@ -209,6 +224,7 @@ msgstr ""
 #: view:tms.feeforproductit:0
 #: field:tms.feeforproductit,amount:0
 #: field:tms.feeforsend,amount:0
+#: view:tms.feeforsend:0
 msgid "Amount"
 msgstr ""
 
@@ -364,6 +380,8 @@ msgstr ""
 
 #. module: tms
 #: field:tms.feeforproduct,producttype:0
+#: field:tms.feeforproductit,producttype:0
+#: view:tms.feeforproductit:0
 msgid "Product Type"
 msgstr ""
 
@@ -821,6 +839,10 @@ msgstr ""
 
 #. module: tms
 #: view:tms.feebase:0
+#: view:tms.feeforother:0
+#: view:tms.feeforproduct:0
+#: view:tms.feeforproductit:0
+#: view:tms.feeforitservice:0
 msgid "Base Info"
 msgstr ""
 
