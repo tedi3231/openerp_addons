@@ -476,7 +476,7 @@
 						<filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
 						<filter name="hasexported" string="Has Exported" domain="[('state','=','hasexported')]"/>
 						<filter name="hasoa" string="Has Input OANum" domain="[('state','=','hasoa')]"/>
-						<filter name="hasoa" string="Has Back" domain="[('state','=','hasback')]"/>
+						<filter name="hasback" string="Has Back" domain="[('state','=','hasback')]"/>
 					</group>
 					<group expand="0" string="Group By...">
 						<filter name="groupby_province" string="Province" domain="[]" context="{'group_by':'province'}"/>
@@ -543,6 +543,25 @@
             </field>
         </record>
 		
+		<record model="ir.ui.view" id="view_tms_feeforproductit_filter">
+			<field name="name">tms.feeforproductit.filter</field>
+			<field name="model">tms.feeforproductit</field>
+			<field name="arch" type="xml">
+				<search string="Search FeeForProductIT">
+					<field name="store_id"/>
+					<field name="province"/>
+					<field name="storenum"/>
+					<group expand="0" string="Filter">
+						<filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+						<filter name="hasback" string="Has Back" domain="[('state','=','hasback')]"/>
+					</group>
+					<group expand="0" string="Group By...">
+						<filter name="groupby_province" string="Province" domain="[]" context="{'group_by':'province'}"/>
+						<filter name="groupby_state" string="State" domain="[]" context="{'group_by':'state'}"/>
+					</group>
+				</search>	
+			</field>
+		</record>
 		<record model="ir.ui.view" id="view_tms_feeforproductit_tree">
             <field name="name">tms.feeforproductit.tree</field>
             <field name="model">tms.feeforproductit</field>
@@ -550,15 +569,16 @@
             <field name="arch" type="xml">
                 <tree string="FeeForProductIT Manager">
                     <field name="processid"/>
-                    <field name="store_id" />
-                    <field name="province"/>
-                    <field name="storenum"/>
                     <field name="feedate"/>
-                    <field name="payman" groups="tms.group_tms_fee_finance"/>
+                    <field name="province"/>
+                    <field name="store_id" />
+                    <field name="storenum"/>
+					<field name="productname"/>
+					<field name="producttype"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount"/>
 					<field name="state"/>
-					<field name="oanum"/>
+                    <field name="payman" groups="tms.group_tms_fee_finance"/>
                 </tree>
             </field>
         </record>
@@ -572,21 +592,24 @@
 						<!--<group col="4">
 							<field name="store_id"/>
 						</group>-->
-						<group col="4">
+						<group col="4" string="Base Info">
 							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
-                            <field name="payman" groups="tms.group_tms_fee_finance"/>
-						</group>
-						<group col="4">
+                            <field name="accountperiod" colspan="4"/>
+                            <field name="payman" colspan="4" groups="tms.group_tms_fee_finance"/>
 							<field name="productname"/>
+							<field name="producttype"/>
+						</group>
+						<group col="4" string="Amount">
 							<field name="productprice" groups="tms.group_tms_fee_finance" on_change="on_change_productaccount(productcount,productprice)"/>
 							<field name="productcount" groups="tms.group_tms_fee_finance" on_change="on_change_productaccount(productcount,productprice)"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
 							<field name="accountproductprice"  on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
 							<field name="accountproductcount" on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
                             <field name="accountamount"/>
+							<field name="state" colspan="4"/>
                         </group>
                         <group col="4" string="Purpose">
                             <field name="remark" colspan="4"  nolabel="1" />
@@ -845,7 +868,7 @@
             <field name="res_model">tms.feeforproductit</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>            
-            <field name="domain">[('state','not in',('',))]</field>
+			<!--<field name="domain">[('state','not in',('',))]</field>-->
         </record>
         <!-- 财务中心动作结束 -->
 

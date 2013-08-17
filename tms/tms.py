@@ -418,6 +418,7 @@ class FeeForProductIt(osv.osv):
         }
     _columns={
         "productname":fields.char(string="Product Name",size=200),
+        "producttype":fields.char(string="Product Type",size=200),
         "productprice":fields.float(string="Product Price",groups="tms.group_tms_fee_finance"),
         "productcount":fields.integer(string="Product Count",groups="tms.group_tms_fee_finance"),
         "accountproductprice":fields.integer(string="Account Product Price",groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance"),
