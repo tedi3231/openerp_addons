@@ -326,6 +326,7 @@ class FeeBase(osv.osv):
 
     _columns={
         "processid":fields.char(string="ProcessId",size=100,required=False),        
+        "applyprocessid":fields.char(string="ApplyInfo Num",size=100,required=False),
         "feedate":fields.date(string="Fee Date"),
         "store_id":fields.many2one("tms.store",string="Store"),
         "storenum":fields.related("store_id","storenum",type="char",string="Store Num"),

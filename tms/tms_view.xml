@@ -414,6 +414,7 @@
             <field name="arch" type="xml">
                 <tree string="FeeBases">
                     <field name="processid"/>
+                    <field name="applyprocessid"/>
                     <field name="accountperiod"/>
                     <field name="province"/>
                     <field name="store_id" />
@@ -436,18 +437,21 @@
             <field name="arch" type="xml">
                 <form string="FeeForSend Manager" version="7.0">
                     <sheet string="Fee">
-                        <group col="4">
+                        <group col="4" string="Base Info">
 							<field name="store_id" context="{'display_widget':'dropdownlist'}" on_change="on_change_store(store_id)"/>
                             <field name="province"/>
                             <field name="storenum"/>
-                            <field name="accountperiod"/>
                             <field name="feedate"/>
-                            <field name="payman" groups="tms.group_tms_fee_finance"/>
-                            <field name="amount" groups="tms.group_tms_fee_finance"/>
-                            <field name="accountamount"/>
+                            <field name="accountperiod"/>
+                            <field name="applyprocessid"/>
+                            <field name="payman" colspan="4" groups="tms.group_tms_fee_finance"/>
+							<field name="sendproduct"/>
 							<field name="sendcompany"/>
 							<field name="sendordernum"/>
-							<field name="sendproduct"/>
+						</group>
+						<group col="4" string="Amount">
+                            <field name="amount" groups="tms.group_tms_fee_finance"/>
+                            <field name="accountamount"/>
                         </group>
                         <group col="4" string="Remark">
                             <field name="remark" colspan="4"  nolabel="1" />
@@ -463,9 +467,9 @@
 			<field name="model">tms.feeforproduct</field>
 			<field name="arch" type="xml">
 				<search string="Search FeeForProduct">
-					<field name="storenum"/>
 					<field name="store_id"/>
 					<field name="province"/>
+					<field name="storenum"/>
 					<field name="oanum"/>
 					<group expand="0" string="Filter">
 						<filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
@@ -488,6 +492,7 @@
             <field name="arch" type="xml">
                 <tree string="FeeForProduct Manager">
                     <field name="processid"/>
+                    <field name="applyprocessid"/>
 					<field name="accountperiod"/>
                     <field name="province" width="50"/>
                     <field name="store_id" />
@@ -515,15 +520,13 @@
 							<field name="province"/>
                             <field name="storenum" readonly="True"/>
                             <field name="feedate"/>
-							<field name="state"/>
-						</group>
-						<group col="4">
+							<field name="accountperiod"/>
+							<field name="applyprocessid"/>
+							<field name="payman" colspan="4" groups="tms.group_tms_fee_finance"/>
 							<field name="productname"/>
-						</group>	
-						<group col="4">
 							<field name="producttype"/>
 						</group>
-						<group col="4">
+						<group col="4" string="Amount">
 							<field name="productprice" groups="tms.group_tms_fee_finance" on_change="on_change_productaccount(productcount,productprice)"/>
 							<field name="productcount" groups="tms.group_tms_fee_finance" on_change="on_change_productaccount(productcount,productprice)"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
