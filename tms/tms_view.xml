@@ -825,7 +825,7 @@
             <field name="view_mode">tree,form</field>            
             <field name="domain">[('state','not in',('',))]</field>
 			<field name="search_view_id" ref="view_tms_feeforsend_filter"/>
-			<field name="context">{"search_default_groupby_province":True}</field>
+			<field name="context">{"search_default_groupby_province":True,"search_default_hasexported":True}</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproduct_tree_show">
             <field name="name">FeeForProduct Manager</field>
@@ -834,7 +834,7 @@
             <field name="view_mode">tree,form</field>            
             <field name="domain">[('state','not in',('',))]</field>
 			<field name="search_view_id" ref="view_tms_feeforproduct_filter"/>
-			<field name="context">{"search_default_groupby_province":True}</field>
+			<field name="context">{"search_default_groupby_province":True,"search_default_hasexported":True}</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproductit_tree_show">
             <field name="name">FeeForProductIT Manager</field>
