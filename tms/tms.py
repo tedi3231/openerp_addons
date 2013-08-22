@@ -181,7 +181,8 @@ class StopAndMoveApplyInfo(osv.osv):
         "applyinfotype":fields.selection([("move","Move"),("offnet","Off Net"),("powercut","Power Cut"),
                                           ("govermentcheck","Goverment Check"),("duetoeletricity","Due to electricity"),
                                           ("duetonet","Due to net"),("duetohouse","Due to House"),("other","Other")
-                                         ],string="ApplyInfo Type",required=True)
+                                         ],string="ApplyInfo Type",required=True),
+        "content":fields.text(string="Content",required=False),
     }
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
