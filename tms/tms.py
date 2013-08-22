@@ -33,7 +33,7 @@ class Store(osv.osv):
     _columns = {
         "name":fields.char(string="Store Name", required=True, size=200),
         "storenum":fields.char(string="Store num", required=True, size=100),
-        "province_id":fields.many2one("res.country.state", string="Province",store=True,required=True),
+        "province_id":fields.many2one("res.country.state", string="Province",store=True,required=True,domain=[('country_id','=',49)]),
         "address":fields.char(string="Address", size=200),
         "contactperson":fields.char(string="Contact Person", size=100),
         "telephone":fields.char(string="Telephone", size=50),
