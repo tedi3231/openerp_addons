@@ -45,6 +45,8 @@ class Store(osv.osv):
         "dynamicdomainaddress":fields.char(string="Dynamic Domain Address", size=100),
         "dynamicdomainotheraddress":fields.char(string="Domain Other Address", size=100),
         "peanutuserpass":fields.char(string="Peanut User pass", size=100),
+        "peanutdomain":fields.char(string="花生壳域名",size=100),
+        "peanutdomainaddress":fields.char(string="花生壳域名地址",size=100),
         "peanutvalidemail":fields.char(string="Peanut valid email", size=100),
         "peanutemailpass":fields.char(string="Peanut email pass", size=100),
         "poscdk":fields.char(string="POSCDK", size=200),
