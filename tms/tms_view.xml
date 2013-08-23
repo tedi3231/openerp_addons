@@ -942,7 +942,6 @@
         <menuitem id="menu_tms_myhasreceived_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="HasReceived Applyinfos" action="action_tms_myhasreceived_applyinfo_tree_show"/>
         <menuitem id="menu_tms_myhasdone_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="HasDone Applyinfos" action="action_tms_myhasdone_applyinfo_tree_show"/>
         <menuitem id="menu_tms_myhasconfirm_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="HasConfirm Applyinfos" action="action_tms_myhasconfirm_applyinfo_tree_show"/>
-        <menuitem id="menu_tms_moveandstopapplyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="Move And Stop Applyinfo" action="action_tms_moveandstopapplyinfo_tree_show"/>
         <!-- 厂商申报菜单结束 -->
 
         <!-- 门店管理 -->
