@@ -26,6 +26,21 @@
                 </tree>
             </field>
         </record>
+        <record model="ir.ui.view" id="paramlist_form">
+            <field name="name">bpm.paralist.form</field>
+            <field name="model">bpm.paramlist</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form edit="false" create="false" string="ParamList" version="7.0">
+					<header>
+						<button name="%(bpm.action_bpm_paramlist_form_show)d" type="action" string="Create" class="oe_hightlight"/>
+					</header>
+					<field name="name"/> 
+                    <field name="value" />
+                    <field name="sortnum"/>
+                </form>
+            </field>
+        </record>
         <record model="ir.ui.view" id="paramitem_form">
             <field name="name">bpm.paramitem.form</field>
             <field name="model">bpm.paramitem</field>
@@ -88,6 +103,13 @@
                     <field name="sex"/>
                 </xpath>
             </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_bpm_paramlist_form_show">
+            <field name="name">ParamLists</field>
+            <field name="res_model">bpm.paramlist</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[]</field>
         </record>
         <record model="ir.actions.act_window" id="action_bpm_paramlist_tree_show">
             <field name="name">ParamLists</field>
