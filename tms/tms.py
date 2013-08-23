@@ -304,12 +304,15 @@ class FeeBase(osv.osv):
 
     def export_data(self,cr,uid,ids,fields_to_export,context=None):
         print fields_to_export
-        if "accountamount" in fields_to_export:
-            fields_to_export.remove("accountamount")
-        if "accountproductprice" in fields_to_export:
-            fields_to_export.remove("accountproductprice")
-        if "accountproductcount" in fields_to_export:
-            fields_to_export.remove("accountproductcount")
+        print "User have tms.group_tms_fee_finance %s" % self.user_has_groups(cr,uid,"tms.group_tms_fee_finance",context)
+
+        if not self.user_has_groups(cr,uid,"tms.group_tms_fee_finance",context):
+            if "accountamount" in fields_to_export:
+                fields_to_export.remove("accountamount")
+            if "accountproductprice" in fields_to_export:
+                fields_to_export.remove("accountproductprice")
+            if "accountproductcount" in fields_to_export:
+                fields_to_export.remove("accountproductcount")
         return super(FeeBase,self).export_data(cr,uid,ids,fields_to_export,context)
 
     def _check_fee_state(self,cr,uid,ids,oldstate,targetstate,context=None):
