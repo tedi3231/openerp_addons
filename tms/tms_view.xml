@@ -21,13 +21,14 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Stores">
-                    <field name="province_id"/>
+                    <field name="province_id" width="50"/>
                     <field name="name"/>
                     <field name="storenum"/>
                     <field name="contactperson" />
                     <field name="address"/>
                     <field name="telephone" />
                     <field name="mobile"/>
+					<field name="remark"/>
                 </tree>
             </field>
         </record>
@@ -51,16 +52,17 @@
                             <field name="telephone"/>
                             <field name="mobile"/>
                         </group>
-                        <group col="4" string="Network Information">
-                            <field name="netusername"/>
-                            <field name="netuserpass"/>
+                        <group col="6" string="Network Information">
+                            <field name="netusername" colspan="3"/>
+                            <field name="netuserpass" colspan="3"/>
                             <field name="dynamicdomain"/>
                             <field name="dynamicdomainpass"/>
                             <field name="dynamicdomainaddress"/>
-                            <field name="dynamicdomainotheraddress"/>
-                            <field name="peanutuserpass"/>
-                            <field name="peanutvalidemail" widget="email"/>
-                            <field name="peanutemailpass"/>
+                            <field name="peanutdomain"/>
+							<field name="peanutuserpass"/>
+							<field name="peanutdomainaddress"/>
+                            <field name="peanutvalidemail" colspan="3" widget="email"/>
+                            <field name="peanutemailpass" colspan="3"/>
                         </group>
 						<group col="4" string="POSCDK">
                             <field name="poscdk" nolabel="1" colspan="4"/>

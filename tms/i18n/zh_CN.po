@@ -625,7 +625,7 @@ msgstr "添加时间"
 #: selection:tms.applyinfo,state:0
 #: selection:tms.stopandmoveapplyinfo,state:0
 msgid "HasConfirm"
-msgstr "客户已确认"
+msgstr "已完成"
 
 #. module: tms
 #: model:res.groups,name:tms.group_tms_applyinfo_factory
@@ -782,7 +782,7 @@ msgstr "断网停电申报"
 #. module: tms
 #: model:ir.ui.menu,name:tms.menu_tms_myapplyinfo_manager
 msgid "My Applyinfos"
-msgstr "我的申报"
+msgstr "所有申报"
 
 #. module: tms
 #: field:tms.wizard.item,wizard_id:0
@@ -874,7 +874,7 @@ msgstr "你不是财务管理人员!"
 #: field:tms.feeforsend,processid:0
 #: field:tms.stopandmoveapplyinfo,processid:0
 msgid "ProcessId"
-msgstr "流程号"
+msgstr "流水号"
 
 #. module: tms
 #: field:tms.feebase,payman:0
@@ -1045,4 +1045,3 @@ msgstr "/>"
 #: field:tms.store,netuserpass:0
 msgid "Net User pwd"
 msgstr "网络密码"
-
