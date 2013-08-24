@@ -314,6 +314,13 @@ class FeeBase(osv.osv):
             if "productcount" in fields_to_export:
                 fields_to_export.remove("productcount")
         return super(FeeBase,self).export_data(cr,uid,ids,fields_to_export,context)
+    
+    def write(self,cr,uid,ids,values,context=None):
+        print "call write method,parammeter value is %s" % values
+        if not self.user_has_groups(cr,uid,"tms.group_tms_fee_finance",context):
+            if len(values)!=2 and sorted(values.keys())!=sorted(['oanum','state']):
+                raise osv.except_osv(_("Operation Canceld"),u"您没有修改的权限!")
+        return super(FeeBase,self).write(cr,uid,ids,values,context) 
 
     def _check_fee_state(self,cr,uid,ids,oldstate,targetstate,context=None):
         model_id = context["active_model"]
