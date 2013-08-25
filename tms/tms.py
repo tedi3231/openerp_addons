@@ -116,9 +116,9 @@ class ApplyInfo(osv.osv):
         return res
     
     def unlink(self,cr,uid,ids,context=None):
-        if self.user_has_groups(cr,uid,"tms.group_tms_applyinfo_factory",context):
+        childtypename = type(self).__name__
+        if childtypename!='tms.stopandmoveapplyinfo' and self.user_has_groups(cr,uid,"tms.group_tms_applyinfo_factory",context):
             applyinfo_state = set([item.state for item in self.browse(cr,uid,ids,context)])
-            print applyinfo_state
             if len(applyinfo_state)>1 or applyinfo_state.pop()!="unreceived":
                 raise osv.except_osv(_("Operation Canceld"),u"你只能删除未接收申报!")
         return super(ApplyInfo,self).unlink(cr,uid,ids,context)
