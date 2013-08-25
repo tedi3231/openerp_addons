@@ -183,7 +183,7 @@
 					<field name="content" width="50" />
 					<field name="applyinfotype"/>
 					<field name="user_id"/>
-					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="gtk-remove"/> 
+					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="terp-tms-remove"/> 
                 </tree>
             </field>
         </record>
