@@ -625,7 +625,7 @@ msgstr "添加时间"
 #: selection:tms.applyinfo,state:0
 #: selection:tms.stopandmoveapplyinfo,state:0
 msgid "HasConfirm"
-msgstr "已完成"
+msgstr "已确认"
 
 #. module: tms
 #: model:res.groups,name:tms.group_tms_applyinfo_factory
