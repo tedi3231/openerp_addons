@@ -110,10 +110,10 @@
                     <field name="content"/>
 					<field name="state"/>
 					<field name="user_id"/>
-					<button name="unlink" type="object" string="Remove" states="unreceived,draft" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="gtk-remove"/> 
-					<button name="applyinfo_hasreceived" type="object" string="Received" states="unreceived" groups="tms.group_tms_fee_finance" icon="gtk-apply"/> 
-					<button name="applyinfo_hasdone" type="object" string="HasDone" states="hasreceived" groups="tms.group_tms_fee_finance" icon="gtk-apply"/> 
-					<button name="applyinfo_hasconfirm" type="object" string="Confirm" states="hasdone" groups="tms.group_tms_fee_accout" icon="gtk-apply"/> 
+					<button name="unlink" type="object" string="Remove" states="unreceived,draft" icon="terp-tms-remove" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance"/> 
+					<button name="applyinfo_hasreceived" type="object" string="Received" states="unreceived" groups="tms.group_tms_fee_finance" icon="terp-tms-receive"/> 
+					<button name="applyinfo_hasdone" type="object" string="HasDone" states="hasreceived" groups="tms.group_tms_fee_finance" icon="terp-tms-done"/> 
+					<button name="applyinfo_hasconfirm" type="object" string="Confirm" states="hasdone" groups="tms.group_tms_fee_accout" icon="terp-tms-confirm"/> 
                 </tree>
             </field>
         </record>

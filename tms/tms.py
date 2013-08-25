@@ -114,6 +114,14 @@ class ApplyInfo(osv.osv):
         for item in self.browse(cr,uid,ids,context):
             res.append((item.id,item.processid))
         return res
+    
+    def unlink(self,cr,uid,ids,context=None):
+        if self.user_has_groups(cr,uid,"tms.group_tms_applyinfo_factory",context):
+            applyinfo_state = set([item.state for item in self.browse(cr,uid,ids,context)])
+            print applyinfo_state
+            if len(applyinfo_state)>1 or applyinfo_state.pop()!="unreceived":
+                raise osv.except_osv(_("Operation Canceld"),u"你只能删除未接收申报!")
+        return super(ApplyInfo,self).unlink(cr,uid,ids,context)
 
     _columns = {
         "user_id":fields.many2one("res.users",string="Add Man"),
