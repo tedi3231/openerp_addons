@@ -55,12 +55,12 @@
                         <group col="6" string="Network Information">
                             <field name="netusername" colspan="3"/>
                             <field name="netuserpass" colspan="3"/>
-                            <field name="dynamicdomain"/>
-                            <field name="dynamicdomainpass"/>
-                            <field name="dynamicdomainaddress"/>
-                            <field name="peanutdomain"/>
-							<field name="peanutuserpass"/>
-							<field name="peanutdomainaddress"/>
+                            <field name="dynamicdomain" colspan="3"/>
+                            <field name="dynamicdomainpass" colspan="3"/>
+                            <field name="dynamicdomainaddress" colspan="6"/>
+							<field name="peanutdomain" colspan="3"/>
+							<field name="peanutuserpass" colspan="3"/>
+							<field name="peanutdomainaddress" colspan="6"/>
                             <field name="peanutvalidemail" colspan="3" widget="email"/>
                             <field name="peanutemailpass" colspan="3"/>
                         </group>

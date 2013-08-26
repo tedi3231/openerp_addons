@@ -331,7 +331,7 @@ msgstr "状态"
 #. module: tms
 #: field:tms.store,peanutemailpass:0
 msgid "Peanut email pass"
-msgstr "花生壳密码"
+msgstr "花生壳邮件密码"
 
 #. module: tms
 #: field:tms.feetype,name:0
