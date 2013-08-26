@@ -115,6 +115,21 @@ class ApplyInfo(osv.osv):
             res.append((item.id,item.processid))
         return res
     
+    """def write(self,cr,uid,ids,values,context=None):
+        print "call write method,parammeter values are %s" % values
+        childtypename = type(self).__name__
+        if childtypename =="tms.stopandmoveapplyinfo":
+            return super(ApplyInfo,self).write(cr,uid,ids,values,context) 
+
+        if self.user_has_groups(cr,uid,"tms.group_tms_applyinfo_factory",context):
+            applyinfo_state = set([item.state for item in self.browse(cr,uid,ids,context)])
+            current_state = applyinfo_state.pop()
+            if len(applyinfo_state)==0 and( current_state=="unreceived" or current_state=='draft'):
+                return super(ApplyInfo,self).write(cr,uid,ids,values,context) 
+            else:
+                raise osv.except_osv(_("Operation Canceld"),u"你只能修改未接收申报!")
+        return super(ApplyInfo,self).write(cr,uid,ids,values,context) 
+    """
     def unlink(self,cr,uid,ids,context=None):
         childtypename = type(self).__name__
         if childtypename!='tms.stopandmoveapplyinfo' and self.user_has_groups(cr,uid,"tms.group_tms_applyinfo_factory",context):
