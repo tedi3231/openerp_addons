@@ -501,8 +501,10 @@
                     <field name="store_id" />
                     <field name="storenum"/>
 					<field name="productname" width="30"/>
-					<field name="productprice"/>
-					<field name="productcount"/>
+					<field name="productprice" groups="tms.group_tms_fee_finance"/>
+					<field name="productcount" groups="tms.group_tms_fee_finance" />
+					<field name="accountproductprice" groups="tms.group_tms_fee_accout"/>
+					<field name="accountproductcount" groups="tms.group_tms_fee_accout"/>
 					<field name="payman" groups="tms.group_tms_fee_finance"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount"/>
