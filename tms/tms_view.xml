@@ -140,7 +140,7 @@
                             <field name="address" colspan="4"/>
                         </group>
                         <group col="4" string="Content">
-                            <field name="content" colspan="4"  nolabel="1" />
+							<field name="content" colspan="4"  nolabel="1" />
                         </group>
                         <field name="applyinfoitem_ids" states="hasreceived,hasdone,hasconfirm">
                             <tree version="7.0" editable="bottom">
@@ -151,6 +151,39 @@
                         </field>
                     </sheet>
                 </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_tms_applyinfo_form_foraccount">
+            <field name="name">tms.applyinfo.formforaccount</field>
+            <field name="model">tms.applyinfo</field>
+            <field name="type">form</field>
+			<field name="inherit_id" ref="view_tms_applyinfo_form"/>
+			<field name="groups_id" eval="[(6,0,[ref('tms.group_tms_fee_accout')])]"/>
+            <field name="arch" type="xml">
+				<field name="store_id" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in','unreceived')]}</attribute>
+				</field>
+				<field name="province" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in','unreceived')]}</attribute>
+				</field>
+				<field name="storenum" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in','unreceived')]}</attribute>
+				</field>
+				<field name="telephone" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in','unreceived')]}</attribute>
+				</field>
+				<field name="contactperson" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in','unreceived')]}</attribute>
+				</field>
+				<field name="mobile" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in','unreceived')]}</attribute>
+				</field>
+				<field name="address" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in','unreceived')]}</attribute>
+				</field>
+				<field name="content" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in','unreceived')]}</attribute>
+				</field>
             </field>
         </record>
 
