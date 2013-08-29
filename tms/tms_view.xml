@@ -211,11 +211,12 @@
                     <field name="store_id"/>
                     <field name="storenum"/>
                     <field name="province"/>
-                    <field name="contactperson"/>
-                    <field name="telephone"/>
+					<!--<field name="contactperson"/>
+					<field name="telephone"/>-->
 					<field name="content" width="50" />
 					<field name="applyinfotype"/>
 					<field name="user_id"/>
+					<field name="create_time"/>
 					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_applyinfo_finance,tms.group_tms_applyinfo_factory" icon="terp-tms-remove"/> 
                 </tree>
             </field>
@@ -241,6 +242,7 @@
                             <field name="telephone"/>
                             <field name="contactperson"/>
                             <field name="mobile"/>
+                            <field name="create_time"/>
 						</group>
 						<group colspan="4" col="4">
 							<field name="address" colspan="4"/>

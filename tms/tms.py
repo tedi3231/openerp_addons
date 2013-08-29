@@ -205,11 +205,13 @@ class StopAndMoveApplyInfo(osv.osv):
                                           ("govermentcheck","Goverment Check"),("duetoeletricity","Due to electricity"),
                                           ("duetonet","Due to net"),("duetohouse","Due to House"),("other","Other")
                                          ],string="ApplyInfo Type",required=True),
+        "create_time":fields.date(string="报备时间"),
         "content":fields.text(string="Content",required=False),
     }
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
         "state":lambda self,cr,uid,context:"hasconfirm",
+        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d'),
     }
 
 StopAndMoveApplyInfo()    
