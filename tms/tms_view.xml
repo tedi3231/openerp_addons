@@ -110,10 +110,10 @@
                     <field name="content"/>
 					<field name="state"/>
 					<field name="user_id"/>
-					<button name="unlink" type="object" string="Remove" states="unreceived,draft" icon="terp-tms-remove" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance"/> 
-					<button name="applyinfo_hasreceived" type="object" string="Received" states="unreceived" groups="tms.group_tms_fee_finance" icon="terp-tms-receive"/> 
-					<button name="applyinfo_hasdone" type="object" string="HasDone" states="hasreceived" groups="tms.group_tms_fee_finance" icon="terp-tms-done"/> 
-					<button name="applyinfo_hasconfirm" type="object" string="Confirm" states="hasdone" groups="tms.group_tms_fee_accout" icon="terp-tms-confirm"/> 
+					<button name="unlink" type="object" string="Remove" states="unreceived,draft" icon="terp-tms-remove" groups="tms.group_tms_applyinfo_finance,tms.group_tms_applyinfo_factory"/> 
+					<button name="applyinfo_hasreceived" type="object" string="Received" states="unreceived" groups="tms.group_tms_applyinfo_finance" icon="terp-tms-receive"/> 
+					<button name="applyinfo_hasdone" type="object" string="HasDone" states="hasreceived" groups="tms.group_tms_applyinfo_finance" icon="terp-tms-done"/> 
+					<button name="applyinfo_hasconfirm" type="object" string="Confirm" states="hasdone" groups="tms.group_tms_applyinfo_factory" icon="terp-tms-confirm"/> 
                 </tree>
             </field>
         </record>
@@ -126,9 +126,9 @@
                     <sheet>
                         <group col="4">
                             <field name="state" invisible="1"/>
-                            <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_fee_finance"/>
-                            <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_fee_finance" />
-                            <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_accout"/>
+                            <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_applyinfo_finance"/>
+                            <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_applyinfo_finance" />
+                            <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_applyinfo_factory"/>
                         </group>
                         <group col="4" string="Base Info">
 							<field name="store_id" on_change="on_change_store(store_id)" context="{'display_widget':'dropdownlist'}"/>
@@ -158,7 +158,7 @@
             <field name="model">tms.applyinfo</field>
             <field name="type">form</field>
 			<field name="inherit_id" ref="view_tms_applyinfo_form"/>
-			<field name="groups_id" eval="[(6,0,[ref('tms.group_tms_fee_accout')])]"/>
+			<field name="groups_id" eval="[(6,0,[ref('tms.group_tms_applyinfo_factory')])]"/>
             <field name="arch" type="xml">
 				<field name="store_id" position="attributes">
 					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
@@ -216,7 +216,7 @@
 					<field name="content" width="50" />
 					<field name="applyinfotype"/>
 					<field name="user_id"/>
-					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="terp-tms-remove"/> 
+					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_applyinfo_finance,tms.group_tms_applyinfo_factory" icon="terp-tms-remove"/> 
                 </tree>
             </field>
         </record>
@@ -229,9 +229,9 @@
                     <sheet>
                         <group col="4">
                             <field name="state" invisible="1"/>
-                            <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_fee_finance"/>
-                            <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_fee_finance" />
-                            <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_accout"/>
+                            <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_applyinfo_finance"/>
+                            <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_applyinfo_finance" />
+                            <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_factory"/>
                         </group>
                         <group col="4" string="Base Info">
 							<field name="applyinfotype"/>
