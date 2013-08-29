@@ -211,7 +211,7 @@ class StopAndMoveApplyInfo(osv.osv):
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
         "state":lambda self,cr,uid,context:"hasconfirm",
-        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d'),
+        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     }
 
 StopAndMoveApplyInfo()    
