@@ -10,6 +10,7 @@
                     <field name="name"/>
                     <field name="value"/>
                     <field name="sortnum"/>
+                    <field name="createdate"/>
                 </tree>
             </field>
         </record>
@@ -38,6 +39,7 @@
 					<field name="name"/> 
                     <field name="value" />
                     <field name="sortnum"/>
+                    <field name="createdate"/>
                 </form>
             </field>
         </record>

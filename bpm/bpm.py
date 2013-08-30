@@ -1,13 +1,18 @@
 from osv import osv,fields
-
+import datetime
 class ParamList(osv.Model):
     _name = 'bpm.paramlist'
     _columns = {
         'name':fields.char(string="Display Name",size=50,requried=True,translate=True),
         'value':fields.char(string="ParamList Value",size=100,requried=True,translate=True),
         'sortnum':fields.integer(string="Sort Num",requried=False),
+        'createdate':fields.datetime(string="CreateTime"),
         #'parentlist':fields.char(string="Parent List",size=50,requried=False,translate=False),
         #'paramitems':fields.many2one(string='Param Items',)
+    }
+    
+    _defaults = {
+        'createdate':lambda self,cr,uid,context:datetime.datetime.strftime(datetime.datetime.now(),"%Y-%m-%d %H:%M:%S"),
     }
     
     def action_test(self,cr,uid,ids,context=None):
