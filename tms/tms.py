@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import time
 import utildate
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
@@ -211,7 +212,7 @@ class StopAndMoveApplyInfo(osv.osv):
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
         "state":lambda self,cr,uid,context:"hasconfirm",
-        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        "create_time":lambda self,cr,uid,context:time.strftime('%Y-%m-%d %H:%M:%S',time.localtime()),
     }
 
 StopAndMoveApplyInfo()    
