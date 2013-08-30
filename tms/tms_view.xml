@@ -55,12 +55,12 @@
                         <group col="6" string="Network Information">
                             <field name="netusername" colspan="3"/>
                             <field name="netuserpass" colspan="3"/>
-                            <field name="dynamicdomain"/>
-                            <field name="dynamicdomainpass"/>
-                            <field name="dynamicdomainaddress"/>
-                            <field name="peanutdomain"/>
-							<field name="peanutuserpass"/>
-							<field name="peanutdomainaddress"/>
+                            <field name="dynamicdomain" colspan="3"/>
+                            <field name="dynamicdomainpass" colspan="3"/>
+                            <field name="dynamicdomainaddress" colspan="6"/>
+							<field name="peanutdomain" colspan="3"/>
+							<field name="peanutuserpass" colspan="3"/>
+							<field name="peanutdomainaddress" colspan="6"/>
                             <field name="peanutvalidemail" colspan="3" widget="email"/>
                             <field name="peanutemailpass" colspan="3"/>
                         </group>
@@ -110,10 +110,10 @@
                     <field name="content"/>
 					<field name="state"/>
 					<field name="user_id"/>
-					<button name="unlink" type="object" string="Remove" states="unreceived,draft" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="gtk-remove"/> 
-					<button name="applyinfo_hasreceived" type="object" string="Received" states="unreceived" groups="tms.group_tms_fee_finance" icon="gtk-apply"/> 
-					<button name="applyinfo_hasdone" type="object" string="HasDone" states="hasreceived" groups="tms.group_tms_fee_finance" icon="gtk-apply"/> 
-					<button name="applyinfo_hasconfirm" type="object" string="Confirm" states="hasdone" groups="tms.group_tms_fee_accout" icon="gtk-apply"/> 
+					<button name="unlink" type="object" string="Remove" states="unreceived,draft" icon="terp-tms-remove" groups="tms.group_tms_applyinfo_finance,tms.group_tms_applyinfo_factory"/> 
+					<button name="applyinfo_hasreceived" type="object" string="Received" states="unreceived" groups="tms.group_tms_applyinfo_finance" icon="terp-tms-receive"/> 
+					<button name="applyinfo_hasdone" type="object" string="HasDone" states="hasreceived" groups="tms.group_tms_applyinfo_finance" icon="terp-tms-done"/> 
+					<button name="applyinfo_hasconfirm" type="object" string="Confirm" states="hasdone" groups="tms.group_tms_applyinfo_factory" icon="terp-tms-confirm"/> 
                 </tree>
             </field>
         </record>
@@ -126,9 +126,9 @@
                     <sheet>
                         <group col="4">
                             <field name="state" invisible="1"/>
-                            <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_fee_finance"/>
-                            <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_fee_finance" />
-                            <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_accout"/>
+                            <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_applyinfo_finance"/>
+                            <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_applyinfo_finance" />
+                            <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_applyinfo_factory"/>
                         </group>
                         <group col="4" string="Base Info">
 							<field name="store_id" on_change="on_change_store(store_id)" context="{'display_widget':'dropdownlist'}"/>
@@ -140,7 +140,7 @@
                             <field name="address" colspan="4"/>
                         </group>
                         <group col="4" string="Content">
-                            <field name="content" colspan="4"  nolabel="1" />
+							<field name="content" colspan="4"  nolabel="1" />
                         </group>
                         <field name="applyinfoitem_ids" states="hasreceived,hasdone,hasconfirm">
                             <tree version="7.0" editable="bottom">
@@ -151,6 +151,39 @@
                         </field>
                     </sheet>
                 </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_tms_applyinfo_form_foraccount">
+            <field name="name">tms.applyinfo.formforaccount</field>
+            <field name="model">tms.applyinfo</field>
+            <field name="type">form</field>
+			<field name="inherit_id" ref="view_tms_applyinfo_form"/>
+			<field name="groups_id" eval="[(6,0,[ref('tms.group_tms_applyinfo_factory')])]"/>
+            <field name="arch" type="xml">
+				<field name="store_id" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
+				</field>
+				<!--<field name="province" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
+				</field>-->
+				<field name="storenum" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
+				</field>
+				<field name="telephone" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
+				</field>
+				<field name="contactperson" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
+				</field>
+				<field name="mobile" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
+				</field>
+				<field name="address" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
+				</field>
+				<field name="content" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','not in',['draft','unreceived'])]}</attribute>
+				</field>
             </field>
         </record>
 
@@ -178,12 +211,13 @@
                     <field name="store_id"/>
                     <field name="storenum"/>
                     <field name="province"/>
-                    <field name="contactperson"/>
-                    <field name="telephone"/>
+					<!--<field name="contactperson"/>
+					<field name="telephone"/>-->
 					<field name="content" width="50" />
 					<field name="applyinfotype"/>
 					<field name="user_id"/>
-					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_fee_accout,tms.group_tms_fee_finance" icon="gtk-remove"/> 
+					<field name="create_time"/>
+					<button name="unlink" type="object" string="Remove" groups="tms.group_tms_applyinfo_finance,tms.group_tms_applyinfo_factory" icon="terp-tms-remove"/> 
                 </tree>
             </field>
         </record>
@@ -196,9 +230,9 @@
                     <sheet>
                         <group col="4">
                             <field name="state" invisible="1"/>
-                            <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_fee_finance"/>
-                            <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_fee_finance" />
-                            <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_accout"/>
+                            <button name="btn_received" string="Received" states="unreceived" groups="tms.group_tms_applyinfo_finance"/>
+                            <button name="btn_hasdone" string ="Done" states="hasreceived" groups="tms.group_tms_applyinfo_finance" />
+                            <button name="btn_hascofirm" string="Cofirm" states="hasdone" groups="tms.group_tms_fee_factory"/>
                         </group>
                         <group col="4" string="Base Info">
 							<field name="applyinfotype"/>
@@ -208,6 +242,7 @@
                             <field name="telephone"/>
                             <field name="contactperson"/>
                             <field name="mobile"/>
+                            <field name="create_time"/>
 						</group>
 						<group colspan="4" col="4">
 							<field name="address" colspan="4"/>
@@ -215,13 +250,13 @@
                         <group col="4" string="Content">
                             <field name="content" colspan="4"  nolabel="1" />
                         </group>
-                        <field name="applyinfoitem_ids" states="hasreceived,hasdone,hasconfirm">
+						<!--<field name="applyinfoitem_ids" states="hasreceived,hasdone,hasconfirm">
                             <tree version="7.0" editable="bottom">
                                 <field name="name"/>
                                 <field name="user_id"/>
                                 <field name="create_time"/>
                             </tree>
-                        </field>
+						</field>-->
                     </sheet>
                 </form>
             </field>
@@ -501,8 +536,10 @@
                     <field name="store_id" />
                     <field name="storenum"/>
 					<field name="productname" width="30"/>
-					<field name="productprice"/>
-					<field name="productcount"/>
+					<field name="productprice" groups="tms.group_tms_fee_finance"/>
+					<field name="productcount" groups="tms.group_tms_fee_finance" />
+					<field name="accountproductprice" groups="tms.group_tms_fee_accout"/>
+					<field name="accountproductcount" groups="tms.group_tms_fee_accout"/>
 					<field name="payman" groups="tms.group_tms_fee_finance"/>
                     <field name="amount" sum="Amount" groups="tms.group_tms_fee_finance"/>
                     <field name="accountamount" sum="Account Amount"/>
@@ -533,8 +570,8 @@
 							<field name="productprice" groups="tms.group_tms_fee_finance" on_change="on_change_productaccount(productcount,productprice)"/>
 							<field name="productcount" groups="tms.group_tms_fee_finance" on_change="on_change_productaccount(productcount,productprice)"/>
                             <field name="amount" groups="tms.group_tms_fee_finance"/>
-							<field name="accountproductprice"  on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
-							<field name="accountproductcount" on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
+							<field name="accountproductprice" groups="tms.group_tms_fee_finance"  on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
+							<field name="accountproductcount" groups="tms.group_tms_fee_finance" on_change="on_change_accountproductaccount(accountproductcount,accountproductprice)" />
                             <field name="accountamount"/>
                         </group>
                         <group col="4" string="Remark">
@@ -854,7 +891,7 @@
             <field name="view_mode">tree,form</field>            
             <field name="domain">[('state','not in',('',))]</field>
 			<field name="search_view_id" ref="view_tms_feeforsend_filter"/>
-			
+            <field name="context">{"search_default_draft":True}</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproduct_tree_show">
             <field name="name">FeeForProduct Manager</field>
@@ -863,7 +900,7 @@
             <field name="view_mode">tree,form</field>            
             <field name="domain">[('state','not in',('',))]</field>
 			<field name="search_view_id" ref="view_tms_feeforproduct_filter"/>
-			
+            <field name="context">{"search_default_draft":True}</field>
         </record>
         <record model="ir.actions.act_window" id="action_tms_feeforproductit_tree_show">
             <field name="name">FeeForProductIT Manager</field>
@@ -942,7 +979,6 @@
         <menuitem id="menu_tms_myhasreceived_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="HasReceived Applyinfos" action="action_tms_myhasreceived_applyinfo_tree_show"/>
         <menuitem id="menu_tms_myhasdone_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="HasDone Applyinfos" action="action_tms_myhasdone_applyinfo_tree_show"/>
         <menuitem id="menu_tms_myhasconfirm_applyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="HasConfirm Applyinfos" action="action_tms_myhasconfirm_applyinfo_tree_show"/>
-        <menuitem id="menu_tms_moveandstopapplyinfo_manager" parent="menu_tms_myapplyinfo_foradmin_manager_root" name="Move And Stop Applyinfo" action="action_tms_moveandstopapplyinfo_tree_show"/>
         <!-- 厂商申报菜单结束 -->
 
         <!-- 门店管理 -->

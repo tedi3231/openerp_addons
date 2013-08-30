@@ -2,5 +2,5 @@
 *.pyo
 .project
 .pydevproject
-.settings
+.settings/*
 tms/.DS_Store

@@ -114,6 +114,29 @@ class ApplyInfo(osv.osv):
         for item in self.browse(cr,uid,ids,context):
             res.append((item.id,item.processid))
         return res
+    
+    """def write(self,cr,uid,ids,values,context=None):
+        print "call write method,parammeter values are %s" % values
+        childtypename = type(self).__name__
+        if childtypename =="tms.stopandmoveapplyinfo":
+            return super(ApplyInfo,self).write(cr,uid,ids,values,context) 
+
+        if self.user_has_groups(cr,uid,"tms.group_tms_applyinfo_factory",context):
+            applyinfo_state = set([item.state for item in self.browse(cr,uid,ids,context)])
+            current_state = applyinfo_state.pop()
+            if len(applyinfo_state)==0 and( current_state=="unreceived" or current_state=='draft'):
+                return super(ApplyInfo,self).write(cr,uid,ids,values,context) 
+            else:
+                raise osv.except_osv(_("Operation Canceld"),u"你只能修改未接收申报!")
+        return super(ApplyInfo,self).write(cr,uid,ids,values,context) 
+    """
+    def unlink(self,cr,uid,ids,context=None):
+        childtypename = type(self).__name__
+        if childtypename!='tms.stopandmoveapplyinfo' and self.user_has_groups(cr,uid,"tms.group_tms_applyinfo_factory",context):
+            applyinfo_state = set([item.state for item in self.browse(cr,uid,ids,context)])
+            if len(applyinfo_state)>1 or applyinfo_state.pop()!="unreceived":
+                raise osv.except_osv(_("Operation Canceld"),u"你只能删除未接收申报!")
+        return super(ApplyInfo,self).unlink(cr,uid,ids,context)
 
     _columns = {
         "user_id":fields.many2one("res.users",string="Add Man"),
@@ -182,11 +205,13 @@ class StopAndMoveApplyInfo(osv.osv):
                                           ("govermentcheck","Goverment Check"),("duetoeletricity","Due to electricity"),
                                           ("duetonet","Due to net"),("duetohouse","Due to House"),("other","Other")
                                          ],string="ApplyInfo Type",required=True),
+        "create_time":fields.char(string="报备时间",size=50,),
         "content":fields.text(string="Content",required=False),
     }
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
         "state":lambda self,cr,uid,context:"hasconfirm",
+        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     }
 
 StopAndMoveApplyInfo()    
@@ -301,6 +326,26 @@ class FeeBase(osv.osv):
             processid = self._get_default_processid(cr,uid,'tms.feeforother.processid',context)
         self.write(cr,uid,feebase_id,{"accountperiod":data['feedate'][0:7].replace('-',''),"processid":processid},context)
         return feebase_id
+
+    def export_data(self,cr,uid,ids,fields_to_export,context=None):
+        print fields_to_export
+        print "User have tms.group_tms_fee_finance %s" % self.user_has_groups(cr,uid,"tms.group_tms_fee_finance",context)
+
+        if not self.user_has_groups(cr,uid,"tms.group_tms_fee_finance",context):
+            if "amount" in fields_to_export:
+                fields_to_export.remove("amount")
+            if "productprice" in fields_to_export:
+                fields_to_export.remove("productprice")
+            if "productcount" in fields_to_export:
+                fields_to_export.remove("productcount")
+        return super(FeeBase,self).export_data(cr,uid,ids,fields_to_export,context)
+    
+    def write(self,cr,uid,ids,values,context=None):
+        print "call write method,parammeter value is %s" % values
+        if not self.user_has_groups(cr,uid,"tms.group_tms_fee_finance",context):
+            if len(values)!=2 and sorted(values.keys())!=sorted(['oanum','state']):
+                raise osv.except_osv(_("Operation Canceld"),u"您没有修改的权限!")
+        return super(FeeBase,self).write(cr,uid,ids,values,context) 
 
     def _check_fee_state(self,cr,uid,ids,oldstate,targetstate,context=None):
         model_id = context["active_model"]

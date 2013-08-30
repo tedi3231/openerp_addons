@@ -331,7 +331,7 @@ msgstr "状态"
 #. module: tms
 #: field:tms.store,peanutemailpass:0
 msgid "Peanut email pass"
-msgstr "花生壳密码"
+msgstr "花生壳邮件密码"
 
 #. module: tms
 #: field:tms.feetype,name:0
@@ -499,7 +499,7 @@ msgstr "对账中心"
 #: field:tms.feeforproduct,accountproductcount:0
 #: field:tms.feeforproductit,accountproductcount:0
 msgid "Account Product Count"
-msgstr "对账产品数"
+msgstr "对账数量"
 
 #. module: tms
 #: field:tms.applyinfoitem,applyinfo_id:0
@@ -625,7 +625,7 @@ msgstr "添加时间"
 #: selection:tms.applyinfo,state:0
 #: selection:tms.stopandmoveapplyinfo,state:0
 msgid "HasConfirm"
-msgstr "已完成"
+msgstr "已确认"
 
 #. module: tms
 #: model:res.groups,name:tms.group_tms_applyinfo_factory
@@ -989,7 +989,7 @@ msgstr "申报处理"
 #: field:tms.feeforproduct,accountproductprice:0
 #: field:tms.feeforproductit,accountproductprice:0
 msgid "Account Product Price"
-msgstr "产品价格"
+msgstr "对账价格"
 
 #. module: tms
 #: field:tms.store,peanutuserpass:0
