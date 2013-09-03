@@ -107,6 +107,7 @@ class ApplyInfo(osv.osv):
             print "stop and move"
             processid = self._get_default_processid(cr,uid,"tms.stopmoveapplyinfo.processid",context)
             state = "hasconfirm"
+        print "create state is %s"% state
         self.write(cr,uid,apply_id,{"state":state,"processid":processid},context)
         return apply_id
 
@@ -182,7 +183,8 @@ ApplyInfo()
 
 class ApplyInfoItem(osv.osv):
     _name="tms.applyinfoitem"
-
+    _order="create_time asc"
+    
     _columns={
         "name":fields.text(string="Remark"),
         "user_id":fields.many2one("res.users",string="Add Man"),
