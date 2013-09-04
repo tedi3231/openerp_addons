@@ -87,6 +87,7 @@
 			<field name="arch" type="xml">
 				<search string="Search Sotre">
 					<field name="storenum"/>
+					<field name="processid"/>
 					<field name="store_id"/>
 					<field name="province"/>
 					<group expand="0" string="Group By...">
@@ -192,6 +193,7 @@
 			<field name="model">tms.stopandmoveapplyinfo</field>
 			<field name="arch" type="xml">
 				<search string="Search Sotre">
+					<field name="processid"/>
 					<field name="storenum"/>
 					<field name="store_id"/>
 					<field name="province"/>

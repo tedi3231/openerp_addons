@@ -188,13 +188,13 @@ class ApplyInfoItem(osv.osv):
     _columns={
         "name":fields.text(string="Remark"),
         "user_id":fields.many2one("res.users",string="Add Man"),
-        "create_time":fields.date(string="Add time"),
+        "create_time":fields.datetime(string="Add time"),
         "applyinfo_id":fields.many2one("tms.applyinfo",string="ApplyInfo"),
     }
 
     _defaults={
         "user_id":lambda self,cr,uid,context:uid,
-        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d'),
+        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     }
 ApplyInfoItem()
 
