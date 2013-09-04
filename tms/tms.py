@@ -208,7 +208,7 @@ class StopAndMoveApplyInfo(osv.osv):
                                           ("govermentcheck","Goverment Check"),("duetoeletricity","Due to electricity"),
                                           ("duetonet","Due to net"),("duetohouse","Due to House"),("other","Other")
                                          ],string="ApplyInfo Type",required=True),
-        "create_time":fields.char(string="报备时间",size=50,),
+        "create_time":fields.datetime(string="报备时间"),
         "content":fields.text(string="Content",required=False),
     }
     _defaults={
