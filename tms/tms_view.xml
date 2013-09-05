@@ -106,7 +106,7 @@
                     <field name="province"/>
                     <field name="store_id"/>
                     <field name="storenum"/>
-                    <field name="mobile"/>
+                    <field name="telephone"/>
                     <field name="content"/>
 					<field name="state"/>
 					<field name="user_id"/>
@@ -142,7 +142,7 @@
 							<field name="create_time" readonly="True"/>
                         </group>
                         <group col="4" string="Content">
-							<field name="content" colspan="4"  nolabel="1" />
+							<field name="content" colspan="4"  nolabel="1" height="30" />
                         </group>
                         <field name="applyinfoitem_ids" states="hasreceived,hasdone,hasconfirm">
                             <tree version="7.0" editable="bottom">
