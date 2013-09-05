@@ -108,8 +108,8 @@ class ApplyInfo(osv.osv):
             processid = self._get_default_processid(cr,uid,"tms.stopmoveapplyinfo.processid",context)
             state = "hasconfirm"
         print "create state is %s"% state
-        #self.write(cr,uid,apply_id,{"state":state,"processid":processid},context)
-        self.write(cr,uid,apply_id,{"state":"hasconfirm"},context)
+        self.write(cr,uid,apply_id,{"state":state,"processid":processid},context)
+        #self.write(cr,uid,apply_id,{"state":"hasconfirm"},context)
         return apply_id
 
     def name_get(self,cr,uid,ids,context=None):
