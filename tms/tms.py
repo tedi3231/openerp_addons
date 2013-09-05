@@ -108,7 +108,8 @@ class ApplyInfo(osv.osv):
             processid = self._get_default_processid(cr,uid,"tms.stopmoveapplyinfo.processid",context)
             state = "hasconfirm"
         print "create state is %s"% state
-        self.write(cr,uid,apply_id,{"state":state,"processid":processid},context)
+        #self.write(cr,uid,apply_id,{"state":state,"processid":processid},context)
+        self.write(cr,uid,apply_id,{"state":"hasconfirm"},context)
         return apply_id
 
     def name_get(self,cr,uid,ids,context=None):
@@ -152,6 +153,7 @@ class ApplyInfo(osv.osv):
         "contactperson":fields.related("store_id","contactperson",type="char",string="Contact Person"),
         "content":fields.text(string="Content",required=True),
         "applyinfoitem_ids":fields.one2many("tms.applyinfoitem","applyinfo_id",string="ApplyInfo Items"),
+        "create_time":fields.date(string="创建时间"),
         "state":fields.selection([("draft","Draft"),("unreceived","UnReceived"),("hasreceived","HasReceived"),
                                   ("hasdone","HasDone"),("hasconfirm","HasConfirm")],string="State",required=True,readonly=True),
     }
@@ -177,6 +179,7 @@ class ApplyInfo(osv.osv):
     _defaults={
         #"processid":_get_default_processid,
         "user_id":lambda self,cr,uid,context:uid,
+        "create_time":lambda self,cr,uid,context:datetime.datetime.now().strftime("%Y-%m-%d"),
         "state":lambda self,cr,uid,context:"draft",
     }
 ApplyInfo()

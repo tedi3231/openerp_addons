@@ -106,7 +106,7 @@
                     <field name="province"/>
                     <field name="store_id"/>
                     <field name="storenum"/>
-                    <field name="telephone"/>
+                    <field name="create_time"/>
                     <field name="mobile"/>
                     <field name="content"/>
 					<field name="state"/>
@@ -213,8 +213,8 @@
                     <field name="store_id"/>
                     <field name="storenum"/>
                     <field name="province"/>
-					<!--<field name="contactperson"/>
-					<field name="telephone"/>-->
+					<!--<field name="contactperson"/>-->
+					<field name="create_time"/>
 					<field name="content" width="50" />
 					<field name="applyinfotype"/>
 					<field name="user_id"/>
