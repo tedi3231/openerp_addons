@@ -848,6 +848,12 @@ msgid "Fee Date"
 msgstr "账单日期"
 
 #. module: tms
+#: field:tms.applyinfo,create_time:0
+#: field:tms.stopandmoveapplyinfo,create_time:0
+msgid "Create Time"
+msgstr "添加时间"
+
+#. module: tms
 #: field:tms.feeforproduct,productprice:0
 #: field:tms.feeforproductit,productprice:0
 msgid "Product Price"

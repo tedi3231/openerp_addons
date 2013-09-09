@@ -153,7 +153,7 @@ class ApplyInfo(osv.osv):
         "contactperson":fields.related("store_id","contactperson",type="char",string="Contact Person"),
         "content":fields.text(string="Content",required=True),
         "applyinfoitem_ids":fields.one2many("tms.applyinfoitem","applyinfo_id",string="ApplyInfo Items"),
-        "create_time":fields.date(string="创建时间"),
+        "create_time":fields.date(string="Create Time"),
         "state":fields.selection([("draft","Draft"),("unreceived","UnReceived"),("hasreceived","HasReceived"),
                                   ("hasdone","HasDone"),("hasconfirm","HasConfirm")],string="State",required=True,readonly=True),
     }
@@ -211,7 +211,7 @@ class StopAndMoveApplyInfo(osv.osv):
                                           ("govermentcheck","Goverment Check"),("duetoeletricity","Due to electricity"),
                                           ("duetonet","Due to net"),("duetohouse","Due to House"),("other","Other")
                                          ],string="ApplyInfo Type",required=True),
-        "create_time":fields.datetime(string="报备时间"),
+        "create_time":fields.datetime(string="Create Time"),
         "content":fields.text(string="Content",required=False),
     }
     _defaults={
