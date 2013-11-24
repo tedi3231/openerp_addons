@@ -260,9 +260,13 @@ class FeeBase(osv.osv):
     """
     _name="tms.feebase"
     def get_province_name(self,cr,uid,ids,name,args,context=None):
+        print "get_province_name ,ids is %s "% ids
         result=dict.fromkeys(ids,'None')
+        print self.browse(cr,uid,ids,context= context )
         for item in self.browse(cr,uid,ids,context=context):
             result[item.id] = item.store_id.province_id.name
+            #print item.productname
+            #result[item.id] = ''
         return result 
 
     def  _get_default_processid(self,cr,uid,code,context):
@@ -315,6 +319,9 @@ class FeeBase(osv.osv):
         return res
 
     def create(self,cr,uid,data,context=None):
+        print "create productforit ,data is %s" % data
+        if type(data['store_id']) is list:
+            data["store_id"] = data["store_id"][0]
         feebase_id = super(FeeBase, self).create(cr, uid, data, context=context)
         childtypename = type(self).__name__
         processid = ""
