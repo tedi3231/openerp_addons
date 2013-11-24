@@ -1,0 +1,13 @@
+.oe_list_field_cell{
+	width:90px;
+}
+
+/*
+.openerp .oe_list_content table tfoot .oe_list_footer .oe_number{
+	color:red;
+}
+*/
+/*set sum amount in footer to red color*/
+.oe_list_content .oe_list_footer{
+	color:red;
+}
