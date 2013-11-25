@@ -51,9 +51,9 @@
 			<field name="res_model">laborprotection.employee</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
-			<field name="domain">[]</field>
+			<field name="domain">[('active','=','true')]</field>
 		</record>
-		
+	
 		<record model="ir.ui.view" id="view_laborprotection_rechargeitem_tree">
 			<field name="name">laborprotection.rechargeitem.tree</field>
 			<field name="model">laborprotection.rechargeitem</field>
@@ -75,9 +75,275 @@
 			<field name="domain">[]</field>
 		</record>
 		
+		<record id="laborprotection_category_search_view" model="ir.ui.view">
+            <field name="name">laborprotection.category.search</field>
+            <field name="model">laborprotection.category</field>
+            <field name="arch" type="xml">
+                <search string="产品分类">
+                    <field name="name" string="产品分类"/>
+                    <field name="parent_id"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="laborprotection_category_form_view" model="ir.ui.view">
+            <field name="name">laborprotection.category.form</field>
+            <field name="model">laborprotection.category</field>
+            <field name="arch" type="xml">
+                <form string="产品分类" version="7.0">
+                    <sheet>
+                    	<group col="4">
+							<field name="parent_id" string="父类名称"/>
+							<field name="name" string="分类名称"/>
+						</group>
+						<group col="4" string="备注">
+								<field name="remark" placeholder="备注...." colspan="4" nolabel="1"/>
+						</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="laborprotection_category_list_view" model="ir.ui.view">
+            <field name="name">laborprotection.category.list</field>
+            <field name="model">laborprotection.category</field>
+            <field name="priority">1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="产品分类">
+                    <field name="complete_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="laborprotection_category_action" model="ir.actions.act_window">
+            <field name="name">产品分类</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">laborprotection.category</field>
+            <!--<field name="domain">[('parent_id','=',False)]</field>-->
+            <field name="domain">[]</field>
+           <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="view_id" ref="laborprotection_category_list_view"/>
+            <field name="help" type="html">
+              <p>
+                Here is a list of all your products classified by category. You
+                can click a category to get the list of all products linked to
+                this category or to a child of this category.
+              </p>
+            </field>
+        </record>
+        
+        <record id="laborprotection_product_form_view" model="ir.ui.view">
+            <field name="name">laborprotection.product.form</field>
+            <field name="model">laborprotection.product</field>
+            <field name="arch" type="xml">
+                <form string="产品" version="7.0">
+                    <sheet>
+                    	<group col="4">
+							<field name="category_id" string="产品类型"/>
+							<field name="name" string="产品名称"/>
+							<field name="supplier" string="供应商名称"/>
+							<field name="code" string="产品编码"/>
+							<field name="price" string="产品价格"/>
+							<field name="score" string="产品分值"/>
+							<field name="stock" string="产品库存"/>
+						</group>
+						<group col="4" string="备注">
+								<field name="remark" placeholder="备注...." colspan="4" nolabel="1"/>
+						</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="laborprotection_product_list_view" model="ir.ui.view">
+            <field name="name">laborprotection.product.list</field>
+            <field name="model">laborprotection.product</field>
+            <field name="priority">1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="产品">
+					<field name="category_id" string="产品类型"/>
+					<field name="name" string="产品名称"/>
+					<field name="supplier" string="供应商名称"/>
+					<field name="code" string="产品编码"/>
+					<field name="price" string="产品价格"/>
+					<field name="score" string="产品分值"/>
+					<field name="stock" string="产品库存"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="laborprotection_product_action" model="ir.actions.act_window">
+            <field name="name">产品</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">laborprotection.product</field>
+            <!--<field name="domain">[('parent_id','=',False)]</field>-->
+            <field name="domain">[]</field>
+           <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="view_id" ref="laborprotection_product_list_view"/>
+        </record>
+		
+		<record id="laborprotection_instockitem_form_view" model="ir.ui.view">
+            <field name="name">laborprotection.instockitem.form</field>
+            <field name="model">laborprotection.instockitem</field>
+            <field name="arch" type="xml">
+                <form string="入库" version="7.0">
+                    <sheet>
+                    	<group col="4">
+							<field name="product_id" string="产品"/>
+							<field name="incount" string="入库数量"/>
+						</group>
+						<group col="4" string="备注">
+								<field name="remark" placeholder="备注...." colspan="4" nolabel="1"/>
+						</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="laborprotection_instockitem_list_view" model="ir.ui.view">
+            <field name="name">laborprotection.instockitem.list</field>
+            <field name="model">laborprotection.instockitem</field>
+            <field name="priority">1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="入库">
+					<field name="product_id" string="产品"/>
+					<field name="incount" string="入库数量"/>
+					<field name="adduser_id" string="入库人"/>
+					<field name="addtime" string="入库时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="laborprotection_instockitem_action" model="ir.actions.act_window">
+            <field name="name">入库</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">laborprotection.instockitem</field>
+            <!--<field name="domain">[('parent_id','=',False)]</field>-->
+            <field name="domain">[]</field>
+           <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="view_id" ref="laborprotection_instockitem_list_view"/>
+        </record>
+		
+		<record id="laborprotection_outstockitem_form_view" model="ir.ui.view">
+            <field name="name">laborprotection.outstockitem.form</field>
+            <field name="model">laborprotection.outstockitem</field>
+            <field name="arch" type="xml">
+                <form string="出库" version="7.0">
+                    <sheet>
+                    	<group col="4">
+                    		<field name="receiveemp_id" string="领料人"/>
+							<field name="product_id" string="产品"/>
+							<field name="outcount" string="入库数量"/>
+						</group>
+						<group col="4" string="备注">
+								<field name="remark" placeholder="备注...." colspan="4" nolabel="1"/>
+						</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="laborprotection_outstockitem_list_view" model="ir.ui.view">
+            <field name="name">laborprotection.outstockitem.list</field>
+            <field name="model">laborprotection.outstockitem</field>
+            <field name="priority">1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="出库">
+					<field name="product_id" string="产品"/>
+					<field name="receiveemp_id" string="领料人"/>
+					<field name="outcount" string="出库数量"/>
+					<field name="adduser_id" string="出库人"/>
+					<field name="addtime" string="出库时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="laborprotection_outstockitem_action" model="ir.actions.act_window">
+            <field name="name">出库</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">laborprotection.outstockitem</field>
+            <!--<field name="domain">[('parent_id','=',False)]</field>-->
+            <field name="domain">[]</field>
+           <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="view_id" ref="laborprotection_outstockitem_list_view"/>
+        </record>
+        
+        <record id="laborprotection_claim_form_view" model="ir.ui.view">
+            <field name="name">laborprotection.claim.form</field>
+            <field name="model">laborprotection.claim</field>
+            <field name="arch" type="xml">
+                <form string="领料" version="7.0">
+                    <sheet>
+                    	<group col="4">
+							<field name="employee_id" on_change="on_change_employee(employee_id)" string="领料人"/>
+							<field name="currentscore" string="当前积分"/>
+							<field name="totalcount" string="产品总数"/>
+							<field name="totalscore" string="共需积分"/>
+						</group>
+						<field name="claimitem_ids" on_change="on_change_claimitemids(claimitem_ids)">
+							<tree version="7.0" editable="bottom">
+								<field name="product_id"/>
+								<field name="outcount"/>
+								<field name="remark"/>
+							</tree>
+						</field>
+						<group col="4" string="备注">
+								<field name="remark" placeholder="备注...." colspan="4" nolabel="1"/>
+						</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="laborprotection_claim_list_view" model="ir.ui.view">
+            <field name="name">laborprotection.claim.list</field>
+            <field name="model">laborprotection.claim</field>
+            <field name="priority">1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="领料">
+					<field name="employee_id" string="领料人"/>
+					<field name="adduser_id" string="出库人"/>
+					<field name="addtime" string="出库时间"/>
+					<field name="totalscore" string="共需积分"/>
+					<field name="totalcount" string="产品总数"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="laborprotection_claim_action" model="ir.actions.act_window">
+            <field name="name">领料</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">laborprotection.claim</field>
+            <!--<field name="domain">[('parent_id','=',False)]</field>-->
+            <field name="domain">[]</field>
+           <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="view_id" ref="laborprotection_claim_list_view"/>
+        </record>
+		
 		<menuitem id="menu_laborprotection_root" name="劳保用品领用" />
 		<menuitem id="menu_laborprotection_manager" name="员工管理" parent="menu_laborprotection_root"/>
 		<menuitem id="menu_laborprotection_employee_manager" action="action_laborprotection_employee_tree_show" name="员工管理" parent="menu_laborprotection_manager"/>
 		<menuitem id="menu_laborprotection_rechargeitem_manager" action="action_laborprotection_rechargeitem_tree_show" name="充值记录" parent="menu_laborprotection_manager"/>
+		<menuitem id="menu_laborprotection_product_manager" name="产品管理" parent="menu_laborprotection_root"/>
+		<menuitem id="menu_laborprotection_category_manager" action="laborprotection_category_action" name="分类" parent="menu_laborprotection_product_manager"/>
+		<menuitem id="menu_laborprotection_productlist_manager" action="laborprotection_product_action" name="产品" parent="menu_laborprotection_product_manager"/>
+		<menuitem id="menu_laborprotection_instockitem_manager" action="laborprotection_instockitem_action" name="入库" parent="menu_laborprotection_product_manager"/>
+		<menuitem id="menu_laborprotection_outstockitem_manager" action="laborprotection_outstockitem_action" name="出库" parent="menu_laborprotection_product_manager"/>
+		<menuitem id="menu_laborprotection_claim_manager" action="laborprotection_claim_action" name="领料" parent="menu_laborprotection_product_manager"/>
 	</data>
 </openerp>
