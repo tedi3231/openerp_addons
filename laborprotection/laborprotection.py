@@ -264,6 +264,27 @@ class Claim(osv.osv):
     """
     _name = "laborprotection.claim"
 
+    def create(self, cr, uid, data, context=None):
+        print data
+        """
+        创建领料记录
+        """
+        productids = [item[2]["product_id"] for item in data["claimitem_ids"]]
+        print 'productids is %s' % productids
+        #判断用户是否有足够的分值
+        empRep = self.pool.get("laborprotection.employee")
+        empItem = empRep.read(cr,uid,[data["receiveemp_id"]],['id','score'])
+        proRep = self.pool.get("laborprotection.product")
+        proItem = proRep.read(cr,uid,productids,["score","stock"])
+
+        if sum(item["stock"] for item in proItem) < data['outcount']:
+            raise osv.except_osv(_("Operation Canceld"),u"对不起，产品数量不足，无法认领!")
+
+        totalScore = sum([item for item in proItem ])
+        totalScore = data['outcount'] * proItem[0]['score']
+        if empItem[0]['score'] < totalScore:
+            raise osv.except_osv(_("Operation Canceld"),u"对不起，您的积分不足，无法认领!")
+        
     def on_change_employee(self,cr,uid,ids,emp_id,context=None):
         if not emp_id:
             return False
@@ -277,16 +298,17 @@ class Claim(osv.osv):
         }
 
     def on_change_claimitemids(self,cr,uid,ids,itemids,context=None):
+        print itemids
         if not itemids:
             return False
         for item in itemids:
             print item
+        products = [item[2]['product_id'] for item in itemids]
+        if len(products)>len(set(products)):
+            raise osv.except_osv(_("Operation Canceld"),u"对不起,产品已经存在，请选择不同的产品!")
         proRep = self.pool.get("laborprotection.product")
         totalscore = sum([item[2]["outcount"] * proRep.read(cr,uid,[item[2]["product_id"]],["score"])[0]["score"] for item in itemids])
         totalproductCount = sum([item[2]["outcount"] for item in itemids])
-        #item = self.pool.get("laborprotection.employee").browse(cr,uid,emp_id,context=context)
-        #if not item :
-        #    return False
         return {
             "value":{
                 "totalscore":totalscore,
