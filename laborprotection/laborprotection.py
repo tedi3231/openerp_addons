@@ -45,7 +45,7 @@ class Employee(osv.osv):
                 self.__createRechareItem(cr,uid,ids[0],oldscore,values["score"])
         return emp_id
     
-    _sql_constraints = [('cardnum_uniq', 'unique(cardnum)', 'Card Number must be unique!')]
+    _sql_constraints = [('cardnum_uniq', 'unique(cardnum)',"员工卡号必须唯一")] 
     
     _defaults = {
         "active":lambda self,cr,uid,context: True,
@@ -66,12 +66,12 @@ class RechargeItem(osv.osv):
         return result
     
     _columns = {
-        "name":fields.char(string="充值记录",size=200),
+        "name":fields.function(get_employee_name, string="员工名称", type="char", store=True),
         "adduser_id":fields.many2one("res.users", string="添加人"),
         "employee_id":fields.many2one("laborprotection.employee", string="员工"),
-        "employee_name":fields.function(get_employee_name, string="员工名称", type="char", store=True),
         "addvalue":fields.integer(string="添加分值"),
         "addtime":fields.datetime(string="添加时间"),
+        "remark":fields.text(string="备注")
     }
     
     _order="addtime desc, employee_id asc"
@@ -79,6 +79,7 @@ class RechargeItem(osv.osv):
     
     _defaults = {
         "addtime":lambda self, cr, uid, context:datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "adduser_id":lambda self,cr,uid,context:uid,
     }
 RechargeItem()
 
@@ -137,18 +138,33 @@ class Category(osv.osv):
     _constraints = [
         (_check_recursion, '错误！您不能循环创建目录.', ['parent_id'])
     ]
+
     def child_get(self, cr, uid, ids):
         return [ids]
 
 Category()
 
+class Supplier(osv.osv):
+    _name = "laborprotection.supplier"
+
+    _columns = {
+        "name":fields.char(string="供应商名称", required=True, size=200, help="供应商名称"),
+        "address":fields.char(string="供应商地址", required=True, size=100, help="供应商地址"),
+        "contact":fields.char(string="联系人", required=False, size=100, help="联系人"),
+        "telephone":fields.char(string="联系电话", required=False, size=100),
+        "email":fields.char(string="邮件地址", required=False, size=100),
+        "remark":fields.text(string="备注")
+    }
+Supplier()
+
+
 class Product(osv.osv):
     _name = "laborprotection.product"
 
     _columns = {
-        "category_id":fields.many2one("laborprotection.category",string="产品类型",required=True,ondelete="cascade",select=True),
+        "category_id":fields.many2one("laborprotection.category",string="用品类别",required=True,ondelete="cascade",select=True),
+        "supplier_id":fields.many2one("laborprotection.supplier",string="供应商",required=True,select=True),
         "name":fields.char(string="产品名称",required=True,size=200),
-        "supplier":fields.char(string="供应商名称",required=False,size=200),
         "code":fields.char(string="产品编码",required=True,size=200),
         "price":fields.float(string="产品价格",digits=(12,2)),
         "score":fields.integer("产品分值",required=True),
@@ -280,10 +296,10 @@ class Claim(osv.osv):
                 raise osv.except_osv(_("Operation Canceld"),u"对不起，产品%s数量不足，无法认领!"%proItem["name"])
             print "proItem['score'] is %s and item['outcount'] is %s "%(str(proItem['score']),str(item['outcount']))
             totalScore = totalScore + proItem['score'] * item['outcount']
-            print "totalScore is %d" % totalScore
 
         empRep = self.pool.get("laborprotection.employee")
         empItem = empRep.read(cr,uid,[data["employee_id"]],['id','score'])[0]
+        print "totalScore is %d,empItem is %s" % (totalScore,empItem)
         if empItem['score'] < totalScore:
             raise osv.except_osv(_("Operation Canceld"),u"对不起，您的积分不足，无法认领!")
 
@@ -345,14 +361,14 @@ class Claim(osv.osv):
         return result
 
     _columns = {
-        "name":fields.related("employee_id","name",type="char",string="名称"),
-        "employee_id":fields.many2one("laborprotection.employee",string="领料人"),
+        "name":fields.related("employee_id","name",type="char",string="用品名称"),
+        "employee_id":fields.many2one("laborprotection.employee",string="领用人"),
         "currentscore":fields.related("employee_id","score",type="integer",string="当前积分",readonly=True),
-        "claimitem_ids":fields.one2many("laborprotection.claimitem","claim_id",string="领料详细"),
+        "claimitem_ids":fields.one2many("laborprotection.claimitem","claim_id",string="领用详细"),
         "adduser_id":fields.many2one("res.users",string="操作人"),
-        "addtime":fields.datetime(string="领料时间"),
+        "addtime":fields.datetime(string="领用时间"),
         "totalscore":fields.function(get_totalscore,string="共需积分"),
-        "totalcount":fields.function(get_product_totalcount,string="产品总数"),
+        "totalcount":fields.function(get_product_totalcount,string="用品总数"),
         "remark":fields.text(string="备注"),
     }
     _defaults = {
@@ -360,10 +376,10 @@ class Claim(osv.osv):
         "adduser_id":lambda self,cr,uid,context:uid,
     }
 Claim()
-
+ 
 class ClaimItem(osv.osv):
     """
-    领料详细
+    劳保用品领用详细
     """
     _name = "laborprotection.claimitem"
 
@@ -374,12 +390,14 @@ class ClaimItem(osv.osv):
         return result
 
     _columns = {
-        "claim_id":fields.many2one("laborprotection.claim",string="领料记录"),
-        "product_id":fields.many2one("laborprotection.product",string="出库产品",required=True),
-        "name":fields.related("product_id","name",type="char",string="产品名称"),
-        "outcount":fields.integer(string="出库数量"),
+        "claim_id":fields.many2one("laborprotection.claim",string="领用记录"),
+        "product_id":fields.many2one("laborprotection.product",string="劳保用品",required=True),
+        "name":fields.related("product_id","name",type="char",string="用品名称",readonly=True),
+        "price":fields.related("product_id","price",type="float",string="用品价格",readonly=True),
+        "score":fields.related("product_id","score",type="integer",string="用品分值",readonly=True),
+        "outcount":fields.integer(string="领用数量"),
         "adduser_id":fields.many2one("res.users",strin="操作人"),
-        "addtime":fields.datetime(string="出库时间"),
+        "addtime":fields.datetime(string="领用时间"),
         "remark":fields.text(string="备注"),
     }
 
