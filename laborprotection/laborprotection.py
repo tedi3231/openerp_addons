@@ -265,25 +265,39 @@ class Claim(osv.osv):
     _name = "laborprotection.claim"
 
     def create(self, cr, uid, data, context=None):
-        print data
         """
         创建领料记录
         """
-        productids = [item[2]["product_id"] for item in data["claimitem_ids"]]
-        print 'productids is %s' % productids
-        #判断用户是否有足够的分值
-        empRep = self.pool.get("laborprotection.employee")
-        empItem = empRep.read(cr,uid,[data["receiveemp_id"]],['id','score'])
+        print data
+        cliamitems = [item[2] for item in data["claimitem_ids"]]
+        totalScore = 0
         proRep = self.pool.get("laborprotection.product")
-        proItem = proRep.read(cr,uid,productids,["score","stock"])
+        for item in cliamitems:
+            print "item is %s" % item 
+            proItem = proRep.read(cr,uid,[item['product_id']],['id','name','score','stock'])[0]
+            print "proItem is %s" % proItem
+            if proItem['stock'] < item["outcount"]:
+                raise osv.except_osv(_("Operation Canceld"),u"对不起，产品%s数量不足，无法认领!"%proItem["name"])
+            print "proItem['score'] is %s and item['outcount'] is %s "%(str(proItem['score']),str(item['outcount']))
+            totalScore = totalScore + proItem['score'] * item['outcount']
+            print "totalScore is %d" % totalScore
 
-        if sum(item["stock"] for item in proItem) < data['outcount']:
-            raise osv.except_osv(_("Operation Canceld"),u"对不起，产品数量不足，无法认领!")
-
-        totalScore = sum([item for item in proItem ])
-        totalScore = data['outcount'] * proItem[0]['score']
-        if empItem[0]['score'] < totalScore:
+        empRep = self.pool.get("laborprotection.employee")
+        empItem = empRep.read(cr,uid,[data["employee_id"]],['id','score'])[0]
+        if empItem['score'] < totalScore:
             raise osv.except_osv(_("Operation Canceld"),u"对不起，您的积分不足，无法认领!")
+
+        claim_id = super(Claim, self).create(cr, uid, data, context=context)
+
+        if claim_id:
+            #减少对应的库存
+            for item in cliamitems:
+                proItem = proRep.read(cr,uid,[item['product_id']],['id','name','score','stock'])[0]
+                context['isoutstock'] = False;
+                proRep.write(cr,uid,[item["product_id"]],{"stock":proItem["stock"]-item["outcount"]},context=context) 
+            #减少申请人的积分
+            empRep.write(cr,uid,[empItem['id']],{'score':empItem['score']-totalScore},context=context)
+        return claim_id
         
     def on_change_employee(self,cr,uid,ids,emp_id,context=None):
         if not emp_id:
