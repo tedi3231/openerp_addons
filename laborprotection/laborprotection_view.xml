@@ -412,5 +412,9 @@
 		<menuitem id="menu_laborprotection_instockitem_manager" action="laborprotection_instockitem_action" name="劳保用品入库" parent="menu_laborprotection_product_manager" sequence="100"/>
 		<!--<menuitem id="menu_laborprotection_outstockitem_manager" action="laborprotection_outstockitem_action" name="劳保用品出库" parent="menu_laborprotection_product_manager"/>-->
 		<menuitem id="menu_laborprotection_claim_manager" action="laborprotection_claim_action" name="劳保用品领用" parent="menu_laborprotection_product_manager" sequence="110"/>
+
+		<report id="laborprotection_employee_print" string="员工信息" model="laborprotection.employee" name="laborprotection.employee" 
+			rml="laborprotection/report/laborprotection_employee.rml" menu="True"/> 
+
 	</data>
 </openerp>
