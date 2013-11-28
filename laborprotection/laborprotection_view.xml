@@ -415,6 +415,8 @@
 
 		<report id="laborprotection_employee_print" string="员工信息" model="laborprotection.employee" name="laborprotection.employee" 
 			rml="laborprotection/report/laborprotection_employee.rml" menu="True"/> 
+		<report id="laborprotection_claim_print" string="领料申请" model="laborprotection.claim" name="laborprotection.claim" 
+			rml="laborprotection/report/laborprotection_claim.rml" menu="True"/> 
 
 	</data>
 </openerp>

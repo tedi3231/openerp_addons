@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <!DOCTYPE document SYSTEM "rml.dtd">
-<document filename="example_1.pdf">
+<document filename="claim.pdf">
     <template showBoundary="1">
         <pageTemplate id="main">
             <frame id="first" x1="15" y1="42" width="539" height="758" />
@@ -18,8 +18,9 @@
 		<blockTableStyle id="TableEmployee">
 		  <blockAlignment value="LEFT"/>
 		  <blockValign value="TOP"/>
-		  <blockBackground start="0,0" stop="2,0" colorName="gray"/>
+		  <blockBackground start="0,0" stop="3,0" colorName="gray"/>
 		  <lineStyle colorName="black" kind="GRID" start="0,0" stop="-1,-1" thickness="1"/>
+		  <blockSpan start="0,2" stop="3,2"/>
 		</blockTableStyle>
 		<initialize>
 		  <paraStyle name="all" alignment="justify"/>
@@ -33,33 +34,42 @@
   </stylesheet>
   <story>
 		<para style="Header">
-			This is a Employee information!
+			This is a claim print document!
 		</para>
 		<pto>
 			<para style="terp_default_8">[[repeatIn(objects,'o')]]</para>
 			<!--<para style="terp_default_8">[[ setLang(o.partner_id.lang) ]]</para>-->
 			<blockTable style="TableEmployee">
 				<tr>
-					<td><para style="Caption">Employee Name</para> </td> 
-					<td><para style="Caption">Employee Sex</para> </td>
-					<td><para style="Caption">Employee Telephone</para> </td>
+					<td><para style="Caption">Name</para> </td> 
+					<td><para style="Caption">TotalScore</para> </td>
+					<td><para style="Caption">Operation User</para> </td>
+					<td><para style="Caption">Operation Time</para> </td>
 				</tr> 
 				<tr>
 					<td><para> [[ o.name ]]</para></td>
-					<td><para>[[ o.sex ]]</para></td>
-					<td><para>[[ o.telephone ]]</para></td>  
+					<td><para>[[ o.totalscore ]]</para></td>
+					<td><para>[[ o.adduser_id.name ]]</para></td>  
+					<td><para>[[ o.addtime ]]</para></td>  
 				</tr>
 				<tr>
-					<td><para style="Title">Employee Name</para> </td> 
-					<td><para style="Title">Employee Sex</para> </td>
-					<td><para style="Title">Employee Telephone</para> </td>
-				</tr> 
-				<tr>
-					<td><para> [[ o.name ]]</para></td>
-					<td><para>[[ o.sex ]]</para></td>
-					<td><para>[[ o.telephone ]]</para></td>  
+					<td colspan="4">
+						[[repeatIn(o['claimitem_ids'],'a','tr')]]							
+						<blockTable>
+							<tr>
+								<td><para>Name</para></td>
+								<td><para>price</para></td>
+								<td><para>Score</para></td>
+							</tr>
+							<tr>
+								<td><para> [[a.name]] </para></td>
+								<td>[[a.price]]</td>
+								<td>[[a.addtime]]</td>
+							</tr>
+						</blockTable>
+					</td>
 				</tr>
 			</blockTable>
-	</pto>
+		</pto>
   </story>
 </document>
