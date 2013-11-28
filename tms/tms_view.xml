@@ -533,6 +533,7 @@
                 <tree string="FeeForProduct Manager">
                     <field name="processid"/>
                     <field name="applyprocessid"/>
+					<field name="feedate"/>
 					<field name="accountperiod"/>
                     <field name="province" width="50"/>
                     <field name="store_id" />
