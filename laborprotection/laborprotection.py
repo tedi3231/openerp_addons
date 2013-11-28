@@ -305,6 +305,7 @@ class Claim(osv.osv):
 
         claim_id = super(Claim, self).create(cr, uid, data, context=context)
 
+        """
         if claim_id:
             #减少对应的库存
             for item in cliamitems:
@@ -313,6 +314,7 @@ class Claim(osv.osv):
                 proRep.write(cr,uid,[item["product_id"]],{"stock":proItem["stock"]-item["outcount"]},context=context) 
             #减少申请人的积分
             empRep.write(cr,uid,[empItem['id']],{'score':empItem['score']-totalScore},context=context)
+        """
         return claim_id
         
     def on_change_employee(self,cr,uid,ids,emp_id,context=None):
@@ -369,11 +371,31 @@ class Claim(osv.osv):
         "addtime":fields.datetime(string="领用时间"),
         "totalscore":fields.function(get_totalscore,string="共需积分"),
         "totalcount":fields.function(get_product_totalcount,string="用品总数"),
+        "state":fields.selection([('new','新建'),('assigned',"已签字")],string="状态"),
         "remark":fields.text(string="备注"),
     }
+
+    def btn_assigned(self,cr,uid,ids,args=None,context=None):
+        self.write(cr,uid,ids,{'state':'assigned'})
+        claimitem = self.browse(cr,uid,ids,context=context)[0]
+        claimitems = claimitem["claimitem_ids"]
+        proRep = self.pool.get("laborprotection.product")
+        empRep = self.pool.get("laborprotection.employee")
+        #减少对应的库存
+        for item in claimitems:
+            print "item is %s,product_id is %d and %d" % (item,item.product_id,item["product_id"])
+            proItem = proRep.read(cr,uid,[item.product_id],['id','name','score','stock'])[0]
+            print "proItem is %s" % proItem
+            context['isoutstock'] = False;
+            proRep.write(cr,uid,[item.product_id],{"stock":proItem["stock"]-item.outcount},context=context) 
+        #减少申请人的积分
+        empRep.write(cr,uid,[claimitem.employee_id],{'score':empItem['score']-totalScore},context=context)
+        return True
+
     _defaults = {
         "addtime":lambda self, cr, uid, context:datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "adduser_id":lambda self,cr,uid,context:uid,
+        "state":lambda self,cr,uid,context:'new',
     }
 Claim()
  

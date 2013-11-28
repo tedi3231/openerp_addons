@@ -54,17 +54,18 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						[[repeatIn(o['claimitem_ids'],'a','tr')]]							
 						<blockTable>
 							<tr>
 								<td><para>Name</para></td>
 								<td><para>price</para></td>
 								<td><para>Score</para></td>
+								<td><para>OutCount</para></td>
 							</tr>
-							<tr>
+							<tr>[[repeatIn(o['claimitem_ids'],'a','tr')]]							
 								<td><para> [[a.name]] </para></td>
 								<td>[[a.price]]</td>
-								<td>[[a.addtime]]</td>
+								<td>[[a.score]]</td>
+								<td>[[a.outcount]]</td>
 							</tr>
 						</blockTable>
 					</td>

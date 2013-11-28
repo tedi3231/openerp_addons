@@ -305,6 +305,10 @@
             <field name="arch" type="xml">
                 <form string="劳保用品领用" version="7.0">
                     <sheet>
+						<group col="4">
+							<field name="state" invisible="1"/>
+							<button name="btn_assigned" type="object" string="已签字确认" states="new"/>
+						</group>
                     	<group col="4">
 							<field name="employee_id" on_change="on_change_employee(employee_id)" string="领用人"/>
 							<field name="currentscore" string="员工当前积分"/>
@@ -337,10 +341,11 @@
             <field name="arch" type="xml">
                 <tree string="劳保用品领用">
 					<field name="employee_id" string="领用人"/>
+					<field name="totalcount" string="用品总数"/>
+					<field name="totalscore" string="共需积分"/>
+					<field name="state" string="状态"/>
 					<field name="adduser_id" string="操作人"/>
 					<field name="addtime" string="领用时间"/>
-					<field name="totalscore" string="共需积分"/>
-					<field name="totalcount" string="用品总数"/>
                 </tree>
             </field>
         </record>
