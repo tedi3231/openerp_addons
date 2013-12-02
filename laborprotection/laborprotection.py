@@ -383,13 +383,13 @@ class Claim(osv.osv):
         empRep = self.pool.get("laborprotection.employee")
         #减少对应的库存
         for item in claimitems:
-            print "item is %s,product_id is %d and %d" % (item,item.product_id,item["product_id"])
-            proItem = proRep.read(cr,uid,[item.product_id],['id','name','score','stock'])[0]
-            print "proItem is %s" % proItem
-            context['isoutstock'] = False;
-            proRep.write(cr,uid,[item.product_id],{"stock":proItem["stock"]-item.outcount},context=context) 
+            proItem = proRep.read(cr,uid,[item.product_id.id],['id','name','score','stock'],context=context)[0]
+            if context is None: context = {}
+            context['isoutstock'] = False
+            proRep.write(cr,uid,[item["product_id"].id],{"stock":proItem["stock"]-item["outcount"]},context=context) 
         #减少申请人的积分
-        empRep.write(cr,uid,[claimitem.employee_id],{'score':empItem['score']-totalScore},context=context)
+        empItem = empRep.read(cr,uid,[claimitem.employee_id.id],['id','score'])[0]
+        empRep.write(cr,uid,[claimitem.employee_id.id],{'score':empItem["score"]-claimitem.totalscore},context=context)
         return True
 
     _defaults = {
