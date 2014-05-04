@@ -18,6 +18,23 @@ class Employee(osv.osv):
         "active":fields.boolean(string="是否激活"),
         "remark":fields.text(string="备注")
     }
+
+    def attachment_tree_view(self, cr, uid, ids, context):
+        domain = [
+            ('res_model', '=', 'laborprotection.employee'), ('res_id', 'in', ids),
+		]
+        res_id = ids and ids[0] or False
+        return {
+            'name': _('Attachments'),
+            'domain': domain,
+            'res_model': 'ir.attachment',
+            'type': 'ir.actions.act_window',
+            'view_id': False,
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'limit': 80,
+            'context': "{'default_res_model': '%s','default_res_id': %d}" % (self._name, res_id)
+        }
     
     def __createRechareItem(self,cr,uid,emp_id,oldscore,newscore):
         emp =  self.read(cr,uid,[emp_id],["name","score"])[0]

@@ -23,6 +23,7 @@
 			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<form string="员工信息" version="7.0">
+					<button name="attachment_tree_view" string="Documents" type="object"/>
 					<sheet>
 						<group col="4">
 							<field name="name" string="员工名称"/>
