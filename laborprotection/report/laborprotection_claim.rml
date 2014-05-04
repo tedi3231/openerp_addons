@@ -34,20 +34,20 @@
   </stylesheet>
   <story>
 		<para style="Header">
-			This is a claim print document!
+			劳保用品领用清单
 		</para>
 		<pto>
 			<para style="terp_default_8">[[repeatIn(objects,'o')]]</para>
 			<!--<para style="terp_default_8">[[ setLang(o.partner_id.lang) ]]</para>-->
-			<blockTable style="TableEmployee">
+			<blockTable colWidths="200.0,100.0,100.0,120.0" style="TableEmployee">
 				<tr>
-					<td><para style="Caption">Name</para> </td> 
-					<td><para style="Caption">TotalScore</para> </td>
-					<td><para style="Caption">Operation User</para> </td>
-					<td><para style="Caption">Operation Time</para> </td>
+					<td><para style="Caption">员工名称</para> </td> 
+					<td><para style="Caption">共需分值</para> </td>
+					<td><para style="Caption">操作人</para> </td>
+					<td><para style="Caption">操作时间</para> </td>
 				</tr> 
 				<tr>
-					<td><para> [[ o.name ]]</para></td>
+					<td><para>[[ o.name ]]</para></td>
 					<td><para>[[ o.totalscore ]]</para></td>
 					<td><para>[[ o.adduser_id.name ]]</para></td>  
 					<td><para>[[ o.addtime ]]</para></td>  
@@ -56,10 +56,10 @@
 					<td colspan="4">
 						<blockTable>
 							<tr>
-								<td><para>Name</para></td>
-								<td><para>price</para></td>
-								<td><para>Score</para></td>
-								<td><para>OutCount</para></td>
+								<td><para>产品名称</para></td>
+								<td><para>产品价格</para></td>
+								<td><para>当前库存</para></td>
+								<td><para>领用数量</para></td>
 							</tr>
 							<tr>[[repeatIn(o['claimitem_ids'],'a','tr')]]							
 								<td><para> [[a.name]] </para></td>
