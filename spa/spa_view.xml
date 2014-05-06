@@ -142,9 +142,10 @@
 					</xpath>
 					<xpath expr="//page[@string='History']" position="after">
 						<page string="Customer Attributes">
-							<field name="attribute_values">
-								<tree string="Customer Attributes" version="7.0">
+							<field name="attribute_values" filter_domain="[('name','=','突发不适')]">
+								<tree version="7.0" editable="bottom">
 									<field name="name"/>
+									<field name="value"/>
 								</tree>
 							</field>
 						</page>
@@ -199,9 +200,245 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 		</record>
+
+		<record model="ir.ui.view" id="view_reservation_tree">
+			<field name="name">view.reservation.tree</field>
+			<field name="model">spa.reservation</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Reservation List">
+					<field name="partner_id"/>
+					<field name="store_id"/>
+					<field name="emp_id"/>
+					<field name="reservationdate"/>
+					<field name="remark" />
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_reservation_form">
+			<field name="name">view.reservation.form</field>
+			<field name="model">spa.reservation</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Customer Reservation" version="7.0">
+					<header>
+						<button name="reservation_complete" states="draft" type="object" string="Convert To Order" class="oe_hightlight"/>
+						<button name="reservation_cancel" states="draft" type="object" string="Cancel" class="oe_hightlight"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,cancel" statusbar_colors='{"cancel":"red","draft":"blue"}'/>
+					</header>
+					<sheet>
+						<group col="4">
+							<field name="partner_id"/>
+							<field name="store_id"/>
+							<field name="emp_id"/>
+							<field name="reservationdate"/>
+						</group>
+						<group>
+							<field name="remark"/>
+						</group>
+						<notebook>
+							<page string="Reservation Lines">
+								<field name="reservationlines">
+									<tree version="7.0" editable="bottom">
+										<field name="product_id" on_change="product_id_change(product_id)"/>
+										<field name="count" on_change="product_count_change(count,price)"/>
+										<field name="price"/>
+										<field name="amount"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_reservation_tree_show">
+			<field name="name">Reservation</field>
+			<field name="res_model">spa.reservation</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_order_tree">
+			<field name="name">view.order.tree</field>
+			<field name="model">spa.order</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Order List">
+					<field name="partner_id"/>
+					<field name="store_id"/>
+					<field name="emp_id"/>
+					<field name="source"/>
+					<field name="remark" />
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_order_form">
+			<field name="name">view.order.form</field>
+			<field name="model">spa.order</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Order" version="7.0">
+					<header>
+						<!--<button name="reservation_complete" states="draft" string="Convert To Order" class="oe_hightlight"/>
+						<button name="reservation_cancel" states="draft" string="Cancel" class="oe_hightlight"/>-->
+						<field name="state" widget="statusbar" statusbar_visible="draft,cancel" statusbar_colors='{"cancel":"red","draft":"blue"}'/>
+					</header>
+					<sheet>
+						<group col="4">
+							<field name="ordernum"/>
+							<field name="partner_id"/>
+							<field name="store_id"/>
+							<field name="emp_id"/>
+							<field name="amount"/>
+							<field name="orderdate"/>
+						</group>
+						<group>
+							<field name="remark"/>
+						</group>
+						<notebook>
+							<page string="Order Lines">
+								<field name="orderlines">
+									<tree version="7.0" editable="bottom">
+										<field name="product_id" on_change="product_id_change(product_id)"/>
+										<field name="count" on_change="product_count_change(count,price)"/>
+										<field name="price"/>
+										<field name="amount"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_order_tree_show">
+			<field name="name">Order</field>
+			<field name="res_model">spa.order</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="view_spa_category_search" model="ir.ui.view">
+            <field name="name">view.spa.category.search</field>
+            <field name="model">spa.category</field>
+            <field name="arch" type="xml">
+                <search string="Category">
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_spa_category_form" model="ir.ui.view">
+            <field name="name">view.spa.category.form</field>
+            <field name="model">spa.category</field>
+            <field name="arch" type="xml">
+                <form string="Category" version="7.0">
+                    <sheet>
+                    	<group col="4">
+							<field name="parent_id" string="Parent"/>
+							<field name="name" string="Category Name"/>
+						</group>
+						<group col="4" string="Remark">
+								<field name="remark" placeholder="Remark...." colspan="4" nolabel="1"/>
+						</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_spa_category_tree" model="ir.ui.view">
+            <field name="name">view.spa.category.tree</field>
+            <field name="model">spa.category</field>
+            <field name="priority">1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Category List">
+                    <field name="complete_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_product_category_tree_show" model="ir.actions.act_window">
+            <field name="name">Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">spa.category</field>
+            <!--<field name="domain">[('parent_id','=',False)]</field>-->
+            <field name="domain">[]</field>
+           <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_spa_category_tree"/>
+            <field name="help" type="html">
+              <p>
+                Here is a list of all your products classified by category. You
+                can click a category to get the list of all products linked to
+                this category or to a child of this category.
+              </p>
+            </field>
+        </record>
+        
+        <record id="view_spa_product_form" model="ir.ui.view">
+            <field name="name">view.spa.product.form</field>
+            <field name="model">spa.product</field>
+            <field name="arch" type="xml">
+                <form string="Product" version="7.0">
+                    <sheet>
+                    	<group col="4">
+							<field name="category_id"/>
+							<field name="name"/>
+							<field name="price"/> 
+							<field name="unit"/>
+						</group>
+						<group col="4" string="Remark">
+								<field name="remark" placeholder="Remark...." colspan="4" nolabel="1"/>
+						</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_spa_product_tree" model="ir.ui.view">
+            <field name="name">view.spa.product.tree</field>
+            <field name="model">spa.product</field>
+            <field name="priority">1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product List">
+					<field name="category_id"/>
+					<field name="name"/> 
+					<field name="price" />
+					<field name="unit" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_spa_product_tree_show" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">spa.product</field>
+            <!--<field name="domain">[('parent_id','=',False)]</field>-->
+            <field name="domain">[]</field>
+           <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_spa_product_tree"/>
+        </record>
+
         <menuitem id="menu_spa_main" name="SPA CRM" />
         <menuitem id="menu_spa_manager" name="SPA CRM" parent="menu_spa_main"/>
-        <menuitem id="menu_spa_managre_manager" parent="hr.menu_hr_configuration" name="Store Manager" action="action_spa_store_tree_show"/>
-        <menuitem id="menu_attribute_category_manager" parent="base.menu_base_config" name="Attributes Category Manager" action="action_attribute_category_tree_show"/>
+        <menuitem id="menu_spa_managre_manager" parent="hr.menu_hr_configuration" name="Stores" action="action_spa_store_tree_show"/>
+        <menuitem id="menu_attribute_category_manager" parent="base.menu_base_config" name="Attributes Categories" action="action_attribute_category_tree_show"/>
+        <menuitem id="menu_product_category_manager" parent="base.menu_base_config" name="Product Categories" action="action_product_category_tree_show"/>
+        <menuitem id="menu_product_product_manager" parent="base.menu_base_config" name="Products" action="action_spa_product_tree_show"/>
+        <menuitem id="menu_reservation_manager" parent="base.menu_sales" name="Reservations" action="action_reservation_tree_show"/>
+        <menuitem id="menu_order_manager" parent="base.menu_sales" name="Orders" action="action_order_tree_show"/>
     </data>
 </openerp>
