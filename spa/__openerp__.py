@@ -28,7 +28,8 @@
     'depends':[
         "base",
         "hr",
-        "crm"
+        "crm",
+        "product"
     ],   
     'data': [
         'spa_view.xml',

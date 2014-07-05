@@ -60,9 +60,6 @@
                             <field name="xCoordinate" />
                             <field name="yCoordinate" />
                         </group>
-                        <group col="4" string="Remark">
-                            <field name="remark" placeholder="Remark" colspan="4" nolabel="1"/>
-                        </group>
 						<notebook>
 							<page string="Rooms">
 								<field name="rooms">
@@ -75,6 +72,9 @@
 								</field>
 							</page>
 						</notebook>
+                        <group col="4" string="Remark">
+                            <field name="remark" placeholder="Remark" colspan="4" nolabel="1"/>
+                        </group>
                     </sheet>
                 </form>
             </field>
@@ -407,120 +407,11 @@
 			<field name="view_mode">tree,form</field>
 		</record>
 
-		<record id="view_spa_category_search" model="ir.ui.view">
-            <field name="name">view.spa.category.search</field>
-            <field name="model">spa.category</field>
-            <field name="arch" type="xml">
-                <search string="Category">
-                    <field name="name"/>
-                    <field name="parent_id"/>
-                </search>
-            </field>
-        </record>
-        
-        <record id="view_spa_category_form" model="ir.ui.view">
-            <field name="name">view.spa.category.form</field>
-            <field name="model">spa.category</field>
-            <field name="arch" type="xml">
-                <form string="Category" version="7.0">
-                    <sheet>
-                    	<group col="4">
-							<field name="parent_id" string="Parent"/>
-							<field name="name" string="Category Name"/>
-						</group>
-						<group col="4" string="Remark">
-								<field name="remark" placeholder="Remark...." colspan="4" nolabel="1"/>
-						</group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <record id="view_spa_category_tree" model="ir.ui.view">
-            <field name="name">view.spa.category.tree</field>
-            <field name="model">spa.category</field>
-            <field name="priority">1</field>
-            <field name="view_mode">tree,form</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <tree string="Category List">
-                    <field name="complete_name"/>
-                </tree>
-            </field>
-        </record>
-
-        <record id="action_product_category_tree_show" model="ir.actions.act_window">
-            <field name="name">Category</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">spa.category</field>
-            <!--<field name="domain">[('parent_id','=',False)]</field>-->
-            <field name="domain">[]</field>
-           <field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_spa_category_tree"/>
-            <field name="help" type="html">
-              <p>
-                Here is a list of all your products classified by category. You
-                can click a category to get the list of all products linked to
-                this category or to a child of this category.
-              </p>
-            </field>
-        </record>
-        
-        <record id="view_spa_product_form" model="ir.ui.view">
-            <field name="name">view.spa.product.form</field>
-            <field name="model">spa.product</field>
-            <field name="arch" type="xml">
-                <form string="Product" version="7.0">
-                    <sheet>
-                    	<group col="4">
-							<field name="category_id"/>
-							<field name="name"/>
-							<field name="price"/> 
-							<field name="unit"/>
-						</group>
-						<group col="4" string="Remark">
-								<field name="remark" placeholder="Remark...." colspan="4" nolabel="1"/>
-						</group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <record id="view_spa_product_tree" model="ir.ui.view">
-            <field name="name">view.spa.product.tree</field>
-            <field name="model">spa.product</field>
-            <field name="priority">1</field>
-            <field name="view_mode">tree,form</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <tree string="Product List">
-					<field name="category_id"/>
-					<field name="name"/> 
-					<field name="price" />
-					<field name="unit" />
-                </tree>
-            </field>
-        </record>
-
-        <record id="action_spa_product_tree_show" model="ir.actions.act_window">
-            <field name="name">Products</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">spa.product</field>
-            <!--<field name="domain">[('parent_id','=',False)]</field>-->
-            <field name="domain">[]</field>
-           <field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_spa_product_tree"/>
-        </record>
-
         <menuitem id="menu_spa_main" name="SPA CRM" />
         <menuitem id="menu_spa_manager" name="SPA CRM" parent="menu_spa_main"/>
         <menuitem id="menu_spa_store_manager" parent="hr.menu_hr_configuration" name="Stores" action="action_spa_store_tree_show"/>
         <menuitem id="menu_spa_room_manager" parent="hr.menu_hr_configuration" name="Rooms" action="action_spa_room_tree_show"/>
         <menuitem id="menu_attribute_category_manager" parent="base.menu_base_config" name="Attributes Categories" action="action_attribute_category_tree_show"/>
-        <menuitem id="menu_product_category_manager" parent="base.menu_base_config" name="Product Categories" action="action_product_category_tree_show"/>
-        <menuitem id="menu_product_product_manager" parent="base.menu_base_config" name="Products" action="action_spa_product_tree_show"/>
         <menuitem id="menu_reservation_manager" parent="base.menu_sales" name="Reservations" action="action_reservation_tree_show"/>
         <menuitem id="menu_order_manager" parent="base.menu_sales" name="Orders" action="action_order_tree_show"/>
     </data>

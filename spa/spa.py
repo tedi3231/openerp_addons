@@ -101,6 +101,7 @@ class spa_customer_attribute(osv.osv):
 spa_customer_attribute() 
 
 class spa_customer_attribute_value(osv.osv):
+
     """
     客户具体的属性值
     """
@@ -278,7 +279,7 @@ class ReservationLine(osv.osv):
         # print "product_id_change ,ids is %s product_id %s" % (ids,product_id)
         #print self.browse(cr,uid,ids)
         print "context is %s " % context
-        products = self.pool.get("spa.product").browse(cr, uid, [product_id])
+        products = self.pool.get("product.product").browse(cr, uid, [product_id])
         return {
             "value":{
                 "price" : products[0].price,
@@ -298,7 +299,7 @@ class ReservationLine(osv.osv):
     _columns = {
         # "name":fields.related("product_id","name",type="string",string="Name"),
         "reservation_id": fields.many2one("spa.reservation", string="Reservation"),
-        "product_id" : fields.many2one("spa.product", string="Product"),
+        "product_id" : fields.many2one("product.product", string="Product"),
         "emp_id" : fields.many2one("hr.employee" , string="Employee",domain="[('store_id','=',parent.store_id)]"),
         "price" : fields.float(string="Price", required=True),
         "unit" : fields.char(string="Unit"),
@@ -363,7 +364,7 @@ class OrderLine(osv.osv):
 
     def product_id_change(self, cr, uid, ids, product_id, context=None):
         print "product_id_change ,ids is %s product_id %s" % (ids, product_id)
-        products = self.pool.get("spa.product").browse(cr, uid, [product_id])
+        products = self.pool.get("product.product").browse(cr, uid, [product_id])
         return {
             "value":{
                 "price" : products[0].price,
@@ -382,7 +383,7 @@ class OrderLine(osv.osv):
     _columns = {
         # "name":fields.related("product_id","name",type="string",string="Name"),
         "order_id": fields.many2one("spa.order", string="Order"),
-        "product_id" : fields.many2one("spa.product", string="Product"),
+        "product_id" : fields.many2one("product.product", string="Product"),
         "emp_id" : fields.many2one("hr.employee" , string="Employee"),
         "price" : fields.float(string="Price", required=True),
         "unit" : fields.char(string="Unit"),
@@ -391,75 +392,3 @@ class OrderLine(osv.osv):
         # "amount" : fields.function(_get_reservation_line_amount, string="Amount"),
     }
 OrderLine()
-
-#----------------------------------------------------------
-# Categories
-#----------------------------------------------------------
-class Category(osv.osv):
-    
-    def name_get(self, cr, uid, ids, context=None):
-        if isinstance(ids, (list, tuple)) and not len(ids):
-            return []
-        if isinstance(ids, (long, int)):
-            ids = [ids]
-        reads = self.read(cr, uid, ids, ['name', 'parent_id'], context=context)
-        res = []
-        for record in reads:
-            name = record['name']
-            if record['parent_id']:
-                name = record['parent_id'][1] + ' / ' + name
-            res.append((record['id'], name))
-        return res
-
-    def _name_get_fnc(self, cr, uid, ids, prop, unknow_none, context=None):
-        res = self.name_get(cr, uid, ids, context=context)
-        return dict(res)
-
-    _name = "spa.category"
-    _description = "产品分类"
-    _columns = {
-        'name': fields.char('Name', size=64, required=True, translate=True, select=True),
-        'complete_name': fields.function(_name_get_fnc, type="char", string='Full Name'),
-        'parent_id': fields.many2one('spa.category', 'Parent', select=True, ondelete='cascade'),
-        'child_id': fields.one2many('spa.category', 'parent_id', string='Children'),
-        'sequence': fields.integer('Sequence', select=True, help="Gives the sequence order when displaying a list of product \
-                                                             categories."),
-        "remark":fields.text(string="Remark")
-    }
-
-    _parent_name = "parent_id"
-    _parent_store = True
-    _parent_order = 'sequence, name'
-
-    def _check_recursion(self, cr, uid, ids, context=None):
-        level = 100
-        while len(ids):
-            cr.execute('select distinct parent_id from spa_category where id IN %s', (tuple(ids),))
-            ids = filter(None, map(lambda x:x[0], cr.fetchall()))
-            if not level:
-                return False
-            level -= 1
-        return True
-
-    _constraints = [
-        (_check_recursion, '错误！您不能循环创建目录.', ['parent_id'])
-    ]
-
-    def child_get(self, cr, uid, ids):
-        return [ids]
-
-Category()
-
-class Product(osv.osv):
-    _name = "spa.product"
-
-    _columns = {
-        "category_id":fields.many2one("spa.category", string="Category", required=True, ondelete="cascade", select=True),
-        "name":fields.char(string="Name", required=True, size=200),
-        "price":fields.float(string="Price", digits=(12, 2)),
-        "unit" : fields.char(string="Unit", required=True),
-        "remark":fields.text(string="Remark"),
-    }
-    _defaults = {
-    }
-Product()

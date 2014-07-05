@@ -1,0 +1,32 @@
+.openerp .oe_learning {
+	font-size: 200%;
+	background-color: green;
+}
+
+.openerp .oe_learning_homepage{
+
+}
+
+.openerp .oe_learning_greetings{
+}
+
+.oe_products_item{
+	display: inline-block;
+	padding: 3px;
+	margin: 5px;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+
+.oe_color_div{
+	width:100px;
+	height:100px;
+	margin:10px;
+}
+
+.oe_learning_motd {
+	margin:5px;
+	padding:5px;
+	border-radius:3px;
+	background-color:#F0EEEE;
+}

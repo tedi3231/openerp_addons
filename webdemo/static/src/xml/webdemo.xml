@@ -1,0 +1,11 @@
+<templates>
+	<div t-name="homepage" class="oe_web_demo oe_web_demo_stopped">
+		<h4 class="oe_web_demo_timmer">00:00:00</h4>
+		<p class="oe_web_demo_start">
+			<button type="button">Start</button>
+		</p>
+		<p class="oe_web_demo_stop">
+			<button type="button">Stop</button>
+		</p>
+	</div>
+</templates>

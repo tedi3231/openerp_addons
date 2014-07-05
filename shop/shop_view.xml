@@ -1,0 +1,128 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_shop_shop_form">
+			<field name="name">view.shop.shop.form</field>
+			<field name="model">shop.shop</field>
+			<field name="type">form</field>		
+			<field name="arch" type="xml">
+				<form string="Shop" version="7.0">
+					<sheet>
+						<group col="4">
+							<field name="name"/>
+							<field name="address"/>
+							<field name="state"/>
+						</group>
+					</sheet>		
+				</form>
+			</field>
+		</record> 
+
+		<record model="ir.ui.view" id="view_shop_shop_list">
+			<field name="name">view.shop.shop.list</field>
+			<field name="model">shop.shop</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Shops" version="7.0" colors="red:state=='run';blue:state=='stop';">
+					<field name="name"/>
+					<field name="address"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_shop_employee_form">
+			<field name="name">view.shop.employee.form</field>
+			<field name="model">shop.employee</field>
+			<field name="type">form</field>		
+			<field name="arch" type="xml">
+				<form string="Employee" version="7.0">
+					<sheet>
+						<group col="4">
+							<field name="name"/>
+							<field name="firstname"/>
+							<field name="lastname"/>
+							<field name="shop_id" on_change="get_shop_name(shop_id)"/>
+							<field name="shopname"/>
+						</group>
+					</sheet>		
+				</form>
+			</field>
+		</record> 
+
+		<record model="ir.ui.view" id="view_shop_employee_list">
+			<field name="name">view.shop.employee.list</field>
+			<field name="model">shop.employee</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Employees" version="7.0"> 
+					<field name="name"/>
+					<field name="firstname"/>
+					<field name="lastname"/>
+					<field name="shop_id"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_shop_worker_form">
+			<field name="name">view.shop.worker.form</field>
+			<field name="model">shop.worker</field>
+			<field name="type">form</field>		
+			<field name="arch" type="xml">
+				<form string="Worker" version="7.0">
+					<sheet>
+						<group col="4">
+							<field name="name"/>
+							<field name="firstname"/>
+							<field name="lastname"/>
+							<field name="shop_id" on_change="get_shop_name(shop_id)"/>
+							<field name="shopname"/>
+						</group>
+					</sheet>		
+				</form>
+			</field>
+		</record> 
+
+		<record model="ir.ui.view" id="view_shop_worker_list">
+			<field name="name">view.shop.worker.list</field>
+			<field name="model">shop.worker</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Workers" version="7.0">
+					<field name="name"/>
+					<field name="firstname"/>
+					<field name="lastname"/>
+					<!--<field name="shop_id"/>-->
+					<field name="shopname"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_shop_shop_form_show">
+			<field name="name">Shops</field>
+			<field name="res_model">shop.shop</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_shop_employee_form_show">
+			<field name="name">Employees</field>
+			<field name="res_model">shop.employee</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_shop_worker_form_show">
+			<field name="name">Workers</field>
+			<field name="res_model">shop.worker</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_shop_root" name="Shops"/>
+		<menuitem id="menu_shop_left_root" parent="menu_shop_root" name="Shops"/>
+		<menuitem id="menu_shop_left_shop_show" parent="menu_shop_left_root" name="Shops" action="action_shop_shop_form_show"/>
+		<menuitem id="menu_shop_left_employee_show" parent="menu_shop_left_root" name="Employees" action="action_shop_employee_form_show"/>
+		<menuitem id="menu_shop_left_worker_show" parent="menu_shop_left_root" name="Workers" action="action_shop_worker_form_show"/>
+
+	</data>
+</openerp>

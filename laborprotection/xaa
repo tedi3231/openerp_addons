@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="laborprotection_category_search_view" model="ir.ui.view">
+            <field name="name">laborprotection.category.search</field>
+            <field name="model">laborprotection.category</field>
+            <field name="arch" type="xml">
+                <search string="产品分类">
+                    <field name="name" string="产品分类"/>
+                    <field name="parent_id"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="laborprotection_category_form_view" model="ir.ui.view">
+            <field name="name">laborprotection.category.form</field>
+            <field name="model">laborprotection.category</field>
+            <field name="arch" type="xml">
+                <form string="产品分类" version="7.0">
+                    <sheet>
+                    	<group col="4">
+							<field name="parent_id" string="父类名称"/>
+							<field name="name" string="分类名称"/>
+						</group>
+						<group col="4" string="备注">
+								<field name="remark" placeholder="备注...." colspan="4" nolabel="1"/>
+						</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="laborprotection_category_list_view" model="ir.ui.view">
+            <field name="name">laborprotection.category.list</field>
+            <field name="model">laborprotection.category</field>
+            <field name="priority">1</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="产品分类">
+                    <field name="complete_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="laborprotection_category_action" model="ir.actions.act_window">
+            <field name="name">产品分类</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">laborprotection.category</field>
+            <!--<field name="domain">[('parent_id','=',False)]</field>-->
+            <field name="domain">[]</field>
+           <field name="view_type">form</field>
+	</data>
+</openerp>

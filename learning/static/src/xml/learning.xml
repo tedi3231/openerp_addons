@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="learningtemplate" xml:space="xml">
+	<t t-name="Homepage">
+		<h1>Hello <t t-esc="name"/> This is homepage!</h1>
+		<div>
+			<div class="oe_color_div"></div>
+		</div>
+	</t>
+	<t t-name="Greeting">
+		<div>
+			<t t-foreach="model.products" t-as="product"> 
+				<span class="product-item" t-att-style="'background-color:'+model.color+';'"> 
+					<t t-esc="product"/> 
+				</span>		
+			</t>
+		</div>
+	</t>
+	<t t-name="ProductsWidget">
+		<div>
+			<t t-foreach="widget.products" t-as="product">
+				<span class="oe_products_item" t-att-style="'background-color:' + widget.color + ';'">
+					<t t-esc="product"/><br/>
+				</span>
+			</t>
+		</div>
+	</t>
+	<t t-name="ColorInputWidget">
+		<div>
+			RED:<input type="text" class="oe_color_red" val="00"/><br/>
+			GREEN:<input type="text" class="oe_color_green" val="00"/><br/>
+			BLUE:<input type="text" class="oe_color_blue" val="00"/><br/>
+		</div>
+	</t>
+	<t t-name="MessageOfTheDay">
+		<div class="oe_learning_motd">
+			<p class="oe_mywidget_message_of_the_day"></p>
+		</div>
+	</t>
+</templates>

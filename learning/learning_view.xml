@@ -1,0 +1,11 @@
+<openerp>
+	<data>
+		<record model="ir.actions.client" id="action_client_learning_homepage">
+			<field name="name">Homepage</field>
+			<field name="tag">action.learning.homepage</field>
+		</record>
+		<menuitem id="learning_menu_top" name="Learning"/>
+		<menuitem id="learning_menu_top_1" name="Learning" parent="learning_menu_top"/>
+		<menuitem id="menu_learning_homepage" parent="learning_menu_top_1" name="Homepage" action="action_client_learning_homepage" />
+	</data>
+</openerp>

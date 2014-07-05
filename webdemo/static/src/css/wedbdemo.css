@@ -1,0 +1,19 @@
+.openerp .oe_web_demo{
+	color:white;
+	background-color:black;
+	height:100%;
+	/*font-size:400%;*/
+}
+
+.openerp .oe_web_demo h4{
+	margin:0;
+	font-size:200%;
+}
+
+.openerp .oe_web_demo.oe_web_demo_started .oe_web_demo_start button,
+.openerp .oe_web_demo.oe_web_demo_stopped .oe_web_demo_stop button,{
+	display:none;
+}
+
+
+
